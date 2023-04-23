@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { login } from "../../services/auth";
 
 import {
   Button,
@@ -10,9 +13,12 @@ import {
   TextField,
 } from "@mui/material";
 
-function LoginCard({changeToSignup}) {
+function LoginCard({ changeToSignup }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   function updateEmail(inputValue) {
     setEmail(inputValue);
@@ -22,8 +28,22 @@ function LoginCard({changeToSignup}) {
     setPassword(inputValue);
   }
 
-  function onLogin() {
-    console.log(email, password);
+  async function onLogin() {
+    const dataInLogin = {
+      email,
+      password,
+    };
+    try {
+      const apiResponse = await login(dataInLogin);
+      localStorage.setItem("token", apiResponse.data.token);
+      console.log(apiResponse);
+      //navigate("/home");
+    } catch (error) {
+      setErrorMessage(error.response.data);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+    }
   }
 
   return (

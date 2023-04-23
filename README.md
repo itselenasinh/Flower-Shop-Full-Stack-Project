@@ -51,9 +51,9 @@ Project Support is an open source platform that enable users share causes they'r
 
 ### Authors
 
+- [Tania Fomiuk](https://github.com/tfomyuk)
 - [Elena García](https://github.com/itselenasinh)
 - [Mairen Rendón](https://github.com/Mairendon)
-- [Tania Fomiuk](https://github.com/tfomyuk)
 
 ### License
 

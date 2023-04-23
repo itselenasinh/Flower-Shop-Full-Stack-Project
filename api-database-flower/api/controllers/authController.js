@@ -5,7 +5,7 @@ const UserModel = require("../models/userModel");
 
 async function signup(req, res) {
   try {
-    const hashed_pwd = await bcrypt.hashSync(req.body.password, 10);
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
 
     const user = await UserModel.create(req.body, {
       fields: ["userName", "email", "password"],
@@ -29,17 +29,19 @@ async function login(req, res) {
     });
 
     if (!user) {
-      return res.status(400).send("email or password incorrect");
+      return res.status(401).send("email or password incorrect");
     }
 
-    const result = await bcrypt.compare(req.body.password, user.password);
+    bcrypt.compare(req.body.password, user.password, (err, result) => {
+      if (err) return res.status(500).send(err);
 
-    if (!result) {
-      return res.json({ error: "Wrong email or password" });
-    }
-    const payload = { email: user.email, userName: user.userName };
-    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "1h" });
-    return res.status(200).json({ token: token });
+      if (!result) return res.status(401).send("Email or password incorrect");
+
+      const payload = { email: user.email, userName: user.userName };
+      const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "1h" });
+
+      return res.status(200).json({ token: token });
+    });
   } catch (error) {
     return res.status(500).send(error.message);
   }

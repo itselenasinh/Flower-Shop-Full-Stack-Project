@@ -20,7 +20,7 @@ const UserModel = sequelize.define(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
   },
   { timestamps: false }
