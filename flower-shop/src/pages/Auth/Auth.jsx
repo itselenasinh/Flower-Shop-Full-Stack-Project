@@ -1,11 +1,20 @@
-import React from "react";
+import { useState } from "react";
 
-import LoginCard from "../../components/LoginCard/LoginCard";
 import { Box, Typography } from "@mui/material";
 
+import LoginCard from "../../components/LoginCard/LoginCard";
+import SignupCard from "../../components/SignupCard/SignupCard";
+
 import loginBackground from "../../assets/backgrounds/login.webp";
+import signupBackground from "../../assets/backgrounds/signup.jpg"
 
 function Auth() {
+  const [ isLogin, setIsLogin ] = useState(true)
+
+  function toggleLoginSignup(){
+    setIsLogin((oldState) => !oldState)
+  }
+
   return (
     <Box
       sx={{
@@ -14,7 +23,7 @@ function Auth() {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: 'column',
-        backgroundImage: `url(${loginBackground})`,
+        backgroundImage: `url(${isLogin ? loginBackground : signupBackground})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         overflow: "hidden",
@@ -23,7 +32,7 @@ function Auth() {
       <Typography variant="h1" color="black">
         YOUR FLOWERS
       </Typography>
-      <LoginCard />
+      {isLogin ? <LoginCard changeToSignup={toggleLoginSignup} /> : (<SignupCard changeToLogin={toggleLoginSignup} />) }
     </Box>
   );
 }

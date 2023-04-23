@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 
-function LoginCard() {
+function LoginCard({changeToSignup}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -38,8 +38,6 @@ function LoginCard() {
           fullWidth
         ></TextField>
         <TextField
-          required
-          id="outlined-required"
           onKeyDown={(e) => {
             if (e.key === "Enter") return onLogin();
           }}
@@ -56,7 +54,7 @@ function LoginCard() {
           justifyContent: "flex-end",
         }}
       >
-        <Button>Signup</Button>
+        <Button onClick={() => changeToSignup()}>Signup</Button>
         <Button onClick={() => onLogin()}>Login</Button>
       </CardActions>
     </Card>
