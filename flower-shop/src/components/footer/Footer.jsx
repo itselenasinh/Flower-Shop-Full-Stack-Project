@@ -1,8 +1,12 @@
 /* eslint-disable react/jsx-key */
 //import React from "react"
 import { Box, Grid, Container, Typography, Button } from "@mui/material";
+import "./Footer.css";
 
 function Footer() {
+  const today = new Date();
+  const year = today.getFullYear();
+
   const elements = [
     {
       header: "Contact us",
@@ -21,22 +25,20 @@ function Footer() {
   function generateFooterElements() {
     const footerElements = elements.map((column) => {
       return (
-        <div className="footer">
-          <Grid item xs={12} md={4}>
-            <Box borderBottom={1}>
-              <Button sx={{ color: "white", fontWeight: "bold" }}>
-                {column.header}
-              </Button>
-            </Box>
-            {column.links.map((link) => {
-              return (
-                <Box>
-                  <Button sx={{ color: "white" }}>{link}</Button>
-                </Box>
-              );
-            })}
-          </Grid>
-        </div>
+        <Grid item xs={12} md={4}>
+          <Box borderBottom={1}>
+            <Button sx={{ color: "white", fontWeight: "bold" }}>
+              {column.header}
+            </Button>
+          </Box>
+          {column.links.map((link) => {
+            return (
+              <Box>
+                <Button sx={{ color: "white" }}>{link}</Button>
+              </Box>
+            );
+          })}
+        </Grid>
       );
     });
     return footerElements;
@@ -50,23 +52,33 @@ function Footer() {
   }*/
 
   return (
-    <footer>
+    <>
       <Box
         bgcolor="violet"
         color="white"
-        padding={2}
-        
         sx={{
-          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          pt: "20px",
+          pb: '20px',
           position: "fixed",
           bottom: 0,
+          width: '100%'
         }}
         textAlign={"center"}
-        py={2}
+        py={0}
         m={0}
       >
-        <Container fluid>
-          <Grid container spacing={5} margin={5}>
+        <Container>
+          <Grid
+            container
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+            columnSpacing={4}
+            rowSpacing={0}
+          >
             {generateFooterElements()}
           </Grid>
         </Container>
@@ -80,14 +92,14 @@ function Footer() {
           bottom: 0,
         }}
         textAlign={"center"}
-        py={2}
+        py={0}
         m={0}
       >
         <Typography>
-          © Reboot Academy 2023 - <small>All Rights Reserved</small>
+          © Your Flowers {year} - <small>All Rights Reserved</small>
         </Typography>
       </Box>
-    </footer>
+    </>
   );
 }
 
