@@ -11,6 +11,7 @@ const UserModel = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      //unique
       validate: {
         isEmail: {
           args: true,
@@ -31,8 +32,7 @@ const UserModel = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false },
-
+  { timestamps: false }
 );
 
 module.exports = UserModel;

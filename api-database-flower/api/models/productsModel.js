@@ -9,7 +9,7 @@ const ProductsModel = sequelize.define(
       allowNull: false,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
@@ -19,6 +19,7 @@ const ProductsModel = sequelize.define(
     picture: {
       type: DataTypes.BLOB,
       allowNull: true,
+      //cloudinay
     },
     stock: {
       type: DataTypes.INTEGER,

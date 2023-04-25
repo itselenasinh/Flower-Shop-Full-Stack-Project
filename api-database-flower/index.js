@@ -1,13 +1,15 @@
 require("dotenv").config();
 
 const { checkConnection, syncModels } = require("./database/index.js");
-const UserModel = require("./database/relations.js"); //relations function
+
+const addRelations = require("./database/relations.js");
 
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 
 async function checkAndSyncPostgreSQL() {
+  addRelations();
   await checkConnection();
   await syncModels();
 }
