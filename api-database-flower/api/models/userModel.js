@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 const UserModel = sequelize.define(
   "users",
   {
-    userName: {
+    full_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -23,7 +23,8 @@ const UserModel = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false }
+  { timestamps: false },
+
 );
 
 module.exports = UserModel;
