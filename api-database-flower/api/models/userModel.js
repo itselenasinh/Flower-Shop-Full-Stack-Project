@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 const UserModel = sequelize.define(
   "users",
   {
-    full_name: {
+    fullName: {
       type: DataTypes.STRING,
       allowNull: false,
     },

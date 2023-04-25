@@ -8,10 +8,10 @@ async function signup(req, res) {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
 
     const user = await UserModel.create(req.body, {
-      fields: ["userName", "email", "password"],
+      fields: ["fullName", "email", "password"],
     });
 
-    const payload = { email: user.email, userName: user.userName };
+    const payload = { email: user.email, fullName: user.fullName };
     const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "1h" });
 
     return res.status(200).json({ token: token });
@@ -37,7 +37,7 @@ async function login(req, res) {
 
       if (!result) return res.status(401).send("Email or password incorrect");
 
-      const payload = { email: user.email, userName: user.userName };
+      const payload = { email: user.email, fullName: user.fullName };
       const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "1h" });
 
       return res.status(200).json({ token: token });
