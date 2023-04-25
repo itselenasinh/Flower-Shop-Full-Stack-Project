@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 const UserModel = sequelize.define(
   "users",
   {
-    full_name: {
+    fullName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -20,6 +20,14 @@ const UserModel = sequelize.define(
     },
     password: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phone: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
