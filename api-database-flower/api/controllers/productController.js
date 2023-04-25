@@ -19,9 +19,9 @@ async function getProduct(req, res) {
 
 async function getOneProduct(req, res) {
   try {
-    const product = await ProductsModel.findByPk(req.params.id, {
-      
-    })
+    const product = await ProductsModel.findByPk(req.params.id, {});
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 }
 module.exports = {
