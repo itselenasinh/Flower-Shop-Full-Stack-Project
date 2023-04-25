@@ -1,4 +1,4 @@
-import { createBrowserRouter, /*redirect*/ } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 
 import Layout from "../layout/Layout";
 
@@ -56,20 +56,26 @@ const appRouter = createBrowserRouter([
         path: "/contact-us",
         element: <ContactUs />,
       },
-      {
-        path: "/login",
-        element: <Auth />,
-        //   { loader: () => {
-        //   if (!localStorage.getItem('token')) {
-        //     return redirect('/')
-        //   } else {
-        //     return null
-        children: [
-          { path: "/login/profile", element: <Profile /> },
-          { path: "/login/orders", element: <Orders /> },
-        ],
-      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Auth />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+    loader: () => {
+      if (!localStorage.getItem("token")) {
+        return redirect("/");
+      } else {
+        return null;
+      }
+    },
+  },
+  {
+    path: "/orders",
+    element: <Orders />,
   },
 ]);
 

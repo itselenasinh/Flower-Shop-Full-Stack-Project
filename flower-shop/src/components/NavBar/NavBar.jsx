@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { AppBar } from "@mui/material";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,10 +14,14 @@ const headerColor = indigo[200];
 import { Link } from "react-router-dom";
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
+import SearchBar from "../SearchBar/SearchBar";
+
 const pages = ["About Us", "Products", "Especial Events", "Contact Us"];
 
 function NavBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [anchorButton, setAnchorButton] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -25,6 +29,16 @@ function NavBar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleOpenProducts = (event) => {
+    setAnchorButton(event.currentTarget);
+    setIsMenuOpen(true);
+  };
+
+  const handleCloseProducts = () => {
+    setAnchorButton(null);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -112,6 +126,7 @@ function NavBar() {
           >
             YOUR FLOWERS
           </Typography>
+          <SearchBar />
           <Box
             sx={{
               flexGrow: 1,
@@ -120,16 +135,48 @@ function NavBar() {
               justifyContent: "center",
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                href={`/${page.toLowerCase()}`}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            {pages.map((page) => {
+              if (page === "Products") {
+                return (
+                  <Button
+                    onClick={handleOpenProducts}
+                    key={page}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                );
+              } else {
+                return (
+                  <Button
+                    key={page}
+                    href={`/${page.toLowerCase()}`}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                );
+              }
+            })}
+            <Menu
+              open={isMenuOpen}
+              anchorEl={anchorButton}
+              onClose={handleCloseProducts}
+            >
+              <MenuItem component={Link} to="/products-bouquets">
+                Bouquets
+              </MenuItem>
+              <MenuItem component={Link} to="/products-crowns">
+                Crowns
+              </MenuItem>
+              <MenuItem component={Link} to="/products-garlands">
+                Garlands
+              </MenuItem>
+              <MenuItem component={Link} to="/products-plants">
+                Plants
+              </MenuItem>
+            </Menu>
           </Box>
           <Box>
             <Link to={"/login"}>
