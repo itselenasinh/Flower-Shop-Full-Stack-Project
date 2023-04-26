@@ -10,13 +10,20 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  Icon,
+  IconButton,
+  InputAdornment,
   TextField,
 } from "@mui/material";
+
+import { Lock, VisibilityOff, Visibility, Email } from "@mui/icons-material";
 
 function LoginCard({ changeToSignup }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [isPassVisible, setIsPassVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -56,6 +63,15 @@ function LoginCard({ changeToSignup }) {
           label="Email"
           variant="outlined"
           fullWidth
+          InputProps={{
+            startAdornment: (
+              <InputAdornment>
+                <Icon>
+                  <Email />
+                </Icon>
+              </InputAdornment>
+            ),
+          }}
         ></TextField>
         <TextField
           onKeyDown={(e) => {
@@ -65,6 +81,27 @@ function LoginCard({ changeToSignup }) {
           label="Password"
           variant="outlined"
           fullWidth
+          type={isPassVisible ? "text" : "password"}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment>
+                <Icon>
+                  <Lock />
+                </Icon>
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment>
+                <IconButton
+                  onClick={() => {
+                    setIsPassVisible((oldState) => !oldState);
+                  }}
+                >
+                  {isPassVisible ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         ></TextField>
       </CardContent>
       <Divider />
@@ -75,7 +112,9 @@ function LoginCard({ changeToSignup }) {
         }}
       >
         <Button onClick={() => changeToSignup()}>Signup</Button>
-        <Button onClick={() => onLogin()}>Login</Button>
+        <Button color="success" onClick={() => onLogin()}>
+          Login
+        </Button>
       </CardActions>
     </Card>
   );
