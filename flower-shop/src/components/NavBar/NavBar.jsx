@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AppBar } from "@mui/material";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
@@ -12,11 +11,12 @@ import MenuItem from "@mui/material/MenuItem";
 import { indigo } from "@mui/material/colors";
 const headerColor = indigo[200];
 import { Link } from "react-router-dom";
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 import SearchBar from "../SearchBar/SearchBar";
+import { Person2Outlined } from "@mui/icons-material";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
-const pages = ["About Us", "Products", "Especial Events", "Contact Us"];
+const pages = ["About Us", "Products", "Special Events", "Contact Us"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -50,145 +50,158 @@ function NavBar() {
         textAlign: "center",
       }}
     >
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
+      <Container
+        maxWidth="xl"
+        sx={{
+          mr: "10px",
+          ml: "10px",
+          pt: "5px",
+          pb: "5px",
+          pr: "0",
+          pl: "0",
+          display: "flex",
+          textAlign: "center",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h6"
+          noWrap
+          component="a"
+          href="/"
+          sx={{
+            display: { xs: "none", md: "flex" },
+            textAlign: "center",
+            justifyContent: "center",
+            fontFamily: "monospace",
+            fontWeight: 700,
+            letterSpacing: ".3rem",
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
+          YOUR FLOWERS
+        </Typography>
+        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenNavMenu}
+            color="inherit"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
             sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              display: { xs: "block", md: "none" },
             }}
           >
-            YOUR FLOWERS
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Button key={page} href={`/${page.toLowerCase()}`}>
-                    {page}
-                  </Button>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
+            {pages.map((page) => (
+              <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <Button key={page} href={`/${page.toLowerCase()}`}>
+                  {page}
+                </Button>
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
+        <Typography
+          variant="h5"
+          noWrap
+          component="a"
+          href="/"
+          sx={{
+            mr: 2,
+            display: { xs: "flex", md: "none" },
+            flexGrow: 1,
+            fontFamily: "monospace",
+            fontWeight: 700,
+            letterSpacing: ".3rem",
+            color: "inherit",
+            textDecoration: "none",
+          }}
+        >
+          YOUR FLOWERS
+        </Typography>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            flexDirection: { xs: "row" },
+            justifyContent: "center",
+          }}
+        >
+          {pages.map((page) => {
+            if (page === "Products") {
+              return (
+                <Button
+                  onClick={handleOpenProducts}
+                  key={page}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
+              );
+            } else {
+              return (
+                <Button
+                  key={page}
+                  href={`/${page.toLowerCase().replace(/\s/g, "-")}`}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page}
+                </Button>
+              );
+            }
+          })}
+          <Menu
+            open={isMenuOpen}
+            anchorEl={anchorButton}
+            onClose={handleCloseProducts}
           >
-            YOUR FLOWERS
-          </Typography>
-          <SearchBar />
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              flexDirection: { xs: "row" },
-              justifyContent: "center",
-            }}
-          >
-            {pages.map((page) => {
-              if (page === "Products") {
-                return (
-                  <Button
-                    onClick={handleOpenProducts}
-                    key={page}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page}
-                  </Button>
-                );
-              } else {
-                return (
-                  <Button
-                    key={page}
-                    href={`/${page.toLowerCase()}`}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page}
-                  </Button>
-                );
-              }
-            })}
-            <Menu
-              open={isMenuOpen}
-              anchorEl={anchorButton}
-              onClose={handleCloseProducts}
-            >
-              <MenuItem component={Link} to="/products-bouquets">
-                Bouquets
-              </MenuItem>
-              <MenuItem component={Link} to="/products-crowns">
-                Crowns
-              </MenuItem>
-              <MenuItem component={Link} to="/products-garlands">
-                Garlands
-              </MenuItem>
-              <MenuItem component={Link} to="/products-plants">
-                Plants
-              </MenuItem>
-            </Menu>
-          </Box>
-          <Box>
-            <Link to={"/login"}>
-              <Button>
-                <AccountBoxOutlinedIcon
-                  sx={{ color: "white", justifyContent: "space-around" }}
-                  variant="raised"
-                ></AccountBoxOutlinedIcon>
-              </Button>
-            </Link>
-          </Box>
-        </Toolbar>
+            <MenuItem component={Link} to="/products-bouquets">
+              Bouquets
+            </MenuItem>
+            <MenuItem component={Link} to="/products-crowns">
+              Crowns
+            </MenuItem>
+            <MenuItem component={Link} to="/products-garlands">
+              Garlands
+            </MenuItem>
+            <MenuItem component={Link} to="/products-plants">
+              Plants
+            </MenuItem>
+          </Menu>
+        </Box>
+        <SearchBar sx={{ display: "block" }} />
+        <Box>
+          <Link to={"/login"}>
+            <Button sx={{ m: "0" }}>
+              <Person2Outlined
+                sx={{ color: "white", justifyContent: "space-around" }}
+                variant="raised"
+              ></Person2Outlined>
+            </Button>
+          </Link>
+        </Box>
+        <ShoppingCart />
       </Container>
     </AppBar>
   );

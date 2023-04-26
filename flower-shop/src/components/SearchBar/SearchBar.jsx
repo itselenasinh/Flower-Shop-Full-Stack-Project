@@ -1,18 +1,23 @@
 import { useContext } from "react";
 import { searchContext } from "../../layout/Layout";
+import "./SearchBar.css";
+import { IconButton } from "@mui/material";
+import { SearchOutlined } from "@mui/icons-material";
+// import SearchOutlined from
 
 function SearchBar() {
   const [searchBar, setSearchBar] = useContext(searchContext);
   return (
-    <form>
-      <input
-        type="text"
-        placeholder="Search a product..."
+    <div>
+    {/* <input type="text" placeholder="Search a product..." /> */}
+      <IconButton
+        sx={{ backgroundColor: "none"}}
         value={searchBar}
         onChange={(e) => setSearchBar(e.target.value)}
-      />
-      <button type="submit">Search</button>
-    </form>
+      >
+        <SearchOutlined type="submit" sx={{ color: "white" }} />
+      </IconButton>
+    </div>
   );
 }
 
