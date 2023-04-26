@@ -6,13 +6,13 @@ import LoginCard from "../../components/LoginCard/LoginCard";
 import SignupCard from "../../components/SignupCard/SignupCard";
 
 import loginBackground from "../../assets/backgrounds/login.webp";
-import signupBackground from "../../assets/backgrounds/signup.jpg"
+import signupBackground from "../../assets/backgrounds/signup.jpg";
 
 function Auth() {
-  const [ isLogin, setIsLogin ] = useState(true)
+  const [isLogin, setIsLogin] = useState(true);
 
-  function toggleLoginSignup(){
-    setIsLogin((oldState) => !oldState)
+  function toggleLoginSignup() {
+    setIsLogin((oldState) => !oldState);
   }
 
   return (
@@ -22,7 +22,7 @@ function Auth() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: 'column',
+        flexDirection: "column",
         backgroundImage: `url(${isLogin ? loginBackground : signupBackground})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -32,7 +32,11 @@ function Auth() {
       <Typography variant="h1" color="black">
         YOUR FLOWERS
       </Typography>
-      {isLogin ? <LoginCard changeToSignup={toggleLoginSignup} /> : (<SignupCard changeToLogin={toggleLoginSignup} />) }
+      {isLogin ? (
+        <LoginCard changeToSignup={toggleLoginSignup} />
+      ) : (
+        <SignupCard changeToLogin={toggleLoginSignup} />
+      )}
     </Box>
   );
 }
