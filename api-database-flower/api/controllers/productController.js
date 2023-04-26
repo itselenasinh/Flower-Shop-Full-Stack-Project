@@ -32,11 +32,12 @@ async function getOneProduct(req, res) {
 
 async function getCategoriesProducts(req, res) {
   try {
-    const categories = await Categories.findByPk(req.params.categoriesId, {
+    const categories = await Categories.findAll({
+      where: req.query,
       include: [
         {
-          model: Categories,
-          attributes: ["categoriesName"],
+          model: ProductsModel,
+          attributes: ["productName", "price", "description", "picture"],
         },
       ],
     });
@@ -45,13 +46,32 @@ async function getCategoriesProducts(req, res) {
     }
     return res.status(200).json(categories);
   } catch (error) {
-    return res
-      .status(500)
-      .send(`Error retrieving doctor's patients: ${error.message}`);
+    return res.status(500).send(`${error.message}`);
   }
 }
+
+async function getOneCategoriesProducts(req, res) {
+  try {
+    const categories = await Categories.findByPk(req.params.categoriesId, {
+      include: [
+        {
+          model: ProductsModel,
+          attributes: ["productName", "price", "description", "picture"],
+        },
+      ],
+    });
+    if (!categories) {
+      return res.status(400).send("categories not found");
+    }
+    return res.status(200).json(categories);
+  } catch (error) {
+    return res.status(500).send(`${error.message}`);
+  }
+}
+
 module.exports = {
   getProduct,
   getOneProduct,
   getCategoriesProducts,
+  getOneCategoriesProducts,
 };
