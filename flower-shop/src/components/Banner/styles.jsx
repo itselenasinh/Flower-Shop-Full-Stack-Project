@@ -15,7 +15,8 @@ export const BannerContainer = styled(Box) (() => ({
 
 export const BannerImage = styled('img')(({src}) => ({
     src: `url(${src})`,
-    minWidth: "300px"
+    minWidth: "50px",
+    maxWidth: "1500"
 }) )
 
 export const BannerContent = styled(Box) (() => ({
