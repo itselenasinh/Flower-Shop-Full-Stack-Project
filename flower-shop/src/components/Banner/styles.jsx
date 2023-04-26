@@ -10,10 +10,11 @@ export const BannerContainer = styled(Box)(() => ({
   backgroundColor: "lightpink",
 }));
 
-export const BannerImage = styled("img")(({ src }) => ({
-  src: `url(${src})`,
-  minWidth: "300px",
-}));
+export const BannerImage = styled('img')(({src}) => ({
+    src: `url(${src})`,
+    minWidth: "50px",
+    maxWidth: "1500"
+}) )
 
 export const BannerContent = styled(Box)(() => ({
   display: "flex",
