@@ -54,7 +54,7 @@ function Footer() {
   return (
     <>
       <Box
-        bgcolor="violet"
+        bgcolor="#9fa8da"
         color="white"
         sx={{
           display: "flex",
@@ -84,7 +84,7 @@ function Footer() {
         </Container>
       </Box>
       <Box
-        bgcolor="black"
+        bgcolor="#e1bee7"
         color={"white"}
         sx={{
           width: "100%",
