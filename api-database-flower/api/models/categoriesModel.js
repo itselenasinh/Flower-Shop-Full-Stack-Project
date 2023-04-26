@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 const Categories = sequelize.define(
   "categories",
   {
-    categoryName: {
+    category: {
       type: DataTypes.STRING,
       allowNull: true,
     },

@@ -52,7 +52,9 @@ async function getCategoriesProducts(req, res) {
 
 async function getOneCategoriesProducts(req, res) {
   try {
-    const categories = await Categories.findByPk(req.params.categoriesId, {
+    const categories = await Categories.findAll({
+      where: req.query,
+      attributes: ["category"],
       include: [
         {
           model: ProductsModel,
