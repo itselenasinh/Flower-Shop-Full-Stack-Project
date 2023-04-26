@@ -1,4 +1,4 @@
-form {
+/* form {
     display: flex;
     justify-content: center;
     border: solid #4b00824a;
@@ -8,16 +8,17 @@ form {
     justify-content: center;
     flex-direction: row;
     background-color: #4b00824a;
-}
+} */
 
 input {
-    border-radius: 20px;
-    border: white;
-    padding: 10px;
-    font-style: italic;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  border-radius: 20px;
+  border: white;
+  padding: 10px;
+  font-style: italic;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-input:focus{
-    outline: none;
+input:focus {
+  outline: none;
 }
