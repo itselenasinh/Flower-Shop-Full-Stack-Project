@@ -10,7 +10,7 @@ export async function signup(data) {
   return response;
 }
 
-export async function getProductByCategory(q) {
-  const {data} = await authApi.get(`/products/categories?category=${q}`)
-  return data.category
+export async function getProductByCategory() {
+  const response = await authApi.get(`/products/categories?category=crown`);
+  return response.data;
 }

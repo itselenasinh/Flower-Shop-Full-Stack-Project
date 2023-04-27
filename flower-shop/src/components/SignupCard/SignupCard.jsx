@@ -28,6 +28,7 @@ function SignupCard({ changeToLogin }) {
   const [phone, setphone] = useState("");
 
   const [isPassVisible, setIsPassVisible] = useState(false);
+  const [isPassVisibleConfirm, setIsPassVisibleConfirm] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -58,6 +59,7 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
           <TextField
             onChange={(e) => setEmail(e.target.value)}
@@ -65,11 +67,12 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
           <TextField
             onChange={(e) => setPassword(e.target.value)}
             label="Password"
-            type="password"
+            type={isPassVisible ? "text" : "password"}
             variant="outlined"
             fullWidth={true}
             inputRef={passwordRef}
@@ -94,11 +97,12 @@ function SignupCard({ changeToLogin }) {
                 </InputAdornment>
               ),
             }}
+            required
           />
           <TextField
             onChange={(e) => setpasswordCorfirm(e.target.value)}
             label="Repeat password"
-            type="password"
+            type={isPassVisibleConfirm ? "text" : "password"}
             variant="outlined"
             fullWidth={true}
             inputRef={passwordCorfirmRef}
@@ -115,14 +119,15 @@ function SignupCard({ changeToLogin }) {
                 <InputAdornment>
                   <IconButton
                     onClick={() => {
-                      setIsPassVisible((oldState) => !oldState);
+                      setIsPassVisibleConfirm((oldState) => !oldState);
                     }}
                   >
-                    {isPassVisible ? <Visibility /> : <VisibilityOff />}
+                    {isPassVisibleConfirm ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
+            required
           />
           <TextField
             onChange={(e) => setaddress(e.target.value)}
@@ -131,6 +136,7 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
           <TextField
             onChange={(e) => setphone(e.target.value)}
@@ -139,6 +145,7 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
         </CardContent>
         <Divider />

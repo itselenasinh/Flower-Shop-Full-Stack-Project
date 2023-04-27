@@ -9,7 +9,7 @@ const ProductsModel = sequelize.define(
       allowNull: false,
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
     description: {
