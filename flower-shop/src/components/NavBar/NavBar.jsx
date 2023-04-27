@@ -176,16 +176,16 @@ function NavBar() {
             anchorEl={anchorButton}
             onClose={handleCloseProducts}
           >
-            <MenuItem component={Link} to="/products-bouquets">
+            <MenuItem component={Link} to="/products/bouquets">
               Bouquets
             </MenuItem>
-            <MenuItem component={Link} to="/products-crowns">
+            <MenuItem component={Link} to="/products/crowns">
               Crowns
             </MenuItem>
-            <MenuItem component={Link} to="/products-garlands">
+            <MenuItem component={Link} to="/products/garlands">
               Garlands
             </MenuItem>
-            <MenuItem component={Link} to="/products-plants">
+            <MenuItem component={Link} to="/products/plants">
               Plants
             </MenuItem>
           </Menu>

@@ -10,7 +10,13 @@ export async function signup(data) {
   return response;
 }
 
-export async function getProductByCategory() {
-  const response = await authApi.get(`/products/categories?category=crown`);
-  return response.data;
+export async function getProductByCategory(categoryName) {
+  console.log(categoryName)
+  const { data } = await authApi.get(`/products/categories/${categoryName}`);
+  return data[0].products;
+}
+
+export async function getProductsList() {
+  const { data } = await authApi.get("/categories");
+  return data;
 }

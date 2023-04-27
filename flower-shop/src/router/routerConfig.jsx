@@ -6,10 +6,7 @@ import Home from "../pages/Home/Home";
 
 import AboutUs from "../pages/AboutUs/AboutUs";
 
-import Bouquets from "../pages/Bouquets/Bouquets";
-import Crowns from "../pages/Crowns/Crowns";
-import Garlands from "../pages/Garlands/Garlands";
-import Plants from "../pages/Plants/Plants";
+import Categories from "../pages/Categories/Categories";
 
 import SpecialEvents from "../pages/SpecialEvents/SpecialEvents";
 
@@ -18,6 +15,7 @@ import ContactUs from "../pages/ConctactUs/ContactUs";
 import Auth from "../pages/Auth/Auth";
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
+import ProductsPages from "../pages/ProductsPages/ProductsPages";
 
 const appRouter = createBrowserRouter([
   {
@@ -33,20 +31,12 @@ const appRouter = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/products-bouquets/:categoriesId",
-        element: <Bouquets />,
+        path: "/products",
+        element: <Categories />,
       },
       {
-        path: "/products-crowns",
-        element: <Crowns />,
-      },
-      {
-        path: "/products-garlands",
-        element: <Garlands />,
-      },
-      {
-        path: "/products-plants",
-        element: <Plants />,
+        path: "/products/:categoryName",
+        element: <ProductsPages />,
       },
       {
         path: "/special-events",
