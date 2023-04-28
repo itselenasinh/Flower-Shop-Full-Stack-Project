@@ -13,8 +13,7 @@ const headerColor = indigo[200];
 import { Link } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
-import { Person2Outlined } from "@mui/icons-material";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import { Person2Outlined, ShoppingBagOutlined } from "@mui/icons-material";
 
 const pages = ["About Us", "Products", "Special Events", "Contact Us"];
 
@@ -114,7 +113,10 @@ function NavBar() {
           >
             {pages.map((page) => (
               <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Button key={page} href={`/${page.toLowerCase()}`}>
+                <Button
+                  key={page}
+                  href={`/${page.toLowerCase().replace(/\s/g, "-")}`}
+                >
                   {page}
                 </Button>
               </MenuItem>
@@ -201,7 +203,9 @@ function NavBar() {
             </Button>
           </Link>
         </Box>
-        <ShoppingCart />
+        <IconButton sx={{ backgroundColor: "none" }}>
+          <ShoppingBagOutlined sx={{ color: "white" }} />
+        </IconButton>
       </Container>
     </AppBar>
   );

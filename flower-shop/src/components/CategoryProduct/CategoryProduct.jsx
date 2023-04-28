@@ -19,6 +19,9 @@ function CategoryProduct() {
   const showProductsByCategory = () => {
     return productShowList.map((product) => (
       <Link
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         key={product.id}
         to={`/products/${categoryName}/product/${product.id}`}
       >
