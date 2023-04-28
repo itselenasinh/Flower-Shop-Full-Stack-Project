@@ -204,7 +204,9 @@ function NavBar() {
           </Link>
         </Box>
         <IconButton sx={{ backgroundColor: "none" }}>
+        <Link to={"/shopping-cart"}>
           <ShoppingBagOutlined sx={{ color: "white" }} />
+          </Link>
         </IconButton>
       </Container>
     </AppBar>

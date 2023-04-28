@@ -17,6 +17,7 @@ import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
 import ProductsPages from "../pages/ProductsPages/ProductsPages";
 import OneProductPage from "../pages/OneProductPage/OneProductPage";
+import Shopping from "../pages/Shopping/Shopping";
 
 const appRouter = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/shopping-cart",
+        element: <Shopping />,
       },
     ],
   },
