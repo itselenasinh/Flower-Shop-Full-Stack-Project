@@ -16,6 +16,7 @@ import Auth from "../pages/Auth/Auth";
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
 import ProductsPages from "../pages/ProductsPages/ProductsPages";
+import OneProductPage from "../pages/OneProductPage/OneProductPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/products/:categoryName",
         element: <ProductsPages />,
+      },
+      {
+        path: "/products/:categoryName/productName",
+        element: <OneProductPage />
       },
       {
         path: "/special-events",

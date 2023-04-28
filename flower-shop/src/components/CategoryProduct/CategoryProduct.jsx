@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductByCategory } from "../../services/apiFlower";
 import ProductCard from "../ProductCard/ProductCard";
 
@@ -18,19 +18,12 @@ function CategoryProduct() {
 
   const showProductsByCategory = () => {
     return productShowList.map((product) => (
-      <Link
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        key={product.id}
-        to={`/products/${categoryName}/product/${product.id}`}
-      >
-        <ProductCard
-          picture={product.picture}
-          productName={product.productName}
-          price={product.price}
-        />
-      </Link>
+      <ProductCard
+        key={product.productId}
+        picture={product.picture}
+        productName={product.productName}
+        price={product.price}
+      />
     ));
   };
 
