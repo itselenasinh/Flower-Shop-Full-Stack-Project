@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getProductByCategory } from "../../services/auth";
+import { getProductByCategory } from "../../services/apiFlower";
 import ProductCard from "../ProductCard/ProductCard";
 
 function CategoryProduct() {
