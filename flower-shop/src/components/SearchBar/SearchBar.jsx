@@ -1,24 +1,46 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { searchContext } from "../../layout/Layout";
 
+import { searchByApi } from "../../services/apiFlower";
 import {
-  Button,
   Box,
   IconButton,
-  TextField,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
+  Input,
 } from "@mui/material";
 import { Close, SearchOutlined } from "@mui/icons-material";
 
 function SearchBar() {
-  const [searchBar, setSearchBar] = useState("");
   const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [searchBar, setSearchBar] = useContext(searchContext);
+
+  const result = (value) => {
+    searchByApi(value)
+      .then((response) => response.json())
+      .then((json) => {
+        const results = json.filter((products) => {
+          return (
+            value &&
+            products &&
+            products.productName &&
+            products.productsName.toLowerCase().includes(value)
+          );
+        });
+        console.log(results);
+      });
+  };
+
+  const handleChange = (value) => {
+    setSearchBar(value);
+    result(value);
+  };
 
   const handleSearch = () => {
-    console.log("we are searching", searchBar);
+    console.log(setSearchBar);
+    setSearchBar("");
     setSearchBarVisible(false);
   };
 
@@ -39,10 +61,12 @@ function SearchBar() {
       <Dialog open={searchBarVisible} onClose={handleCancel}>
         <DialogTitle>Search Products</DialogTitle>
         <DialogContent>
-          <TextField
+          <Input
             label="Search"
+            type={"text"}
             value={searchBar}
-            onChange={(e) => setSearchBar(e.target.value)}
+            placeholder={"Search Products"}
+            onChange={(e) => handleChange(e.target.value)}
           />
         </DialogContent>
         <DialogActions>

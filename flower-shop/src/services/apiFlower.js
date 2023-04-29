@@ -11,6 +11,9 @@ export async function getProductsList() {
   return data;
 }
 
-// export async function searchByApi(q) {
-//   const {data} = await authApi.get()
-// }
+export async function searchByApi(q) {
+  const { data } = await authApi.get(`/products?productName=${q}`);
+  console.log(`mostrando${data}`, data);
+
+  return data;
+}
