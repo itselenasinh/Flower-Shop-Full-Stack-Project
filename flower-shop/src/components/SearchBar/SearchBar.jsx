@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { searchContext } from "../../layout/Layout";
 
 import { searchByApi } from "../../services/apiFlower";
@@ -16,22 +16,42 @@ import { Close, SearchOutlined } from "@mui/icons-material";
 function SearchBar() {
   const [searchBarVisible, setSearchBarVisible] = useState(false);
   const [searchBar, setSearchBar] = useContext(searchContext);
+  const [searchResults, setSearchResults] = useState([]);
 
   const result = (value) => {
-    searchByApi(value)
-      .then((response) => response.json())
-      .then((json) => {
-        const results = json.filter((products) => {
-          return (
-            value &&
-            products &&
-            products.productName &&
-            products.productsName.toLowerCase().includes(value)
-          );
-        });
-        console.log(results);
+    searchByApi(value).then((response) => {
+      const results = response.data.filter((product) => {
+        return (
+          value &&
+          product &&
+          product.productName &&
+          product.productName.toLowerCase().includes(value.toLowerCase())
+        );
       });
+      setSearchResults(results);
+    });
   };
+
+  // useEffect(() => {
+  //   async function searchByValue(value) {
+  //     try {
+  //       const response = await searchByApi(value)
+  //       const results = response.data.filter((product) => {
+  //         return (
+  //            value &&
+  //           product &&
+  //           product.productName &&
+  //           product.productName.
+  //           )
+  //       })
+  //       setSearchBar(results)
+  //     } catch (error ) {
+  //       console.log(error)
+  //     }
+  //   }
+  //  searchByValue(searchBar)
+
+  // },[searchBar])
 
   const handleChange = (value) => {
     setSearchBar(value);
@@ -39,14 +59,15 @@ function SearchBar() {
   };
 
   const handleSearch = () => {
-    console.log(setSearchBar);
     setSearchBar("");
+    setSearchResults([]);
     setSearchBarVisible(false);
   };
 
   const handleCancel = () => {
-    setSearchBarVisible(false);
     setSearchBar("");
+    setSearchResults([]);
+    setSearchBarVisible(false);
   };
 
   return (
@@ -68,6 +89,11 @@ function SearchBar() {
             placeholder={"Search Products"}
             onChange={(e) => handleChange(e.target.value)}
           />
+          {searchResults.map((product) => (
+            <div key={product.id}>
+              <p>{product.productName}</p>
+            </div>
+          ))}
         </DialogContent>
         <DialogActions>
           <IconButton sx={{ backgroundColor: "none" }}>
