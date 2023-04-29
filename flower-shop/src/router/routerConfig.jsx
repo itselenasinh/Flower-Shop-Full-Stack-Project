@@ -17,7 +17,7 @@ import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
 import ProductsPages from "../pages/ProductsPages/ProductsPages";
 import OneProductPage from "../pages/OneProductPage/OneProductPage";
-import Shopping from "../pages/Shopping/Shopping";
+import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 
 const appRouter = createBrowserRouter([
   {
@@ -54,7 +54,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/shopping-cart",
-        element: <Shopping />,
+        element: <ShoppingCart />
       },
     ],
   },

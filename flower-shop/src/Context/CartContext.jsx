@@ -1,53 +1,18 @@
-import { useState, createContext} from 'react'
+import React, { createContext, useState } from "react";
 
- export const CartContext = createContext([])
+export const ShoppingCartContext = createContext(null);
 
-function CartProvider({children}) {
-
-    const [ cart, setCart ] = useState([])
-    
-    function addToCart(product) {
-        setCart([...cart, product])
-    }
-
-    // const addProductsToCart = () => {
-    //     setCart((currProducts) => {
-    //       const isProductsFound = currProducts.find((product) => product.id === id );
-    //       if (isProductsFound) {
-    //         return currProducts.map((product) => {
-    //           if (product.id === id) {
-    //             return { ...product, quantity: product.quantity + 1 };
-    //           } else {
-    //             return product;
-    //           }
-    //         });
-    //       } else {
-    //         return [...currProducts, { id, quantity: 1, price }];
-    //       }
-    //     });
-    //   };
-
-    // const removeProduct = (id) => {
-    //   setCart((currProducts) => {
-    //     if(currProducts.find((product) => product.id === id)?.quantity === 1) {
-    //       return currProducts.filter((product) => product.id !== id);
-    //     } else {
-    //       return currProducts.map((product) => {
-    //         if(product.id === id) {
-    //           return { ...product, quantity: product.quantity - 1 };
-    //         } else {
-    //           return product;
-    //         }
-    //       });
-    //     }
-    //   });
-    // }
-
+function CartContext({ children }) {
+  
+  const [cart, setCart] = useState([]);
+  
   return (
-    <CartContext.Provider value={{addToCart, cart}}>
-        {children}
-    </CartContext.Provider>
-  )
+    
+    <ShoppingCartContext.Provider value={[cart, setCart]}>
+      {children}
+    </ShoppingCartContext.Provider>
+  
+  );
 }
 
-export default CartProvider
+export default CartContext;

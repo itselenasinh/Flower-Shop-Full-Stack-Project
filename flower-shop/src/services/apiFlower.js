@@ -14,3 +14,7 @@ export async function getProductsList() {
 // export async function searchByApi(q) {
 //   const {data} = await authApi.get()
 // }
+export async function getProducts()  {
+  const { data } = await authApi.get("/products");
+  return data
+}
