@@ -17,3 +17,7 @@ export async function searchByApi(q) {
 
   return data;
 }
+export async function getProducts() {
+  const { data } = await authApi.get("/products");
+  return data;
+}
