@@ -1,6 +1,7 @@
 const ProductsModel = require("../models/productsModel");
 const Categories = require("../models/categoriesModel");
 const { Op } = require("sequelize");
+
 async function getProduct(req, res) {
   try {
     const product = await ProductsModel.findAll({

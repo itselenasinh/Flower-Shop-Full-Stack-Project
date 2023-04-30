@@ -1,13 +1,13 @@
 import React from 'react'
-import { getProducts } from '../../services/apiFlower'
+import { searchByApi } from '../../services/apiFlower'
 import ProductCard from '../ProductCard/ProductCard'
 
 function ProductList() {
   return (
     <div className='products-list'>
         {
-            getProducts.map((product, i) => {
-                return <ProductCard key={product.id}{...product}/>
+            searchByApi.map((product, i) => {
+                return <ProductCard key={product.productName}{...product}/>
             })
         }
         </div>

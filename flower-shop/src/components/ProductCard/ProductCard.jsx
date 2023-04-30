@@ -1,36 +1,37 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context/CartContext";
 
-function ProductCard({ id, productName, price, description, picture, stock }) {
+function ProductCard({ productName, price, description, picture, stock }) {
  
   const navigate = useNavigate();
   const [cart, setCart] = useContext(ShoppingCartContext)
 
+
   function addToCart() {
     setCart((currProducts) => {
-      const isProductsFound = currProducts.find((product) => product.id === id);
+      const isProductsFound = currProducts.find((product) => product.productName === productName);
       if(isProductsFound) {
         return currProducts.map((product) => {
-          if(product.id === id){
+          if(product.productName === productName){
             return {...product, quantity: product.quantity + 1};
           } else {
             return product
           }
         });
       } else {
-        return [...currProducts, {id, quantity: 1, price}]
+        return [...currProducts, {productName, quantity: 1, price}]
       }
     });
-  };
+  }
 
   function removeProduct() {
     setCart((currProducts) => {
-      if(currProducts.find((product) => product.id === id)?.quantity === 1){
-        return currProducts.filter((product) => product.id !== id);
+      if(currProducts.find((product) => product.productName === productName)?.quantity === 1){
+        return currProducts.filter((product) => product.productName !== productName);
       } else {
         return currProducts.map((product) => {
-          if(product.id === id) {
+          if(product.productName === productName) {
             return {...product, quantity: product.quantity - 1};
           } else {
             return product;
@@ -40,11 +41,11 @@ function ProductCard({ id, productName, price, description, picture, stock }) {
     });
   }
 
-  function getQuantityById(id) {
-    return cart.find((product) => product.id === id)?.quantity || 0;
+  function getQuantityByProductName(productName) {
+    return cart.find((product) => product.productName === productName)?.quantity || 0;
   };
 
-  const quantityPerProduct = getQuantityById(id)
+  const quantityPerProduct = getQuantityByProductName(productName)
 
   function viewProduct() {
     navigate('/products/categoryName/productName');
@@ -75,15 +76,11 @@ function ProductCard({ id, productName, price, description, picture, stock }) {
           )}
           {
             quantityPerProduct > 0 && (
-            <button className="product-minus-button" onClick={() => removeProduct(id)}>
+            <button className="product-minus-button" onClick={() => removeProduct(productName)}>
             remove product
           </button>)
           }
-          <button className="product-add-button" onClick={() => addToCart()}>
-            + Add to cart
-          </button>
           <p>{stock}</p>
-          {/* <p>{cartContext.cart}</p> */}
           <button onClick={viewProduct}>View product</button>
         </div>
       </div>
