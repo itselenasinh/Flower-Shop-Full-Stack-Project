@@ -19,7 +19,8 @@ export async function searchByApi(q) {
 
   return data || [];
 }
-export async function getProducts() {
-  const { data } = await authApi.get("/products");
+
+export async function getProduct() {
+  const { data } = await authApi.get("/products?productId");
   return data;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AppBar } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
 import { Person2Outlined, ShoppingBagOutlined } from "@mui/icons-material";
+import { ShoppingCartContext } from "../../Context/CartContext";
 
 const pages = ["About Us", "Products", "Special Events", "Contact Us"];
 
@@ -21,6 +22,12 @@ function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [anchorButton, setAnchorButton] = useState(null);
+
+  const [cart, setCart] = useContext(ShoppingCartContext)
+
+  const quantity = cart.reduce((acc, curr) => {
+    return acc + curr.quantity
+  }, 0)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -163,8 +170,9 @@ function NavBar() {
             } else {
               return (
                 <Button
+                component={Link}
                   key={page}
-                  href={`/${page.toLowerCase().replace(/\s/g, "-")}`}
+                  to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
@@ -206,8 +214,10 @@ function NavBar() {
         <IconButton sx={{ backgroundColor: "none" }}>
         <Link to={"/shopping-cart"}>
           <ShoppingBagOutlined sx={{ color: "white" }} />
-          </Link>
+          </Link>          
         </IconButton>
+        <h5 style={{ marginLeft: '20px' }}></h5><span style={{ marginLeft: '5px', backgroundColor: 'red', borderRadius: '30px' }}>{quantity}</span>
+        
       </Container>
     </AppBar>
   );

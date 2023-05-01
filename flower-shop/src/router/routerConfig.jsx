@@ -18,6 +18,7 @@ import Orders from "../pages/Orders/Orders";
 import ProductsPages from "../pages/ProductsPages/ProductsPages";
 import OneProductPage from "../pages/OneProductPage/OneProductPage";
 import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
+import SignupCard from "../components/SignupCard/SignupCard";
 
 const appRouter = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const appRouter = createBrowserRouter([
         element: <ShoppingCart />
       },
     ],
+  },
+  {
+    path: "/signup",
+    element: <SignupCard/>
   },
   {
     path: "/login",
