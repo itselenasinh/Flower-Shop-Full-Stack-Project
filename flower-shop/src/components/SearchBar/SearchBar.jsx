@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { searchContext } from "../../layout/Layout";
-
 import { searchByApi } from "../../services/apiFlower";
 import {
   Box,
@@ -10,57 +9,37 @@ import {
   DialogContent,
   DialogActions,
   Input,
+  List,
+  Typography,
 } from "@mui/material";
 import { Close, SearchOutlined } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
 
 function SearchBar() {
-  const [searchBarVisible, setSearchBarVisible] = useState(false);
   const [searchBar, setSearchBar] = useContext(searchContext);
   const [searchResults, setSearchResults] = useState([]);
+  const [searchBarVisible, setSearchBarVisible] = useState(false);
 
-  const result = (value) => {
-    searchByApi(value).then((response) => {
-      const results = response.data.filter((product) => {
-        return (
-          value &&
-          product &&
-          product.productName &&
-          product.productName.toLowerCase().includes(value.toLowerCase())
-        );
-      });
-      setSearchResults(results);
-    });
-  };
+  useEffect(() => {
+    const searchProducts = async () => {
+      try {
+        const response = await searchByApi(searchBar);
+        console.log(response);
+        setSearchResults(response);
+      } catch (error) {
+        console.log("Error searching products:", error);
+      }
+    };
 
-  // useEffect(() => {
-  //   async function searchByValue(value) {
-  //     try {
-  //       const response = await searchByApi(value)
-  //       const results = response.data.filter((product) => {
-  //         return (
-  //            value &&
-  //           product &&
-  //           product.productName &&
-  //           product.productName.
-  //           )
-  //       })
-  //       setSearchBar(results)
-  //     } catch (error ) {
-  //       console.log(error)
-  //     }
-  //   }
-  //  searchByValue(searchBar)
+    searchProducts();
+  }, [searchBar]);
 
-  // },[searchBar])
-
-  const handleChange = (value) => {
-    setSearchBar(value);
-    result(value);
+  const handleChange = (e) => {
+    setSearchBar(e.target.value);
   };
 
   const handleSearch = () => {
-    setSearchBar("");
-    setSearchResults([]);
     setSearchBarVisible(false);
   };
 
@@ -68,6 +47,49 @@ function SearchBar() {
     setSearchBar("");
     setSearchResults([]);
     setSearchBarVisible(false);
+  };
+
+  const showSearchProduct = () => {
+    return (
+      searchResults.length > 0 &&
+      searchBar.length > 0 && (
+        <List
+          sx={{
+            marginTop: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {searchResults.map((product) => (
+            <Link
+              style={{ textDecoration: "none" }}
+              key={product.productName}
+              to={`/products/:categoryName/productName`}
+              // to={`/products/:categoryName/${product.productName}`}
+            >
+              {product.productName}
+              {/* <ProductCard
+                key={product.productId}
+                productName={product.productName}
+                price={product.price}
+              /> */}
+            </Link>
+          ))}
+        </List>
+      )
+    );
+  };
+
+  const noProducts = () => {
+    return (
+      searchResults.length === 0 &&
+      searchBar && (
+        <Typography sx={{ marginTop: 2 }}>
+          product no found: {searchBar}
+        </Typography>
+      )
+    );
   };
 
   return (
@@ -79,7 +101,10 @@ function SearchBar() {
         />
       </IconButton>
 
-      <Dialog open={searchBarVisible} onClose={handleCancel}>
+      <Dialog
+        open={searchBarVisible || searchBar.length > 0}
+        onClose={handleCancel}
+      >
         <DialogTitle>Search Products</DialogTitle>
         <DialogContent>
           <Input
@@ -87,13 +112,10 @@ function SearchBar() {
             type={"text"}
             value={searchBar}
             placeholder={"Search Products"}
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={handleChange}
           />
-          {searchResults.map((product) => (
-            <div key={product.id}>
-              <p>{product.productName}</p>
-            </div>
-          ))}
+          {showSearchProduct()}
+          {noProducts()}
         </DialogContent>
         <DialogActions>
           <IconButton sx={{ backgroundColor: "none" }}>

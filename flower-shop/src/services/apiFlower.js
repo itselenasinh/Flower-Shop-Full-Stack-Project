@@ -12,10 +12,12 @@ export async function getProductsList() {
 }
 
 export async function searchByApi(q) {
-  const { data } = await authApi.get(`/products?productName=${q}`);
-  console.log(`mostrando${data}`, data);
+  const response = await authApi.get(`/products?productName=${q}`);
+  const data = response?.data;
 
-  return data;
+  // console.log(`mostrando${data}`, data);
+
+  return data || [];
 }
 export async function getProducts() {
   const { data } = await authApi.get("/products");
