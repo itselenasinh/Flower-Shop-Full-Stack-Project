@@ -1,106 +1,149 @@
-/* eslint-disable react/jsx-key */
-//import React from "react"
-import { Box, Grid, Container, Typography, Button } from "@mui/material";
-import "./Footer.css";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Link,
+  List,
+  ListItemText,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { FooterTitle } from "./styles.jsx";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+//import SendIcon from "@mui/icons-material/Send";
 
-function Footer() {
-  const today = new Date();
-  const year = today.getFullYear();
-
-  const elements = [
-    {
-      header: "Contact us",
-      links: ["Address", "Customer Service"],
-    },
-    {
-      header: "Legal",
-      links: ["Terms & Conditiones", "Privacy Policy", "Cookie Policy"],
-    },
-    {
-      header: "Follow us",
-      links: ["Facebook", "Instagram", "Pinterest"],
-    },
-  ];
-
-  function generateFooterElements() {
-    const footerElements = elements.map((column) => {
-      return (
-        <Grid item xs={12} md={4}>
-          <Box borderBottom={1}>
-            <Button sx={{ color: "white", fontWeight: "bold" }}>
-              {column.header}
-            </Button>
-          </Box>
-          {column.links.map((link) => {
-            return (
-              <Box>
-                <Button sx={{ color: "white" }}>{link}</Button>
-              </Box>
-            );
-          })}
-        </Grid>
-      );
-    });
-    return footerElements;
-  }
-
-  /*function generateLinks(linksArray) {
-    const boxes = linksArray.map((link) => {
-      return <Box>{link}</Box>;
-    });
-    return boxes;
-  }*/
-
+export default function Footer() {
   return (
-    <>
-      <Box
-        bgcolor="#9fa8da"
-        color="white"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          pt: "20px",
-          pb: '20px',
-          position: "fixed",
-          bottom: 0,
-          width: '100%'
-        }}
-        textAlign={"center"}
-        py={0}
-        m={0}
-      >
-        <Container>
-          <Grid
-            container
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-            }}
-            columnSpacing={4}
-            rowSpacing={0}
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: "gray",
+        color: "white",
+        p: { xs: 2, md: 4 },
+        pt: 4,
+        pb: 4,
+        fontSize: { xs: "16px", md: "18px" },
+      }}
+    >
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item md={6} lg={4}>
+          <FooterTitle variant="body1">About us</FooterTitle>
+          <Typography variant="caption2">
+            Lorem ipsum dolor sit amet cons adipisicing elit sed do eiusm tempor
+            incididunt ut labor et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud.Lorem ipsum dolor sit amet cons adipisicing elit sed do
+            eiusm tempor incididunt ut labor et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud.Lorem ipsum dolor sit amet cons
+            adipisicing elit sed do eiusm tempor incididunt ut labor et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud.
+          </Typography>
+        </Grid>
+
+        <Grid item md={6} lg={2}>
+          <FooterTitle variant="body1">Useful links</FooterTitle>
+          <List>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption2">
+                Order Tracking
+              </Typography>
+            </ListItemText>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption2">
+                Privacy & Policy
+              </Typography>
+            </ListItemText>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption2">
+                Terms & Conditions
+              </Typography>
+            </ListItemText>
+          </List>
+        </Grid>
+        <Grid item md={6} lg={2}>
+          <FooterTitle variant="body1">Popular Categories</FooterTitle>
+          <List>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption2">
+                My Cart
+              </Typography>
+            </ListItemText>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption2">
+                My Account
+              </Typography>
+            </ListItemText>
+            <ListItemText>
+              <Typography lineHeight={2} variant="caption2">
+                Wishlist
+              </Typography>
+            </ListItemText>
+          </List>
+        </Grid>
+
+        <Grid item md={6} lg={2}>
+          <FooterTitle lineHeight={2} variant="body1">
+            Follow, share, tag us!
+          </FooterTitle>
+          <IconButton
+            aria-label="Facebook.com"
+            onClick={() => window.open("https://www.facebook.com/")}
           >
-            {generateFooterElements()}
+            <FacebookIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+          </IconButton>
+          <IconButton
+            aria-label="Twitter.com"
+            onClick={() => window.open("https://twitter.com/")}
+          >
+            <TwitterIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+          </IconButton>
+          <IconButton
+            aria-label="Facebook.com"
+            onClick={() => window.open("https://www.instagram.com/")}
+          >
+            <InstagramIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+          </IconButton>
+          <IconButton
+            aria-label="Facebook.com"
+            onClick={() => window.open("https://www.pinterest.es/")}
+          >
+            <PinterestIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+          </IconButton>
+          <IconButton
+            aria-label="Facebook.com"
+            onClick={() => window.open("https://www.youtube.com/")}
+          >
+            <YouTubeIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+          </IconButton>
+        </Grid>
+
+        {/*<FacebookIcon sx={{ mr: 1,  fontSize: "50px"}} />
+          <TwitterIcon sx={{ mr: 1, fontSize: "50px" }} />
+          <InstagramIcon sx={{ mr: 1, fontSize: "50px"}} />
+          <PinterestIcon sx={{ mr: 1, fontSize: "50px" }} />
+          <YouTubeIcon sx={{ mr: 1, fontSize: "50px" }} />
           </Grid>
-        </Container>
-      </Box>
-      <Box
-        bgcolor="#e1bee7"
-        color={"white"}
-        sx={{
-          width: "100%",
-          position: "fixed",
-          bottom: 0,
-        }}
-        textAlign={"center"}
-        py={0}
-        m={0}
-      >
-        <Typography>
-          © Your Flowers {year} - <small>All Rights Reserved</small>
-        </Typography>
-      </Box>
-    </>
+
+        <Grid item md={6} lg={2}>
+          <FooterTitle lineHeight={2} variant="body1">
+            to receive Our Newsletter
+          </FooterTitle>
+          <Stack>
+            <TextField 
+             variant="standard"
+            label="Email address" />
+            <Button sx={{ mt: 2, mb: 2 }} variant="contained">
+              Subscribe
+            </Button>
+          </Stack>
+    </Grid>*/}
+      </Grid>
+    </Box>
   );
 }
-
-export default Footer;

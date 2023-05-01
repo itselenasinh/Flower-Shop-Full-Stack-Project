@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Close, SearchOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import ProductCard from "../ProductCard/ProductCard";
+//import ProductCard from "../ProductCard/ProductCard";
 
 function SearchBar() {
   const [searchBar, setSearchBar] = useContext(searchContext);

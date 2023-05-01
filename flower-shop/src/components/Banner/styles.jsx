@@ -13,7 +13,8 @@ export const BannerContainer = styled(Box)(() => ({
 export const BannerImage = styled('img')(({src}) => ({
     src: `url(${src})`,
     minWidth: "50px",
-    maxWidth: "1500"
+    maxWidth: "1500",
+    height: '700px'
 }) )
 
 export const BannerContent = styled(Box)(() => ({
@@ -30,7 +31,15 @@ export const BannerTitle = styled(Typography)(() => ({
 }));
 
 export const BannerDescription = styled(Typography)(() => ({
+<<<<<<< HEAD
   lineHeight: 1.25,
   letterSpacing: 1.25,
   marginBottom: "3em",
 }));
+=======
+    
+    lineHeight: 1.25,
+    letterSpacing: 1.25,
+    marginBottom: "3em",
+  }));
+>>>>>>> 202deb115004e5fecddefbf080e92fdb9b908a61

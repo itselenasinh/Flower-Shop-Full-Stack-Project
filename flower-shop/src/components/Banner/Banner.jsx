@@ -14,7 +14,7 @@ export default function Banner() {
         <Typography variant="h6">Huge Collection</Typography>
         <BannerTitle variant="h2">New Flowers</BannerTitle>
 
-        <BannerDescription variant="subtitle">
+        <BannerDescription variant="body1">
           Lorem ipsum dolor sit amet. In totam deserunt non omnis animi sit
           possimus eveniet eos facilis ratione? Sed delectus consequatur et
           cupiditate totam aut autem placeat sit dolorem dolore est maxime
