@@ -1,8 +1,10 @@
-import React from 'react'
+import { MainCarousel } from '../../components/Carousel/Carousel'
 
 function SpecialEvents() {
   return (
-    <div>SpecialEvents</div>
+    <>
+       <MainCarousel />
+    </>
   )
 }
 
