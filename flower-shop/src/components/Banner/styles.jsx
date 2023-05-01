@@ -31,15 +31,7 @@ export const BannerTitle = styled(Typography)(() => ({
 }));
 
 export const BannerDescription = styled(Typography)(() => ({
-<<<<<<< HEAD
   lineHeight: 1.25,
   letterSpacing: 1.25,
   marginBottom: "3em",
 }));
-=======
-    
-    lineHeight: 1.25,
-    letterSpacing: 1.25,
-    marginBottom: "3em",
-  }));
->>>>>>> 202deb115004e5fecddefbf080e92fdb9b908a61
