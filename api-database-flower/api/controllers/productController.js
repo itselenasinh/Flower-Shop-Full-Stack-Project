@@ -1,15 +1,17 @@
 const ProductsModel = require("../models/productsModel");
 const Categories = require("../models/categoriesModel");
-
+const { Op } = require("sequelize");
 async function getProduct(req, res) {
   try {
     const product = await ProductsModel.findAll({
-      where: req.query,
+      where: {
+        productName: { [Op.iLike]: `%${req.query.productName}%` },
+      },
       attributes: ["productName", "price", "description", "picture"],
     });
 
     if (!product) {
-      return res.status(404).send("Product not");
+      return res.status(404).send("Product not found");
     }
 
     return res.status(200).json(product);
@@ -52,9 +54,9 @@ async function getCategoriesProducts(req, res) {
 
 async function getOneCategoriesProducts(req, res) {
   try {
-    console.log(req.params.categoryName)
+    console.log(req.params.categoryName);
     const categories = await Categories.findAll({
-      where: {category:req.params.categoryName},
+      where: { category: req.params.categoryName },
       attributes: ["category"],
       include: [
         {

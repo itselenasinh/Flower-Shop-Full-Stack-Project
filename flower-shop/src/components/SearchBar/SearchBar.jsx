@@ -1,30 +1,95 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { searchContext } from "../../layout/Layout";
-
+import { searchByApi } from "../../services/apiFlower";
 import {
-  Button,
   Box,
   IconButton,
-  TextField,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
+  Input,
+  List,
+  Typography,
 } from "@mui/material";
 import { Close, SearchOutlined } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
 
 function SearchBar() {
-  const [searchBar, setSearchBar] = useState("");
+  const [searchBar, setSearchBar] = useContext(searchContext);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchBarVisible, setSearchBarVisible] = useState(false);
 
+  useEffect(() => {
+    const searchProducts = async () => {
+      try {
+        const response = await searchByApi(searchBar);
+        console.log(response);
+        setSearchResults(response);
+      } catch (error) {
+        console.log("Error searching products:", error);
+      }
+    };
+
+    searchProducts();
+  }, [searchBar]);
+
+  const handleChange = (e) => {
+    setSearchBar(e.target.value);
+  };
+
   const handleSearch = () => {
-    console.log("we are searching", searchBar);
     setSearchBarVisible(false);
   };
 
   const handleCancel = () => {
-    setSearchBarVisible(false);
     setSearchBar("");
+    setSearchResults([]);
+    setSearchBarVisible(false);
+  };
+
+  const showSearchProduct = () => {
+    return (
+      searchResults.length > 0 &&
+      searchBar.length > 0 && (
+        <List
+          sx={{
+            marginTop: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {searchResults.map((product) => (
+            <Link
+              style={{ textDecoration: "none" }}
+              key={product.productName}
+              to={`/products/:categoryName/productName`}
+              // to={`/products/:categoryName/${product.productName}`}
+            >
+              {product.productName}
+              {/* <ProductCard
+                key={product.productId}
+                productName={product.productName}
+                price={product.price}
+              /> */}
+            </Link>
+          ))}
+        </List>
+      )
+    );
+  };
+
+  const noProducts = () => {
+    return (
+      searchResults.length === 0 &&
+      searchBar && (
+        <Typography sx={{ marginTop: 2 }}>
+          product no found: {searchBar}
+        </Typography>
+      )
+    );
   };
 
   return (
@@ -36,14 +101,21 @@ function SearchBar() {
         />
       </IconButton>
 
-      <Dialog open={searchBarVisible} onClose={handleCancel}>
+      <Dialog
+        open={searchBarVisible || searchBar.length > 0}
+        onClose={handleCancel}
+      >
         <DialogTitle>Search Products</DialogTitle>
         <DialogContent>
-          <TextField
+          <Input
             label="Search"
+            type={"text"}
             value={searchBar}
-            onChange={(e) => setSearchBar(e.target.value)}
+            placeholder={"Search Products"}
+            onChange={handleChange}
           />
+          {showSearchProduct()}
+          {noProducts()}
         </DialogContent>
         <DialogActions>
           <IconButton sx={{ backgroundColor: "none" }}>

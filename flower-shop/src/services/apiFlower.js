@@ -11,6 +11,15 @@ export async function getProductsList() {
   return data;
 }
 
-// export async function searchByApi(q) {
-//   const {data} = await authApi.get()
-// }
+export async function searchByApi(q) {
+  const response = await authApi.get(`/products?productName=${q}`);
+  const data = response?.data;
+
+  // console.log(`mostrando${data}`, data);
+
+  return data || [];
+}
+export async function getProducts() {
+  const { data } = await authApi.get("/products");
+  return data;
+}
