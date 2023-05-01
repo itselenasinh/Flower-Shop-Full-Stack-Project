@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
 import "./ShoppingCart.css";
 
@@ -11,13 +11,13 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
 
-function ShoppingCart({ isLogin }) {
+function ShoppingCart() {
   const [cart, setCart] = useContext(ShoppingCartContext);
+  const [isLogged, setIsLogged] = useState(false)
 
   const addToCart = () => {
     setCart((currProducts) => {
@@ -76,6 +76,12 @@ function ShoppingCart({ isLogin }) {
     }
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem("token")){
+      setIsLogged(true)
+    }
+  }, []);
+
   return (
     
     <Box sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
@@ -124,7 +130,7 @@ function ShoppingCart({ isLogin }) {
             
         </Table>
       
-      {isLogin ? (
+       {isLogged ? (
         <Button
           sx={{ display: "flex", justifyContent: 'flex-end', mt: '20px' }}
           variant="outlined"
