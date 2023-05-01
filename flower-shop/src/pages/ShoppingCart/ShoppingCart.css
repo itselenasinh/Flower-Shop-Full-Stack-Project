@@ -1,8 +1,7 @@
-.form{
+h2{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 100px
+    text-align: center;
+    justify-content: flex-end;
+
 }
 
