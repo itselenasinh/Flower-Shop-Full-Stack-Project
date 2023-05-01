@@ -1,9 +1,9 @@
 import Banner from "../../components/Banner/Banner";
-//import { MainCarousel } from "../../components/Carousel/Carousel";
+import { MainCarousel } from "../../components/Carousel/Carousel";
 import { ContactForm } from "../../components/Contact Form/ContactForm";
 import Promotions from "../../components/Promotions/Promotions";
 import { Subscribe } from "../../components/Subscribe/Subscribe";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
     <>
       <Banner />
       <Promotions />
-      {/* <MainCarousel /> */}
+      <MainCarousel />
       <ContactForm />
       <Subscribe />
       <Footer />

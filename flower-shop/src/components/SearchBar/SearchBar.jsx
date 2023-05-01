@@ -67,6 +67,8 @@ function SearchBar() {
               key={product.productName}
               to={`/products/:categoryName/productName`}
               // to={`/products/:categoryName/${product.productName}`}
+
+              onClick={() => handleCancel()}
             >
               {product.productName}
               {/* <ProductCard
