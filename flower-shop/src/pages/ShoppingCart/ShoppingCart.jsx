@@ -90,9 +90,10 @@ function ShoppingCart() {
         justifyContent: "center",
         height: "100vh",
         alignItems: "center",
+        
       }}
     >
-      <TableContainer sx={{ margin: "auto" }}>
+      <TableContainer sx={{ maxWidth: '80vw', margin: "auto" }}>
         <Table sx={{ minWidth: 400 }} aria-label="spanning table">
           <TableHead title="Shopping Cart" />
 

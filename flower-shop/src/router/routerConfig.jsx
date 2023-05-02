@@ -43,7 +43,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/products/:categoryName/productName",
-        element: <OneProductPage />
+        element: <OneProductPage />,
       },
       {
         path: "/special-events",
@@ -55,18 +55,19 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/shopping-cart",
-        element: <ShoppingCart />
+        element: <ShoppingCart />,
+      },
+      {
+        path: "/signup",
+        element: <SignupCard />,
+      },
+      {
+        path: "/login",
+        element: <Auth />,
       },
     ],
   },
-  {
-    path: "/signup",
-    element: <SignupCard/>
-  },
-  {
-    path: "/login",
-    element: <Auth />,
-  },
+
   {
     path: "/profile",
     element: <Profile />,
