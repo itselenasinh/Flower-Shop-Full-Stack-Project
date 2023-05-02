@@ -3,7 +3,7 @@ import { MainCarousel } from "../../components/Carousel/Carousel";
 import { ContactForm } from "../../components/Contact Form/ContactForm";
 import Promotions from "../../components/Promotions/Promotions";
 import { Subscribe } from "../../components/Subscribe/Subscribe";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
 function Home() {

@@ -1,13 +1,9 @@
 import {
   Box,
-  Button,
   Grid,
   IconButton,
-  Link,
   List,
   ListItemText,
-  Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import { FooterTitle } from "./styles.jsx";
