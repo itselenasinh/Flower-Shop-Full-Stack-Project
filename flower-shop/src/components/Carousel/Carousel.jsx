@@ -59,10 +59,10 @@ export const MainCarousel = () => {
             </IconButton>
         )}
         >
-            {Object.values(images[0]).map((texture, index) => (
+            {images.map((texture, index) => (
            <Box key={`carousel-image-${index}`}>
             <img 
-            src={texture}
+            src={texture.imgPath}
             alt={`carousel-${index}`}
             style={{
                 width: "100%",
