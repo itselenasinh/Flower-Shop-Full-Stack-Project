@@ -63,6 +63,43 @@ export const MainCarousel = () => {
         <Box key={`carousel-image-${index}`}>
           <img
             src={texture}
+        infiniteLoop={true}
+        showThumbs={false}
+        showIndicators={false}
+        showStatus={false}
+        renderArrowPrev={(onClickHandler) => (
+            <IconButton onClick={onClickHandler}
+            sx={{
+                position: "absolute",
+                top:"50%",
+                left: "0",
+                color: "white",
+                padding: "5px",
+                zIndex: "10"
+            }}
+            >
+                <NavigateBeforeIcon sx={{ fontSize: 40 }} />
+            </IconButton>
+        )}
+        renderArrowNext={(onClickHandler) => (
+            <IconButton onClick={onClickHandler}
+            sx={{
+                position: "absolute",
+                top:"50%",
+                right: "0",
+                color: "white",
+                padding: "5px",
+                zIndex: "10"
+            }}
+            >
+                <NavigateNextIcon sx={{ fontSize: 40 }} />
+            </IconButton>
+        )}
+        >
+            {images.map((texture, index) => (
+           <Box key={`carousel-image-${index}`}>
+            <img 
+            src={texture.imgPath}
             alt={`carousel-${index}`}
             style={{
               width: "100%",

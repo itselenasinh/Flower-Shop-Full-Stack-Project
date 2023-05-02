@@ -49,7 +49,7 @@ function NavBar() {
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{
         backgroundColor: headerColor,
         alignItems: "center",
@@ -211,22 +211,33 @@ function NavBar() {
               ></Person2Outlined>
             </Button>
           </Link>
-        </Box>
+        </Box> 
+        <Link to={"/shopping-cart"}>
         <IconButton sx={{ backgroundColor: "none" }}>
-          <Link to={"/shopping-cart"}>
-            <ShoppingBagOutlined sx={{ color: "white" }} />
-          </Link>
-        </IconButton>
-        <h5 style={{ marginLeft: "20px" }}></h5>
-        <span
+         
+            <ShoppingBagOutlined sx={{ color: "white" }} /> 
+            <span
           style={{
-            marginLeft: "5px",
-            backgroundColor: "red",
-            borderRadius: "30px",
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            top: '0',
+            right: '-2px',
+            width: '20px',
+            height: '20px',
+            fontSize: '16px',
+            backgroundColor: 'pink',
+            borderRadius: "20px",
+            position: 'absolute',
+            color: 'white'
           }}
         >
           {quantity}
         </span>
+        </IconButton>
+        </Link>
+        {/* <h5 style={{ marginLeft: "20px" }}></h5> */}
+       
       </Container>
     </AppBar>
   );
