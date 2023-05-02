@@ -6,7 +6,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { FooterTitle } from "./FooterStyles.jsx";
+import { FooterTitle } from "./styles.jsx";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
