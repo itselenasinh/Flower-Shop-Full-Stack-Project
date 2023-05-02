@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
 import "./ShoppingCart.css";
 
@@ -11,13 +11,14 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
+  
 } from "@mui/material";
+
 import { Link } from "react-router-dom";
 
-
-function ShoppingCart({ isLogin }) {
+function ShoppingCart() {
   const [cart, setCart] = useContext(ShoppingCartContext);
+  const [isLogged, setIsLogged] = useState(false);
 
   const addToCart = () => {
     setCart((currProducts) => {
@@ -76,83 +77,93 @@ function ShoppingCart({ isLogin }) {
     }
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLogged(true);
+    }
+  }, []);
+
   return (
-    
-    <Box sx={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
-    <TableContainer sx={{margin: 'auto'}}>
-        <Table sx={{ minWidth: 400}} aria-label="spanning table">
-          <TableHead title="Shopping Cart"/>
-          
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        height: "100vh",
+        alignItems: "center",
+        
+      }}
+    >
+      <TableContainer sx={{ maxWidth: '80vw', margin: "auto" }}>
+        <Table sx={{ minWidth: 400 }} aria-label="spanning table">
+          <TableHead title="Shopping Cart" />
+
           <TableRow>
             <TableCell align="center"></TableCell>
             <TableCell align="center">Product</TableCell>
             <TableCell align="center">Products Qty.</TableCell>
           </TableRow>
-          
-         
 
           {cart.map((product, i) => (
-          <TableBody key={i}>
-            <TableRow>
-              <TableCell align="center">
-                <img src={product.picture} />
-              </TableCell>
-              <TableCell align="center">{product.productName}</TableCell>
-              <TableCell align="center">
-                {product.quantity}
-                <Button onClick={() => addToCart()}>+</Button>
-                <Button onClick={() => removeProduct(product.productName)}>
-                  -
-                </Button>
-              </TableCell>
-             
-            </TableRow>
-          </TableBody> ))} 
+            <TableBody key={i}>
+              <TableRow>
+                <TableCell align="center">
+                  <img src={product.picture} />
+                </TableCell>
+                <TableCell align="center">{product.productName}</TableCell>
+                <TableCell align="center">
+                  {product.quantity}
+                  <Button onClick={() => addToCart()}>+</Button>
+                  <Button onClick={() => removeProduct(product.productName)}>
+                    -
+                  </Button>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          ))}
 
-          {quantity === 0 ? ( <h2>Empty Cart</h2> ) : null}
-            <TableRow>
-              <TableCell/>
-              <TableCell align="center"> Total products in the cart:</TableCell>
-              <TableCell align="center">{quantity}</TableCell>
-              
-            </TableRow>
-            <TableRow>
-            <TableCell/>
-              <TableCell align="center">Total price:</TableCell>
-              <TableCell align="center">{totalPrice}€</TableCell>
-            </TableRow>
-            
+          {quantity === 0 ? <h2>Empty Cart</h2> : null}
+          <TableRow>
+            <TableCell />
+            <TableCell align="center"> Total products in the cart:</TableCell>
+            <TableCell align="center">{quantity}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell />
+            <TableCell align="center">Total price:</TableCell>
+            <TableCell align="center">{totalPrice}€</TableCell>
+          </TableRow>
         </Table>
-      
-      {isLogin ? (
-        <Button
-          sx={{ display: "flex", justifyContent: 'flex-end', mt: '20px' }}
-          variant="outlined"
-          color="secondary"
-          onClick={() => console.log(cart)}
-        >
-          Checkout
-        </Button>
-      ) : (
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: '20px'}}>
+
+        {isLogged ? (
           <Button
+            sx={{ display: "flex", justifyContent: "flex-end", mt: "20px" }}
             variant="outlined"
             color="secondary"
             onClick={() => console.log(cart)}
           >
             Checkout
           </Button>
-          <Button
-            component={Link} to="/signup"
-            sx={{ ml: '20px' }}
-            variant="outlined"
-            color="secondary"
-          >
-            Checkout as member
-          </Button>
-        </Box>
-      )}
-    </TableContainer>
+        ) : (
+          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: "20px" }}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => console.log(cart)}
+            >
+              Checkout
+            </Button>
+            <Button
+              component={Link}
+              to="/signup"
+              sx={{ ml: "20px" }}
+              variant="outlined"
+              color="secondary"
+            >
+              Checkout as member
+            </Button>
+          </Box>
+        )}
+      </TableContainer>
     </Box>
   );
 }
