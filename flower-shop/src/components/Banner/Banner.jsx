@@ -1,11 +1,8 @@
-//import { useMediaQuery } from "@mui/material";
-//import { useTheme } from "@emotion/react";
 import { Typography } from "@mui/material";
-import { BannerContainer, BannerContent, BannerTitle, BannerDescription, BannerImage } from "./styles";
+
+import { BannerContainer, BannerContent, BannerTitle, BannerDescription, BannerImage } from "./BannerStyles";
 
 export default function Banner() {
-  //const theme = useTheme();
-  //const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <BannerContainer>

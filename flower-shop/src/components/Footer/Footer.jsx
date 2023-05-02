@@ -1,16 +1,15 @@
 import {
   Box,
-  Button,
+ 
   Grid,
   IconButton,
-  Link,
+
   List,
   ListItemText,
-  Stack,
-  TextField,
+  
   Typography,
 } from "@mui/material";
-import { FooterTitle } from "./styles.jsx";
+import { FooterTitle } from "./FooterStyles.jsx";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
