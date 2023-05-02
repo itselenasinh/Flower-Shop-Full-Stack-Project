@@ -23,11 +23,11 @@ function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [anchorButton, setAnchorButton] = useState(null);
 
-  const [cart, setCart] = useContext(ShoppingCartContext)
+  const [cart, setCart] = useContext(ShoppingCartContext);
 
   const quantity = cart.reduce((acc, curr) => {
-    return acc + curr.quantity
-  }, 0)
+    return acc + curr.quantity;
+  }, 0);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -121,8 +121,9 @@ function NavBar() {
             {pages.map((page) => (
               <MenuItem key={page} onClick={handleCloseNavMenu}>
                 <Button
+                  component={Link}
                   key={page}
-                  href={`/${page.toLowerCase().replace(/\s/g, "-")}`}
+                  to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
                 >
                   {page}
                 </Button>
@@ -170,7 +171,7 @@ function NavBar() {
             } else {
               return (
                 <Button
-                component={Link}
+                  component={Link}
                   key={page}
                   to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
                   onClick={handleCloseNavMenu}
@@ -212,12 +213,20 @@ function NavBar() {
           </Link>
         </Box>
         <IconButton sx={{ backgroundColor: "none" }}>
-        <Link to={"/shopping-cart"}>
-          <ShoppingBagOutlined sx={{ color: "white" }} />
-          </Link>          
+          <Link to={"/shopping-cart"}>
+            <ShoppingBagOutlined sx={{ color: "white" }} />
+          </Link>
         </IconButton>
-        <h5 style={{ marginLeft: '20px' }}></h5><span style={{ marginLeft: '5px', backgroundColor: 'red', borderRadius: '30px' }}>{quantity}</span>
-        
+        <h5 style={{ marginLeft: "20px" }}></h5>
+        <span
+          style={{
+            marginLeft: "5px",
+            backgroundColor: "red",
+            borderRadius: "30px",
+          }}
+        >
+          {quantity}
+        </span>
       </Container>
     </AppBar>
   );
