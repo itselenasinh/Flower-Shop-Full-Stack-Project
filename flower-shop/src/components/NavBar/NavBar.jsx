@@ -8,8 +8,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import { indigo } from "@mui/material/colors";
-const headerColor = indigo[200];
 import { Link } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
@@ -51,9 +49,10 @@ function NavBar() {
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: headerColor,
+        backgroundColor: '#EED2B5',
         alignItems: "center",
         textAlign: "center",
+        color: '#694736',
       }}
     >
       <Container
@@ -85,6 +84,7 @@ function NavBar() {
             letterSpacing: ".3rem",
             color: "inherit",
             textDecoration: "none",
+            "&:hover": { color: "#254E25"}
           }}
         >
           YOUR FLOWERS
@@ -155,6 +155,8 @@ function NavBar() {
             display: { xs: "none", md: "flex" },
             flexDirection: { xs: "row" },
             justifyContent: "center",
+            color: "#694736 ",
+            fontFamily: 'Montserrat-Alternates'
           }}
         >
           {pages.map((page) => {
@@ -163,7 +165,7 @@ function NavBar() {
                 <Button
                   onClick={handleOpenProducts}
                   key={page}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, color: "#694736 ", "&:hover": { color: "#254E25"}, display: "block" }}
                 >
                   {page}
                 </Button>
@@ -175,7 +177,7 @@ function NavBar() {
                   key={page}
                   to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, color: "#694736 ", "&:hover": { color: "#254E25"}, display: "block" }}
                 >
                   {page}
                 </Button>
@@ -186,8 +188,9 @@ function NavBar() {
             open={isMenuOpen}
             anchorEl={anchorButton}
             onClose={handleCloseProducts}
+            
           >
-            <MenuItem component={Link} to="/products/bouquets">
+            <MenuItem component={Link} to="/products/bouquets" sx={{ backgroundColor: '#8FC857'}}>
               Bouquets
             </MenuItem>
             <MenuItem component={Link} to="/products/crowns">
@@ -201,12 +204,12 @@ function NavBar() {
             </MenuItem>
           </Menu>
         </Box>
-        <SearchBar sx={{ display: "block" }} />
+        <SearchBar />
         <Box>
           <Link to={"/login"}>
             <Button sx={{ m: "0" }}>
               <Person2Outlined
-                sx={{ color: "white", justifyContent: "space-around" }}
+                sx={{ color: "#694736", "&:hover": { color: "#254E25"}, justifyContent: "space-around" }}
                 variant="raised"
               ></Person2Outlined>
             </Button>
@@ -215,7 +218,7 @@ function NavBar() {
         <Link to={"/shopping-cart"}>
         <IconButton sx={{ backgroundColor: "none" }}>
          
-            <ShoppingBagOutlined sx={{ color: "white" }} /> 
+            <ShoppingBagOutlined sx={{ color: "#694736 ", "&:hover": { color: "#254E25"} }} /> 
             <span
           style={{
             alignItems: 'center',
@@ -226,10 +229,11 @@ function NavBar() {
             width: '20px',
             height: '20px',
             fontSize: '16px',
-            backgroundColor: 'pink',
+            backgroundColor: '#FFE598',
+            opacity: '0.8',
             borderRadius: "20px",
             position: 'absolute',
-            color: 'white'
+            color: '#694736',
           }}
         >
           {quantity}
