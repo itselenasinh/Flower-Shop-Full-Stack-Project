@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
-import { AppBar } from "@mui/material";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppBar, ListItemIcon } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -9,9 +10,17 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import { logout } from "../../services/auth";
 
 import SearchBar from "../SearchBar/SearchBar";
-import { Person2Outlined, ShoppingBagOutlined } from "@mui/icons-material";
+import {
+  AccountCircleOutlined,
+  BookmarkAddOutlined,
+  FavoriteBorderOutlined,
+  LogoutOutlined,
+  Person2Outlined,
+  ShoppingBagOutlined,
+} from "@mui/icons-material";
 import { ShoppingCartContext } from "../../Context/CartContext";
 
 const pages = ["About Us", "Products", "Special Events", "Contact Us"];
@@ -20,6 +29,13 @@ function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [anchorButton, setAnchorButton] = useState(null);
+
+  const [isLogOpen, setIsLogOpen] = useState(false);
+  const [aButton, setAButton] = useState(null);
+
+  const [isLogged, setIsLogged] = useState(false);
+
+  const navigate = useNavigate()
 
   const [cart, setCart] = useContext(ShoppingCartContext);
 
@@ -40,10 +56,34 @@ function NavBar() {
     setIsMenuOpen(true);
   };
 
+  const handleCloseLog = () => {
+    setAButton(null);
+    setIsLogOpen(false);
+  };
+
+  const handleOpenLog = (event) => {
+    setAButton(event.currentTarget);
+    setIsLogOpen(true);
+  };
+
   const handleCloseProducts = () => {
     setAnchorButton(null);
     setIsMenuOpen(false);
   };
+
+  async function onLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    setIsLogged(false);
+    navigate("/login");
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLogged(true);
+    }
+  }, []);
+
 
   return (
     <AppBar
@@ -218,19 +258,71 @@ function NavBar() {
           </Menu>
         </Box>
         <SearchBar />
+
         <Box>
-          <Link to={"/login"}>
-            <Button sx={{ m: "0" }}>
-              <Person2Outlined
+          {isLogged ? (
+            <>
+              <Button
+                id="logButton"
+                aria-controls={isLogOpen ? "logMenu" : undefined}
+                onClick={handleOpenLog}
                 sx={{
-                  color: "#694736",
+                  my: 2,
+                  color: "#694736 ",
                   "&:hover": { color: "#254E25" },
-                  justifyContent: "space-around",
+                  display: "block",
                 }}
-                variant="raised"
-              ></Person2Outlined>
-            </Button>
-          </Link>
+              >
+                {`Hi, ${localStorage.getItem("name")}!`}
+              </Button>
+              <Menu
+                id="logMenu"
+                open={isLogOpen}
+                aria-labelledby="logButton"
+                anchorEl={aButton}
+                onClose={handleCloseLog}
+              >
+                <MenuItem component={Link} to="/profile">
+                  <ListItemIcon>
+                    <AccountCircleOutlined fontSize="small" />
+                  </ListItemIcon>
+                  Profile
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <FavoriteBorderOutlined fontSize="small" />
+                  </ListItemIcon>
+                  Wish list
+                </MenuItem>
+                <MenuItem component={Link} to="/orders">
+                  <ListItemIcon>
+                    <BookmarkAddOutlined fontSize="small" />
+                  </ListItemIcon>
+                  My orders
+                </MenuItem>
+                <MenuItem
+                onClick={onLogout}> 
+                  <ListItemIcon>
+                    <LogoutOutlined fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <Link to={"/login"}>
+              <Button sx={{ m: "0" }}>
+                <Person2Outlined
+                  sx={{
+                    color: "#694736",
+                    "&:hover": { color: "#254E25" },
+                    justifyContent: "space-around",
+                  }}
+                  variant="raised"
+                ></Person2Outlined>
+              </Button>
+            </Link>
+          )}
         </Box>
         <Link to={"/shopping-cart"}>
           <IconButton sx={{ backgroundColor: "none" }}>

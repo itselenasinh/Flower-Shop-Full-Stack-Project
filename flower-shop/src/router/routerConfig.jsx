@@ -12,13 +12,14 @@ import SpecialEvents from "../pages/SpecialEvents/SpecialEvents";
 
 import ContactUs from "../pages/ConctactUs/ContactUs";
 
-import Auth from "../pages/Auth/Auth";
+
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
 import ProductsPages from "../pages/ProductsPages/ProductsPages";
 import OneProductPage from "../pages/OneProductPage/OneProductPage";
 import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
-import SignupCard from "../components/SignupCard/SignupCard";
+import AuthLogin from "../pages/Auth/AuthLogin";
+import AuthSignup from "../pages/Auth/AuthSignup";
 
 const appRouter = createBrowserRouter([
   {
@@ -59,11 +60,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignupCard />,
+        element: <AuthSignup />,
       },
       {
         path: "/login",
-        element: <Auth />,
+        element: <AuthLogin />,
       },
     ],
   },
