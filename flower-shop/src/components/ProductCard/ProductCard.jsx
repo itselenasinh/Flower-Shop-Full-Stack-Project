@@ -1,6 +1,18 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context/CartContext";
+
+import {
+  Box,
+  Button,
+  Card,
+  CardHeader,
+  CardMedia,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { Add } from "@mui/icons-material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 function ProductCard({ productName, price, description, picture, stock }) {
   const navigate = useNavigate();
@@ -54,43 +66,64 @@ function ProductCard({ productName, price, description, picture, stock }) {
 
   const quantityPerProduct = getQuantityByProductName(productName);
 
-  function viewProduct() {
-    navigate("/products/categoryName/productName");
+  function viewProduct(productName) {
+    navigate(`/products/category/${productName}`);
   }
 
   return (
-    <>
-      <div className="product-box">
+    <Box minHeight={150}>
+      <Card
+        sx={{
+          maxWidth: 150,
+          padding: 10,
+          margin: 5,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <CardHeader />
+        <Typography variant="h7" fontFamily="Montserrat">
+          {productName}
+        </Typography>
+
         {quantityPerProduct > 0 && (
           <div className="product-quantity">{quantityPerProduct}</div>
         )}
-        <h5>{productName}</h5>
-        <div className="container">
-          <img src={picture} alt="picture" style={{ width: "100%" }} />
-          <p>{description}</p>
-          <p className="product-price">{price + "€"}</p>
-          {quantityPerProduct === 0 ? (
-            <button className="product-add-button" onClick={() => addToCart()}>
-              + Add to cart
-            </button>
-          ) : (
-            <button className="product-plus-button" onClick={() => addToCart()}>
-              + add more
-            </button>
-          )}
-          {quantityPerProduct > 0 && (
-            <button
-              className="product-minus-button"
-              onClick={() => removeProduct(productName)}
-            >
-              remove product
-            </button>
-          )}
-          <p>{stock}</p>
-          <button onClick={viewProduct}>View product</button>
-        </div>
-      </div>
-    </>
+
+        <CardMedia
+          component="img"
+          image={picture}
+          alt="estamos trabjando en esto"
+          sx={{ flex: "1 1 auto" }}
+        ></CardMedia>
+        <Typography>{description}</Typography>
+        <Typography className="product-price">{price + "€"}</Typography>
+        {quantityPerProduct === 0 ? (
+          <Button className="product-add-button" onClick={() => addToCart()}>
+            <IconButton sx={{ backgroundColor: "none" }}>
+              <AddShoppingCartIcon />
+            </IconButton>
+          </Button>
+        ) : (
+          <Button className="product-plus-button" onClick={() => addToCart()}>
+            <IconButton sx={{ backgroundColor: "none" }}>
+              <Add />
+            </IconButton>
+          </Button>
+        )}
+        {quantityPerProduct > 0 && (
+          <Button
+            className="product-minus-button"
+            onClick={() => removeProduct(productName)}
+          >
+            remove product
+          </Button>
+        )}
+        <p>{stock}</p>
+
+        <Button onClick={() => viewProduct(productName)}>View product</Button>
+      </Card>
+    </Box>
   );
 }
 

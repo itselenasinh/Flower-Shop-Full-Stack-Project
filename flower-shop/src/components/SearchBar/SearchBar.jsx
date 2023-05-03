@@ -65,9 +65,8 @@ function SearchBar() {
             <Link
               style={{ textDecoration: "none" }}
               key={product.productName}
-              to={`/products/:categoryName/productName`}
-              // to={`/products/:categoryName/${product.productName}`}
-
+              //to={`/products/${product.productName}`}
+              to={`/products/category/${product.productName}`}
               onClick={() => handleCancel()}
             >
               {product.productName}
