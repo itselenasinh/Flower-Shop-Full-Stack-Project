@@ -11,10 +11,14 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  
 } from "@mui/material";
 
 import { Link } from "react-router-dom";
+import {
+  AddOutlined,
+  DeleteOutlineOutlined,
+  RemoveOutlined,
+} from "@mui/icons-material";
 
 function ShoppingCart() {
   const [cart, setCart] = useContext(ShoppingCartContext);
@@ -58,6 +62,13 @@ function ShoppingCart() {
     });
   };
 
+  const deleteProduct = (productName) => {
+    const newCart = cart.filter(
+      (product) => product.productName !== productName
+    );
+    setCart(newCart);
+  };
+
   const quantity = cart.reduce((acc, curr) => {
     return acc + curr.quantity;
   }, 0);
@@ -93,15 +104,16 @@ function ShoppingCart() {
         
       }}
     >
-      <TableContainer sx={{ maxWidth: '80vw', margin: "auto" }}>
+      <TableContainer sx={{ maxWidth: "80vw", margin: "auto", border: 'solid 1px #FFE598', borderRadius: '16px', p: '30px', backgroundColor: '#FFE598'}}>
         <Table sx={{ minWidth: 400 }} aria-label="spanning table">
           <TableHead title="Shopping Cart" />
 
-          <TableRow>
+          <TableRow>Cart</TableRow>
+          {/* <TableRow>
             <TableCell align="center"></TableCell>
             <TableCell align="center">Product</TableCell>
             <TableCell align="center">Products Qty.</TableCell>
-          </TableRow>
+          </TableRow> */}
 
           {cart.map((product, i) => (
             <TableBody key={i}>
@@ -110,26 +122,42 @@ function ShoppingCart() {
                   <img src={product.picture} />
                 </TableCell>
                 <TableCell align="center">{product.productName}</TableCell>
-                <TableCell align="center">
-                  {product.quantity}
-                  <Button onClick={() => addToCart()}>+</Button>
-                  <Button onClick={() => removeProduct(product.productName)}>
-                    -
-                  </Button>
+                <TableCell align="center" alignItems='center' sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center', textAlign: 'center', flexDirection: 'row', alignItems: 'center'}}>
+                  <Box align="center"
+                    sx={{
+                      border: "solid 1px #EED2B5",
+                      borderRadius: '16px',
+                      backgroundColor: '#EED2B5',
+                      width: "140px",
+                      height: "40px",
+                      alignItems: 'center',
+                      pt: '5px',
+                      color: '#694736',
+                      fontStyle: 'bold'
+                    }}
+                  >
+                    <Button onClick={() => removeProduct(product.productName)} sx={{color: '#694736'}}>
+                      -
+                    </Button>
+                    {product.quantity}
+                    <Button onClick={() => addToCart()} sx={{color: '#694736'}}>+</Button>
+                  </Box>
                 </TableCell>
+                <TableCell align="center">{product.price}€
+                <Button onClick={() => deleteProduct(product.productName)}>
+                    <DeleteOutlineOutlined sx={{ color: '#694736' }}/>
+                  </Button>
+                  </TableCell>
               </TableRow>
             </TableBody>
           ))}
 
           {quantity === 0 ? <h2>Empty Cart</h2> : null}
           <TableRow>
+            
+            <TableCell align="center">Subtotal:</TableCell>
             <TableCell />
-            <TableCell align="center"> Total products in the cart:</TableCell>
-            <TableCell align="center">{quantity}</TableCell>
-          </TableRow>
-          <TableRow>
             <TableCell />
-            <TableCell align="center">Total price:</TableCell>
             <TableCell align="center">{totalPrice}€</TableCell>
           </TableRow>
         </Table>
@@ -147,17 +175,16 @@ function ShoppingCart() {
           <Box sx={{ display: "flex", justifyContent: "flex-end", mt: "20px" }}>
             <Button
               variant="outlined"
-              color="secondary"
               onClick={() => console.log(cart)}
+              sx={{ color: '#694736', borderColor: '#EED2B5', backgroundColor:'#EED2B5', "&:hover": { color: "#254E25", backgroundColor:'#FFE598', borderColor: '#FFE598'}}}
             >
               Checkout
             </Button>
             <Button
               component={Link}
               to="/signup"
-              sx={{ ml: "20px" }}
+              sx={{ ml: "20px", color: '#694736', borderColor: '#EED2B5', backgroundColor:'#EED2B5', "&:hover": { color: "#254E25", backgroundColor:'#FFE598', borderColor: '#FFE598'}}}
               variant="outlined"
-              color="secondary"
             >
               Checkout as member
             </Button>

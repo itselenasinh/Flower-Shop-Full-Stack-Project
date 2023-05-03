@@ -49,10 +49,10 @@ function NavBar() {
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: '#EED2B5',
+        backgroundColor: "#EED2B5",
         alignItems: "center",
         textAlign: "center",
-        color: '#694736',
+        color: "#694736",
       }}
     >
       <Container
@@ -84,7 +84,7 @@ function NavBar() {
             letterSpacing: ".3rem",
             color: "inherit",
             textDecoration: "none",
-            "&:hover": { color: "#254E25"}
+            "&:hover": { color: "#254E25" },
           }}
         >
           YOUR FLOWERS
@@ -133,6 +133,7 @@ function NavBar() {
         </Box>
         <Typography
           variant="h5"
+          fontFamily="Montserrat"
           noWrap
           component="a"
           href="/"
@@ -140,7 +141,6 @@ function NavBar() {
             mr: 2,
             display: { xs: "flex", md: "none" },
             flexGrow: 1,
-            fontFamily: "monospace",
             fontWeight: 700,
             letterSpacing: ".3rem",
             color: "inherit",
@@ -156,7 +156,7 @@ function NavBar() {
             flexDirection: { xs: "row" },
             justifyContent: "center",
             color: "#694736 ",
-            fontFamily: 'Montserrat-Alternates'
+            fontFamily: "Montserrat-Alternates",
           }}
         >
           {pages.map((page) => {
@@ -165,7 +165,12 @@ function NavBar() {
                 <Button
                   onClick={handleOpenProducts}
                   key={page}
-                  sx={{ my: 2, color: "#694736 ", "&:hover": { color: "#254E25"}, display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "#694736 ",
+                    "&:hover": { color: "#254E25" },
+                    display: "block",
+                  }}
                 >
                   {page}
                 </Button>
@@ -177,7 +182,12 @@ function NavBar() {
                   key={page}
                   to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "#694736 ", "&:hover": { color: "#254E25"}, display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "#694736 ",
+                    "&:hover": { color: "#254E25" },
+                    display: "block",
+                  }}
                 >
                   {page}
                 </Button>
@@ -188,9 +198,12 @@ function NavBar() {
             open={isMenuOpen}
             anchorEl={anchorButton}
             onClose={handleCloseProducts}
-            
           >
-            <MenuItem component={Link} to="/products/bouquets" sx={{ backgroundColor: '#8FC857'}}>
+            <MenuItem
+              component={Link}
+              to="/products/bouquets"
+              sx={{ backgroundColor: "#8FC857" }}
+            >
               Bouquets
             </MenuItem>
             <MenuItem component={Link} to="/products/crowns">
@@ -209,39 +222,43 @@ function NavBar() {
           <Link to={"/login"}>
             <Button sx={{ m: "0" }}>
               <Person2Outlined
-                sx={{ color: "#694736", "&:hover": { color: "#254E25"}, justifyContent: "space-around" }}
+                sx={{
+                  color: "#694736",
+                  "&:hover": { color: "#254E25" },
+                  justifyContent: "space-around",
+                }}
                 variant="raised"
               ></Person2Outlined>
             </Button>
           </Link>
-        </Box> 
+        </Box>
         <Link to={"/shopping-cart"}>
-        <IconButton sx={{ backgroundColor: "none" }}>
-         
-            <ShoppingBagOutlined sx={{ color: "#694736 ", "&:hover": { color: "#254E25"} }} /> 
+          <IconButton sx={{ backgroundColor: "none" }}>
+            <ShoppingBagOutlined
+              sx={{ color: "#694736 ", "&:hover": { color: "#254E25" } }}
+            />
             <span
-          style={{
-            alignItems: 'center',
-            display: 'flex',
-            justifyContent: 'center',
-            top: '0',
-            right: '-2px',
-            width: '20px',
-            height: '20px',
-            fontSize: '16px',
-            backgroundColor: '#FFE598',
-            opacity: '0.8',
-            borderRadius: "20px",
-            position: 'absolute',
-            color: '#694736',
-          }}
-        >
-          {quantity}
-        </span>
-        </IconButton>
+              style={{
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "center",
+                top: "0",
+                right: "-2px",
+                width: "20px",
+                height: "20px",
+                fontSize: "16px",
+                backgroundColor: "#FFE598",
+                opacity: "0.8",
+                borderRadius: "20px",
+                position: "absolute",
+                color: "#694736",
+              }}
+            >
+              {quantity}
+            </span>
+          </IconButton>
         </Link>
         {/* <h5 style={{ marginLeft: "20px" }}></h5> */}
-       
       </Container>
     </AppBar>
   );
