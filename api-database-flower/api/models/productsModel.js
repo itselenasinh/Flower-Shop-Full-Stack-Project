@@ -17,7 +17,7 @@ const ProductsModel = sequelize.define(
       allowNull: false,
     },
     picture: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING,
       allowNull: true,
       //cloudinay
     },

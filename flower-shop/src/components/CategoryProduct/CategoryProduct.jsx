@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductByCategory } from "../../services/apiFlower";
 import ProductCard from "../ProductCard/ProductCard";
+import { Box } from "@mui/system";
 
 function CategoryProduct() {
   const [productShowList, setProductShowList] = useState([]);
@@ -27,7 +28,11 @@ function CategoryProduct() {
     ));
   };
 
-  return <div className="product-list">{showProductsByCategory()}</div>;
+  return (
+    <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+      {showProductsByCategory()}
+    </Box>
+  );
 }
 
 export default CategoryProduct;

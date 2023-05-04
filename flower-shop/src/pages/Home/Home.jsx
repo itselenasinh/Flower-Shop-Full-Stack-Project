@@ -7,14 +7,16 @@ import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
 function Home() {
-  return <>
-  <Banner />
-  <Promotions />
-  <MainCarousel />
-  <ContactForm />
-  <Subscribe />
-  <Footer />
-  </>;
+  return (
+    <>
+      <Banner />
+      <Promotions />
+      <MainCarousel />
+      <ContactForm />
+      <Subscribe />
+      <Footer />
+    </>
+  );
 }
 
 export default Home;

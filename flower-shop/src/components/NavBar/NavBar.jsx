@@ -55,6 +55,11 @@ function NavBar() {
     setAnchorButton(event.currentTarget);
     setIsMenuOpen(true);
   };
+  
+  const handleCloseProducts = () => {
+    setAnchorButton(null);
+    setIsMenuOpen(false);
+  };
 
   const handleCloseLog = () => {
     setAButton(null);
@@ -66,10 +71,7 @@ function NavBar() {
     setIsLogOpen(true);
   };
 
-  const handleCloseProducts = () => {
-    setAnchorButton(null);
-    setIsMenuOpen(false);
-  };
+  
 
   async function onLogout() {
     localStorage.removeItem("token");
