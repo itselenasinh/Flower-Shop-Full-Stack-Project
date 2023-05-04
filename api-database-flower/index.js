@@ -1,4 +1,5 @@
 require("dotenv").config();
+//require("./database/firebase/index.js");
 
 const { checkConnection, syncModels } = require("./database/index.js");
 

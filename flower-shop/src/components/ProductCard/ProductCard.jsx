@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context/CartContext";
 
 import {
@@ -17,6 +17,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 function ProductCard({ productName, price, description, picture, stock }) {
   const navigate = useNavigate();
   const [cart, setCart] = useContext(ShoppingCartContext);
+  console.log(picture);
 
   function addToCart() {
     setCart((currProducts) => {
@@ -89,13 +90,13 @@ function ProductCard({ productName, price, description, picture, stock }) {
         {quantityPerProduct > 0 && (
           <div className="product-quantity">{quantityPerProduct}</div>
         )}
-
-        <CardMedia
+        <img src={picture}></img>
+        {/* <CardMedia
           component="img"
           image={picture}
-          alt="estamos trabjando en esto"
+          alt={picture}
           sx={{ flex: "1 1 auto" }}
-        ></CardMedia>
+        ></CardMedia> */}
         <Typography>{description}</Typography>
         <Typography className="product-price">{price + "€"}</Typography>
         {quantityPerProduct === 0 ? (
