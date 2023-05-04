@@ -65,11 +65,8 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <AuthLogin />,
-      },
-    ],
-  },
-
-  {
+      }, 
+      {
     path: "/profile",
     element: <Profile />,
     loader: () => {
@@ -84,6 +81,10 @@ const appRouter = createBrowserRouter([
     path: "/orders",
     element: <Orders />,
   },
+    ],
+  },
+
+ 
 ]);
 
 export default appRouter;

@@ -43,7 +43,8 @@ function LoginCard({ changeToSignup }) {
     try {
       const apiResponse = await login(dataInLogin);
       localStorage.setItem("token", apiResponse.data.token);
-      localStorage.setItem("name", apiResponse.data.fullName)
+      localStorage.setItem("name", apiResponse.data.fullName);
+      localStorage.setItem("email", apiResponse.data.email)
       console.log(apiResponse.data);
       navigate("/");
     } catch (error) {
