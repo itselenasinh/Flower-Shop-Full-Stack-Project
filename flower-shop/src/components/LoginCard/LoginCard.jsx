@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { AuthUserContext } from "../../Context/AuthContext";
 import { login } from "../../services/auth";
 
 import {
@@ -23,6 +23,8 @@ function LoginCard({ changeToSignup }) {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [ isLogged, setIsLogged ] = useContext(AuthUserContext)
+
   const [isPassVisible, setIsPassVisible] = useState(false);
 
   const navigate = useNavigate();
@@ -42,9 +44,11 @@ function LoginCard({ changeToSignup }) {
     };
     try {
       const apiResponse = await login(dataInLogin);
+      setIsLogged(true)
       localStorage.setItem("token", apiResponse.data.token);
-      console.log(apiResponse);
-      //navigate("/home");
+      localStorage.setItem("name", apiResponse.data.fullName);
+      localStorage.setItem("email", apiResponse.data.email)
+      navigate("/");
     } catch (error) {
       setErrorMessage(error.response.data);
       setTimeout(() => {

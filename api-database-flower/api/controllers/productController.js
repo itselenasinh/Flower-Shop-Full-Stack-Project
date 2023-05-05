@@ -75,9 +75,39 @@ async function getOneCategoriesProducts(req, res) {
   }
 }
 
+async function addConnectionOrderProduct(req, res) {
+  try {
+    const order = await order.findByPk(req.params.orderId);
+    const product = await ProductsModel.findByPk(req.params.productId);
+    await order.addproucts(product);
+    const products = await order.getProducts();
+    return res.status(200).json(products);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+
+async function removeConnectionOrderProduct(req, res) {
+  try {
+    const product = await Product.findByPk(req.params.productId);
+    const order = await Order.findByPk(req.params.orderId);
+
+    if (!product) {
+      return res.status(404).send("order-product not found");
+    }
+    await order.removeproduct(product);
+    await product.removeorder(order);
+    return res.status(200).json("order-product relationship removed");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+
 module.exports = {
   getProduct,
   getOneProduct,
   getCategoriesProducts,
   getOneCategoriesProducts,
+  addConnectionOrderProduct,
+  removeConnectionOrderProduct,
 };

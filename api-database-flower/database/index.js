@@ -19,7 +19,7 @@ async function checkConnection() {
 async function syncModels() {
   try {
     //delete alter, save and reload dbeaver/just only if you have data
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
     console.log("Models synchronized");
   } catch (error) {
     throw error;

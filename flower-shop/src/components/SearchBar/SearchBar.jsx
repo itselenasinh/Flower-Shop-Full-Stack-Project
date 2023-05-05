@@ -25,7 +25,6 @@ function SearchBar() {
     const searchProducts = async () => {
       try {
         const response = await searchByApi(searchBar);
-        console.log(response);
         setSearchResults(response);
       } catch (error) {
         console.log("Error searching products:", error);
@@ -65,8 +64,9 @@ function SearchBar() {
             <Link
               style={{ textDecoration: "none" }}
               key={product.productName}
-              to={`/products/:categoryName/productName`}
-              // to={`/products/:categoryName/${product.productName}`}
+              //to={`/products/${product.productName}`}
+              to={`/products/category/${product.productName}`}
+              onClick={() => handleCancel()}
             >
               {product.productName}
               {/* <ProductCard
@@ -94,10 +94,10 @@ function SearchBar() {
 
   return (
     <Box>
-      <IconButton sx={{ backgroundColor: "none" }}>
+      <IconButton onClick={() => setSearchBarVisible(true)} sx={{ backgroundColor: "none" }}>
         <SearchOutlined
-          sx={{ color: "white" }}
-          onClick={() => setSearchBarVisible(true)}
+          sx={{ color: "#694736 ", "&:hover": { color: "#254E25"} }}
+         
         />
       </IconButton>
 
@@ -118,12 +118,12 @@ function SearchBar() {
           {noProducts()}
         </DialogContent>
         <DialogActions>
-          <IconButton sx={{ backgroundColor: "none" }}>
-            <SearchOutlined sx={{ color: "blue" }} onClick={handleSearch} />
+          <IconButton onClick={handleSearch} sx={{ backgroundColor: "none" }}>
+            <SearchOutlined sx={{ color: "blue" }}  />
           </IconButton>
 
-          <IconButton sx={{ backgroundColor: "none" }}>
-            <Close sx={{ color: "blue" }} onClick={handleCancel} />
+          <IconButton onClick={handleCancel} sx={{ backgroundColor: "none" }}>
+            <Close sx={{ color: "blue" }}  />
           </IconButton>
         </DialogActions>
       </Dialog>
