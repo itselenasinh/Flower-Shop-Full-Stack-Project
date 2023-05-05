@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { searchByApi } from "../../services/apiFlower";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 
 function OneProductPage() {
   const [product, setProduct] = useState({});

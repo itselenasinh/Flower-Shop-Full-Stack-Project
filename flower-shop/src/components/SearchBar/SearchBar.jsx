@@ -25,7 +25,6 @@ function SearchBar() {
     const searchProducts = async () => {
       try {
         const response = await searchByApi(searchBar);
-        console.log(response);
         setSearchResults(response);
       } catch (error) {
         console.log("Error searching products:", error);

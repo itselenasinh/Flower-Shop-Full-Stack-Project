@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductByCategory } from "../../services/apiFlower";
 import ProductCard from "../ProductCard/ProductCard";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 
 function CategoryProduct() {
   const [productShowList, setProductShowList] = useState([]);
