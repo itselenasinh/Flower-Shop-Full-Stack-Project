@@ -94,10 +94,10 @@ function SearchBar() {
 
   return (
     <Box>
-      <IconButton sx={{ backgroundColor: "none" }}>
+      <IconButton onClick={() => setSearchBarVisible(true)} sx={{ backgroundColor: "none" }}>
         <SearchOutlined
           sx={{ color: "#694736 ", "&:hover": { color: "#254E25"} }}
-          onClick={() => setSearchBarVisible(true)}
+         
         />
       </IconButton>
 
@@ -118,12 +118,12 @@ function SearchBar() {
           {noProducts()}
         </DialogContent>
         <DialogActions>
-          <IconButton sx={{ backgroundColor: "none" }}>
-            <SearchOutlined sx={{ color: "blue" }} onClick={handleSearch} />
+          <IconButton onClick={handleSearch} sx={{ backgroundColor: "none" }}>
+            <SearchOutlined sx={{ color: "blue" }}  />
           </IconButton>
 
-          <IconButton sx={{ backgroundColor: "none" }}>
-            <Close sx={{ color: "blue" }} onClick={handleCancel} />
+          <IconButton onClick={handleCancel} sx={{ backgroundColor: "none" }}>
+            <Close sx={{ color: "blue" }}  />
           </IconButton>
         </DialogActions>
       </Dialog>

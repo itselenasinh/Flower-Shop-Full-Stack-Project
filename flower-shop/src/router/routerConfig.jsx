@@ -1,4 +1,5 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
+import CartContext from "../Context/CartContext";
 
 import Layout from "../layout/Layout";
 
@@ -12,7 +13,6 @@ import SpecialEvents from "../pages/SpecialEvents/SpecialEvents";
 
 import ContactUs from "../pages/ConctactUs/ContactUs";
 
-
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
 import ProductsPages from "../pages/ProductsPages/ProductsPages";
@@ -20,11 +20,18 @@ import OneProductPage from "../pages/OneProductPage/OneProductPage";
 import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import AuthLogin from "../pages/Auth/AuthLogin";
 import AuthSignup from "../pages/Auth/AuthSignup";
+import AuthContext from "../Context/AuthContext";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <AuthContext>
+        <CartContext>
+          <Layout />
+        </CartContext>
+      </AuthContext>
+    ),
     children: [
       {
         path: "/",
@@ -65,26 +72,24 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <AuthLogin />,
-      }, 
+      },
       {
-    path: "/profile",
-    element: <Profile />,
-    loader: () => {
-      if (!localStorage.getItem("token")) {
-        return redirect("/");
-      } else {
-        return null;
-      }
-    },
-  },
-  {
-    path: "/orders",
-    element: <Orders />,
-  },
+        path: "/profile",
+        element: <Profile />,
+        loader: () => {
+          if (!localStorage.getItem("token")) {
+            return redirect("/");
+          } else {
+            return null;
+          }
+        },
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
+      },
     ],
   },
-
- 
 ]);
 
 export default appRouter;

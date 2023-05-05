@@ -1,7 +1,8 @@
 const Order = require("../models/ordermodel");
 const ProductsModel = require("../models/productsModel");
 const UserModel = require("../models/userModel");
-async function getAllOrder(req, res) {
+
+async function getAllOrders(req, res) {
   try {
     const order = await Order.findAll({
       where: req.query,
@@ -117,7 +118,7 @@ async function getOneorderUser(req, res) {
 }
 
 module.exports = {
-  getAllOrder,
+  getAllOrders,
   updateOrder,
   createOrder,
   getOneOrder,

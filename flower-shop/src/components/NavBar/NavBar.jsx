@@ -22,6 +22,7 @@ import {
   ShoppingBagOutlined,
 } from "@mui/icons-material";
 import { ShoppingCartContext } from "../../Context/CartContext";
+import { AuthUserContext } from "../../Context/AuthContext";
 
 const pages = ["About Us", "Products", "Special Events", "Contact Us"];
 
@@ -33,7 +34,7 @@ function NavBar() {
   const [isLogOpen, setIsLogOpen] = useState(false);
   const [aButton, setAButton] = useState(null);
 
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useContext(AuthUserContext);
 
   const navigate = useNavigate()
 
@@ -78,13 +79,9 @@ function NavBar() {
     localStorage.removeItem("name");
     setIsLogged(false);
     navigate("/login");
+    handleCloseLog()
   }
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLogged(true);
-    }
-  }, []);
 
 
   return (

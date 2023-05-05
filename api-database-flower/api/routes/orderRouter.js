@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const {
-  getAllOrder,
+  getAllOrders,
   updateOrder,
   createOrder,
   getOneOrder,
@@ -9,7 +9,7 @@ const {
   removeConnectionOrderProduct,
 } = require("../controllers/orderController");
 
-router.get("/", getAllOrder);
+router.get("/", getAllOrders);
 router.get("/:id", getOneOrder);
 router.get("/user/:userId");
 
