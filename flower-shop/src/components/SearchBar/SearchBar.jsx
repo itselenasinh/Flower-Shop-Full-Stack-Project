@@ -96,7 +96,7 @@ function SearchBar() {
     <Box>
       <IconButton sx={{ backgroundColor: "none" }}>
         <SearchOutlined
-          sx={{ color: "white" }}
+          sx={{ color: "#694736 ", "&:hover": { color: "#254E25"} }}
           onClick={() => setSearchBarVisible(true)}
         />
       </IconButton>
