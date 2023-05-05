@@ -1,7 +1,6 @@
 import authApi from "./authApiFlowerConfig";
 
 export async function getProductByCategory(categoryName) {
-  console.log(categoryName);
   const { data } = await authApi.get(`/products/categories/${categoryName}`);
   return data[0].products;
 }

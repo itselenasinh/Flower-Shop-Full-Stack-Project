@@ -97,7 +97,7 @@ async function removeConnectionOrderProduct(req, res) {
 
 async function getOneorderUser(req, res) {
   try {
-    console.log(req.params.categoryName);
+  
     const user = await UserModel.findByPk({
       where: { category: req.params.userId },
 

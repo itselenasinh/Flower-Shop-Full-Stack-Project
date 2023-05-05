@@ -25,7 +25,7 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 function ProductCard({ productName, price, description, picture, stock }) {
   const navigate = useNavigate();
   const [cart, setCart] = useContext(ShoppingCartContext);
-  console.log(picture);
+
 
   function addToCart() {
     setCart((currProducts) => {

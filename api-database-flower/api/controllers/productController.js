@@ -55,7 +55,7 @@ async function getCategoriesProducts(req, res) {
 
 async function getOneCategoriesProducts(req, res) {
   try {
-    console.log(req.params.categoryName);
+   
     const categories = await Categories.findAll({
       where: { category: req.params.categoryName },
       attributes: ["category"],

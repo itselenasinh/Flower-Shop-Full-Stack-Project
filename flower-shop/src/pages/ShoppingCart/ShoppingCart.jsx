@@ -76,16 +76,7 @@ function ShoppingCart() {
     return acc + curr.quantity * curr.price;
   }, 0);
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    }
-  }, []);
+ 
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -190,7 +181,6 @@ function ShoppingCart() {
           <Box sx={{ display: "flex", justifyContent: "flex-end", mt: "20px" }}>
             <Button
               variant="outlined"
-              onClick={() => console.log(cart)}
               sx={{
                 color: "#694736",
                 borderColor: "#EED2B5",
@@ -210,7 +200,6 @@ function ShoppingCart() {
           <Box sx={{ display: "flex", justifyContent: "flex-end", mt: "20px" }}>
             <Button
               variant="outlined"
-              onClick={() => console.log(cart)}
               sx={{
                 color: "#694736",
                 borderColor: "#EED2B5",

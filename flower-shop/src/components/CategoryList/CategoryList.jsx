@@ -8,10 +8,10 @@ function CategoryList() {
   useEffect(() => {
     async function productCategoriesList() {
       const list = await getProductsList();
-      console.log(list);
+     
       const categoryNames = list.map((category) => category.category);
       setProductsList(categoryNames);
-      console.log(setProductsList);
+    
     }
     productCategoriesList();
   }, []);

@@ -11,7 +11,7 @@ function CategoryProduct() {
   useEffect(() => {
     async function getAndSetProduct() {
       const productListByCategory = await getProductByCategory(categoryName);
-      console.log(productListByCategory);
+    
       setProductShowList(productListByCategory);
     }
     getAndSetProduct();
