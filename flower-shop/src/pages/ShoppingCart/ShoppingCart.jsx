@@ -5,6 +5,7 @@ import "./ShoppingCart.css";
 import {
   Box,
   Button,
+  CardMedia,
   Table,
   TableBody,
   TableCell,
@@ -115,8 +116,9 @@ function ShoppingCart() {
                     <ClearOutlined sx={{ color: "#694736" }} />
                   </Button>
                 </TableCell>
-                <TableCell align="center">
-                  <img src={product.picture} />
+                <TableCell align="center" sx={{ height: '100px', width: '100px' }}>
+                  <CardMedia component="img" image={product.picture}>
+                  </CardMedia>
                 </TableCell>
                 <TableCell align="center">{product.productName}</TableCell>
                 <TableCell
