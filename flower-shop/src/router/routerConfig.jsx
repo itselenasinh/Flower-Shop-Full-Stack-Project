@@ -16,11 +16,11 @@ import ContactUs from "../pages/ConctactUs/ContactUs";
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
 import ProductsPages from "../pages/ProductsPages/ProductsPages";
-import OneProductPage from "../pages/OneProductPage/OneProductPage";
 import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 import AuthLogin from "../pages/Auth/AuthLogin";
 import AuthSignup from "../pages/Auth/AuthSignup";
 import AuthContext from "../Context/AuthContext";
+import OneProductPage from "../pages/OneProductPage/OneProductPage";
 
 const appRouter = createBrowserRouter([
   {

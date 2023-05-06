@@ -5,7 +5,6 @@ import "./ShoppingCart.css";
 import {
   Box,
   Button,
-  SliderValueLabel,
   Table,
   TableBody,
   TableCell,

@@ -5,6 +5,10 @@ export const ShoppingCartContext = createContext(null);
 function CartContext({ children }) {
   
   const [cart, setCart] = useState([]);
+  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -14,12 +18,6 @@ function CartContext({ children }) {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  
-  
   return (
     
     <ShoppingCartContext.Provider value={[cart, setCart]}>

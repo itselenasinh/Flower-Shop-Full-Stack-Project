@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import OneProduct from "../../components/OneProduct/OneProduct";
 import { searchByApi } from "../../services/apiFlower";
-import ProductCard from "../../components/ProductCard/ProductCard";
 import { Box } from "@mui/material";
 
 function OneProductPage() {
@@ -23,13 +22,15 @@ function OneProductPage() {
         display: "flex",
         justifyContent: "center",
       }}
+
+      
     >
-      <ProductCard
+      <OneProduct
         picture={product.picture}
         productName={product.productName}
         price={product.price}
         description={product.description}
-      />
+      /> 
     </Box>
   );
 }
