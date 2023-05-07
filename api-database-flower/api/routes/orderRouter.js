@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+const { authenticate } = require("../utils/index");
 const {
   getAllOrders,
   updateOrder,
@@ -7,13 +8,15 @@ const {
   getOneOrder,
   deleteorder,
   removeConnectionOrderProduct,
+  getAllOrderByUser,
 } = require("../controllers/orderController");
 
-router.get("/", getAllOrders);
+//router.get("/", authenticate, getAllOrders);
 router.get("/:id", getOneOrder);
-router.get("/user/:userId");
+router.get("/", authenticate, getAllOrderByUser);
 
-router.post("/", createOrder);
+router.post("/", authenticate, createOrder);
+
 router.put("/:id", updateOrder);
 
 router.delete("/:id", deleteorder);

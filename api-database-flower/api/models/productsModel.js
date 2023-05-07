@@ -19,7 +19,6 @@ const ProductsModel = sequelize.define(
     picture: {
       type: DataTypes.STRING,
       allowNull: true,
-      //cloudinay
     },
     stock: {
       type: DataTypes.INTEGER,
