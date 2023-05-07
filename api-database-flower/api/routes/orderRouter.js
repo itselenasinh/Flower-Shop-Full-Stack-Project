@@ -12,7 +12,7 @@ const {
 } = require("../controllers/orderController");
 
 //router.get("/", authenticate, getAllOrders);
-router.get("/:id", getOneOrder);
+//router.get("/:id", getOneOrder);
 router.get("/", authenticate, getAllOrderByUser);
 
 router.post("/", authenticate, createOrder);

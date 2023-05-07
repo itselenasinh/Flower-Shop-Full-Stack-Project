@@ -220,8 +220,8 @@ async function getAllOrderByUser(req, res) {
     }
 
     const orders = await Order.findAll({
-      where: { UserId: userId },
-      attributes: ["status", "totalPrice"],
+      where: { userId: userId },
+      include: [{ model: ProductsModel, through: Order_products }],
     });
 
     return res.status(200).json(orders);
