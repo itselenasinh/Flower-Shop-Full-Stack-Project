@@ -287,7 +287,7 @@ function NavBar() {
                   </ListItemIcon>
                   Profile
                 </MenuItem>
-                <MenuItem>
+                <MenuItem component={Link} to="/wishlist">
                   <ListItemIcon>
                     <FavoriteBorderOutlined fontSize="small" />
                   </ListItemIcon>

@@ -1,5 +1,8 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
+
 import CartContext from "../Context/CartContext";
+
+import WishlistContext from "../Context/WishlistContext";
 
 import Layout from "../layout/Layout";
 
@@ -21,15 +24,18 @@ import AuthLogin from "../pages/Auth/AuthLogin";
 import AuthSignup from "../pages/Auth/AuthSignup";
 import AuthContext from "../Context/AuthContext";
 import OneProductPage from "../pages/OneProductPage/OneProductPage";
+import Wishlist from "../pages/WishlistPage/Wishlist";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: (
       <AuthContext>
-        <CartContext>
-          <Layout />
-        </CartContext>
+        <WishlistContext>
+          <CartContext>
+            <Layout />
+          </CartContext>
+        </WishlistContext>
       </AuthContext>
     ),
     children: [
@@ -74,6 +80,14 @@ const appRouter = createBrowserRouter([
         element: <AuthLogin />,
       },
       {
+        path: "/orders",
+        element: <Orders />,
+      },
+      {
+        path: "/wishlist",
+        element: <Wishlist />,
+      },
+      {
         path: "/profile",
         element: <Profile />,
         loader: () => {
@@ -83,10 +97,6 @@ const appRouter = createBrowserRouter([
             return null;
           }
         },
-      },
-      {
-        path: "/orders",
-        element: <Orders />,
       },
     ],
   },

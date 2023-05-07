@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
+import {WishlistProductsContext} from "../../Context/WishlistContext";
 import {
   Box,
   Button,
@@ -8,14 +9,17 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import {
-  Add,
-  AddShoppingCartOutlined,
-  FavoriteBorderRounded,
-} from "@mui/icons-material";
+import { FavoriteBorderRounded } from "@mui/icons-material";
 
-function OneProduct({ productName, price, description, picture, stock }) {
+function OneProduct({
+  productName,
+  price,
+  description,
+  picture,
+  stock,
+}) {
   const [cart, setCart] = useContext(ShoppingCartContext);
+  const { addToWishlist } = useContext(WishlistProductsContext)
 
   function addToCart() {
     setCart((currProducts) => {
@@ -65,6 +69,10 @@ function OneProduct({ productName, price, description, picture, stock }) {
 
   const quantityPerProduct = getQuantityByProductName(productName);
 
+  const handleAddToWishlist = (productName) => {
+    addToWishlist(productName);
+  };
+
   return (
     <Box
       sx={{
@@ -73,9 +81,9 @@ function OneProduct({ productName, price, description, picture, stock }) {
         justifyContent: "space-evenly",
         padding: "50px",
         transition: "transform 0.3s, border 0.3s",
-            "&:hover": {
-              transform: "scale(1.05, 1.05)",
-            },
+        "&:hover": {
+          transform: "scale(1.05, 1.05)",
+        },
       }}
     >
       <Card
@@ -89,7 +97,7 @@ function OneProduct({ productName, price, description, picture, stock }) {
           overflow: "hidden",
           gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
           boxShadow: "none",
-          position: 'relative'
+          position: "relative",
         }}
       >
         <CardMedia
@@ -109,10 +117,11 @@ function OneProduct({ productName, price, description, picture, stock }) {
             bottom: "10px",
             right: "410px",
             backgroundColor: "none",
-            color: 'white',
+            color: "white",
             borderRadius: "50%",
             boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
           }}
+          onClick={handleAddToWishlist}
         >
           <FavoriteBorderRounded />
         </IconButton>
@@ -137,7 +146,7 @@ function OneProduct({ productName, price, description, picture, stock }) {
               textAlign: "start",
               width: "400px",
               color: "#474747",
-              textTransform: 'uppercase'
+              textTransform: "uppercase",
             }}
           >
             {productName}
@@ -155,7 +164,14 @@ function OneProduct({ productName, price, description, picture, stock }) {
             {price}€ IVA inc.
           </Typography>
 
-          <Typography sx={{ pt: "10px", height: "340px", width: "400px", fontStyle: 'italic'}}>
+          <Typography
+            sx={{
+              pt: "10px",
+              height: "340px",
+              width: "400px",
+              fontStyle: "italic",
+            }}
+          >
             {description}
           </Typography>
 
@@ -163,11 +179,11 @@ function OneProduct({ productName, price, description, picture, stock }) {
             sx={{
               display: "flex",
               justifyContent: "center",
-              alignItems: 'center',
+              alignItems: "center",
               width: "200px",
               height: "60px",
               ml: "120px",
-              mg:'0',
+              mg: "0",
               boxSizing: "border-box",
               border: "transparent",
               borderRadius: "60px",
