@@ -109,11 +109,11 @@ function NavBar() {
           alignItems: "center",
         }}
       >
+        <Link to='/'>
         <Typography
           variant="h6"
           noWrap
-          component="a"
-          href="/"
+          style={{ textDecoration: 'none'}}
           sx={{
             display: { xs: "none", md: "flex" },
             textAlign: "center",
@@ -127,7 +127,7 @@ function NavBar() {
           }}
         >
           YOUR FLOWERS
-        </Typography>
+        </Typography></Link>
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -170,12 +170,12 @@ function NavBar() {
             ))}
           </Menu>
         </Box>
+        <Link to='/'>
         <Typography
           variant="h5"
           fontFamily="Montserrat"
           noWrap
-          component="a"
-          href="/"
+          style={{ textDecoration: 'none'}}
           sx={{
             mr: 2,
             display: { xs: "flex", md: "none" },
@@ -187,7 +187,7 @@ function NavBar() {
           }}
         >
           YOUR FLOWERS
-        </Typography>
+        </Typography></Link>
         <Box
           sx={{
             flexGrow: 1,
@@ -234,24 +234,25 @@ function NavBar() {
             }
           })}
           <Menu
+            MenuListProps={{ onMouseLeave: handleCloseProducts }}
             open={isMenuOpen}
             anchorEl={anchorButton}
             onClose={handleCloseProducts}
           >
-            <MenuItem
+            <MenuItem onClick={() => {handleCloseProducts()}} 
               component={Link}
               to="/products/bouquets"
               sx={{ backgroundColor: "#8FC857" }}
             >
               Bouquets
             </MenuItem>
-            <MenuItem component={Link} to="/products/crowns">
+            <MenuItem onClick={() => {handleCloseProducts()}}  component={Link} to="/products/crowns">
               Crowns
             </MenuItem>
-            <MenuItem component={Link} to="/products/garlands">
+            <MenuItem onClick={() => {handleCloseProducts()}}  component={Link} to="/products/garlands">
               Garlands
             </MenuItem>
-            <MenuItem component={Link} to="/products/plants">
+            <MenuItem onClick={() => {handleCloseProducts()}}  component={Link} to="/products/plants">
               Plants
             </MenuItem>
           </Menu>
@@ -287,7 +288,7 @@ function NavBar() {
                   </ListItemIcon>
                   Profile
                 </MenuItem>
-                <MenuItem>
+                <MenuItem component={Link} to="/wishlist">
                   <ListItemIcon>
                     <FavoriteBorderOutlined fontSize="small" />
                   </ListItemIcon>

@@ -1,0 +1,9 @@
+Header{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(174, 219, 249);
+    height: 12vh;
+    width: 100%;
+    text-align: center;
+    flex-direction: row;
+}

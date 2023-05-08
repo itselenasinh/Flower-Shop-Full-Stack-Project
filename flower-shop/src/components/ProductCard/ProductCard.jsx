@@ -1,213 +1,127 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context/CartContext";
 
-import {
-  Box,
-  Button,
-  Card,
-  CardMedia,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import { Add, AspectRatio, Remove } from "@mui/icons-material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import { Box, Card, CardMedia, Typography } from "@mui/material";
 
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ expand }) => ({
-//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-//   marginLeft: "auto",
-// }));
+function ProductCard({ productName, price, description, picture, stock, }) {
+  const [isHovering, setIsHovering] = useState(false);
 
-function ProductCard({ productName, price, description, picture, stock }) {
   const navigate = useNavigate();
+
   const [cart, setCart] = useContext(ShoppingCartContext);
 
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
 
-  function addToCart() {
-    setCart((currProducts) => {
-      const isProductsFound = currProducts.find(
-        (product) => product.productName === productName
-      );
-      if (isProductsFound) {
-        return currProducts.map((product) => {
-          if (product.productName === productName) {
-            return { ...product, quantity: product.quantity + 1 };
-          } else {
-            return product;
-          }
-        });
-      } else {
-        return [...currProducts, { productName, quantity: 1, price }];
-      }
-    });
-  }
-
-  function removeProduct() {
-    setCart((currProducts) => {
-      if (
-        currProducts.find((product) => product.productName === productName)
-          ?.quantity === 1
-      ) {
-        return currProducts.filter(
-          (product) => product.productName !== productName
-        );
-      } else {
-        return currProducts.map((product) => {
-          if (product.productName === productName) {
-            return { ...product, quantity: product.quantity - 1 };
-          } else {
-            return product;
-          }
-        });
-      }
-    });
-  }
-
-  function getQuantityByProductName(productName) {
-    return (
-      cart.find((product) => product.productName === productName)?.quantity || 0
-    );
-  }
-
-  const quantityPerProduct = getQuantityByProductName(productName);
-
-  function viewProduct(productName) {
-    navigate(`/products/category/${productName}`);
-  }
-  function viewQty() {
-    return (
-      quantityPerProduct > 0 && (
-        <div className="product-quantity">{quantityPerProduct}</div>
-      )
-    );
-  }
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
   return (
-    <Box
-      sx={{
-        minHeight: 350,
-        display: "flex",
-        justifyContent: "space-evenly",
-        padding: "50px",
-      }}
+    <Link
+      to={`/products/category/${productName}`}
+      style={{ textDecoration: "none" }}
     >
-      <Card
-        variant="outlined"
+      <Box
         sx={{
-          width: "360px",
-          height: "360px",
-          p: "20px",
+          minHeight: 350,
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          resize: "horizontal",
-          overflow: "hidden",
-          gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
-          transition: "transform 0.3s, border 0.3s",
-          "&:hover": {
-            transform: "translateY(-2px)",
-          },
-          "& > *": { minWidth: "clamp(0px, (360px - 100%) * 999,100%)" },
+          justifyContent: "space-evenly",
+          padding: "50px",
         }}
       >
-        <CardMedia
-          component="img"
-          height="194"
-          image={picture}
-          alt=""
-        ></CardMedia>
-
-        <Box
+        <Card
+          variant="outlined"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           sx={{
+            width: "400px",
+            height: "500px",
+            borderRadius: "7px",
             display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
             flexDirection: "column",
-            gap: 2,
-            maxWidth: 200,
+            overflow: "hidden",
+            gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
           }}
         >
-          <Box sx={{ display: "flex" }}>
-            <div>
+          <CardMedia
+            component="img"
+            alt=""
+            image={picture}
+            sx={{
+              height: "400px",
+              width: "400px",
+              transition: "transform 0.3s, border 0.3s",
+              "&:hover": {
+                transform: "scale(1.1, 1.1)",
+              },
+            }}
+          ></CardMedia>
+
+          <Box
+            sx={{
+              height: "100px",
+              width: "400px",
+              borderRadius: "7px",
+              backgroundColor: "#ffffff",
+              pt: "9px",
+              m: 0,
+            }}
+          >
+            <Box>
               <Typography
                 fontFamily="Montserrat"
-                level="h2"
+                level="h1"
                 sx={{
-                  fontSize: "x-large",
-                  pl: "20px",
-                  width: "380px",
-                  fontWeight: 700,
+                  fontSize: "30px",
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "400px",
+                  color: "#474747",
+                  pb: "",
                 }}
-                mb={0.5}
               >
-                {productName}
+                {productName.toUpperCase()}
               </Typography>
-            </div>
+            </Box>
 
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="neutral"
-              sx={{ ml: "auto", alignSelf: "flex-start" }}
-            >
-              <FavoriteBorderRoundedIcon color="danger" />
-            </IconButton>
+            {isHovering ? (
+              <Box>
+                <Typography
+                  className="product-price"
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "20px",
+                    color: "#474747",
+                  }}
+                >
+                  I WANT IT!
+                </Typography>
+              </Box>
+            ) : (
+              <Box>
+                <Typography
+                  className="product-price"
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "20px",
+                    color: "#474747",
+                  }}
+                >
+                  {price}€ IVA inc.
+                </Typography>
+              </Box>
+            )}
           </Box>
-          <Typography>{description}</Typography>
-          <Typography
-            className="product-price"
-            sx={{ pl: "20px", fontWeight: 700 }}
-          >
-            {price + "€"}
-          </Typography>
-          <Box>
-            {viewQty()}
-            <div>
-              {quantityPerProduct === 0 ? (
-                <Button
-                  level="body2"
-                  className="product-add-button"
-                  onClick={() => addToCart()}
-                >
-                  <IconButton sx={{ backgroundColor: "none" }}>
-                    <AddShoppingCartIcon />
-                  </IconButton>
-                </Button>
-              ) : (
-                <Button
-                  className="product-plus-button"
-                  onClick={() => addToCart()}
-                >
-                  <IconButton sx={{ backgroundColor: "none" }}>
-                    <Add />
-                  </IconButton>
-                </Button>
-              )}
-              {quantityPerProduct > 0 && (
-                <Button
-                  fontWeight="lg"
-                  level="body2"
-                  className="product-minus-button"
-                  onClick={() => removeProduct()}
-                >
-                  <IconButton sx={{ backgroundColor: "none" }}>
-                    <Remove />
-                  </IconButton>
-                </Button>
-              )}
-              <p>{stock}</p>
-              <Button onClick={() => viewProduct(productName)}>
-                View product
-              </Button>
-            </div>
-          </Box>
-        </Box>
-      </Card>
-    </Box>
+        </Card>
+      </Box>
+    </Link>
   );
 }
 
