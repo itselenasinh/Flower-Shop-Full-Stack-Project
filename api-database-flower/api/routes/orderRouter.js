@@ -17,7 +17,7 @@ router.get("/", authenticate, getAllOrderByUser);
 
 router.post("/", authenticate, createOrder);
 
-router.put("/:id", updateOrder);
+// router.put("/:id", updateOrder);
 
 //router.delete("/:id", deleteorder);
 //router.delete("/:orderId/products/:productId/", removeConnectionOrderProduct);

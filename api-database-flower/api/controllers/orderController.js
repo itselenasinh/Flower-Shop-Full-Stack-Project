@@ -233,12 +233,12 @@ async function getAllOrderByUser(req, res) {
 module.exports = {
   // getAllOrders,
   // updateOrder,
-  // createOrder,
+  createOrder,
   // getOneOrder,
   // deleteorder,
   // getOrderProduct,
   // getOneorderUser,
-  removeConnectionOrderProduct,
+  // removeConnectionOrderProduct,
   updateOrderProduct,
   getAllOrderByUser,
 };
