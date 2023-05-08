@@ -1,8 +1,8 @@
 const router = require("express").Router();
 
-const {
-  removeConnectionOrderProduct,
-} = require("../controllers/orderController");
+// const {
+//   removeConnectionOrderProduct,
+// } = require("../controllers/orderController");
 const {
   getProduct,
   getCategoriesProducts,
@@ -17,5 +17,5 @@ router.get("/categories/:categoryName", getOneCategoriesProducts);
 router.get("/categories", getCategoriesProducts);
 
 router.post("/:productId/order/:orderId", addConnectionOrderProduct);
-router.delete("/:productId/order/:orderId", removeConnectionOrderProduct);
+// router.delete("/:productId/order/:orderId", removeConnectionOrderProduct);
 module.exports = router;

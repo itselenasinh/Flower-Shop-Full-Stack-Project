@@ -10,7 +10,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { Add, AspectRatio } from "@mui/icons-material";
+import { Add, AspectRatio, Remove } from "@mui/icons-material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 
@@ -78,6 +78,13 @@ function ProductCard({ productName, price, description, picture, stock }) {
   function viewProduct(productName) {
     navigate(`/products/category/${productName}`);
   }
+  function viewQty() {
+    return (
+      quantityPerProduct > 0 && (
+        <div className="product-quantity">{quantityPerProduct}</div>
+      )
+    );
+  }
 
   return (
     <Box
@@ -139,11 +146,8 @@ function ProductCard({ productName, price, description, picture, stock }) {
               >
                 {productName}
               </Typography>
-
-              {quantityPerProduct > 0 && (
-                <div className="product-quantity">{quantityPerProduct}</div>
-              )}
             </div>
+
             <IconButton
               size="sm"
               variant="plain"
@@ -153,14 +157,6 @@ function ProductCard({ productName, price, description, picture, stock }) {
               <FavoriteBorderRoundedIcon color="danger" />
             </IconButton>
           </Box>
-          <AspectRatio
-            variant="soft"
-            sx={{
-              pointerEvents: "none",
-            }}
-          >
-            <img alt="" src={picture} />
-          </AspectRatio>
           <Typography>{description}</Typography>
           <Typography
             className="product-price"
@@ -169,6 +165,7 @@ function ProductCard({ productName, price, description, picture, stock }) {
             {price + "€"}
           </Typography>
           <Box>
+            {viewQty()}
             <div>
               {quantityPerProduct === 0 ? (
                 <Button
@@ -195,9 +192,11 @@ function ProductCard({ productName, price, description, picture, stock }) {
                   fontWeight="lg"
                   level="body2"
                   className="product-minus-button"
-                  onClick={() => removeProduct(productName)}
+                  onClick={() => removeProduct()}
                 >
-                  remove product
+                  <IconButton sx={{ backgroundColor: "none" }}>
+                    <Remove />
+                  </IconButton>
                 </Button>
               )}
               <p>{stock}</p>

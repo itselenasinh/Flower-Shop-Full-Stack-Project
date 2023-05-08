@@ -2,6 +2,7 @@ const UserModel = require("../api/models/userModel");
 const ProductsModel = require("../api/models/productsModel");
 const Order = require("../api/models/ordermodel");
 const Categories = require("../api/models/categoriesModel");
+const Order_products = require("../api/models/order_products");
 
 function addRelations() {
   try {
@@ -15,11 +16,11 @@ function addRelations() {
     //relation many to many
 
     Order.belongsToMany(ProductsModel, {
-      through: "order_products",
+      through: Order_products,
       timestamps: false,
     });
     ProductsModel.belongsToMany(Order, {
-      through: "order_products",
+      through: Order_products,
     });
   } catch (error) {
     throw error;

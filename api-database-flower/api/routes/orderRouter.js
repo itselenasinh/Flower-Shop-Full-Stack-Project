@@ -1,22 +1,25 @@
 const router = require("express").Router();
 
+const { authenticate } = require("../utils/index");
 const {
-  getAllOrders,
-  updateOrder,
+  // getAllOrders,
+  // updateOrder,
   createOrder,
-  getOneOrder,
+  //getOneOrder,
   deleteorder,
-  removeConnectionOrderProduct,
+  //removeConnectionOrderProduct,
+  getAllOrderByUser,
 } = require("../controllers/orderController");
 
-router.get("/", getAllOrders);
-router.get("/:id", getOneOrder);
-router.get("/user/:userId");
+//router.get("/", authenticate, getAllOrders);
+//router.get("/:id", getOneOrder);
+router.get("/", authenticate, getAllOrderByUser);
 
-router.post("/", createOrder);
-router.put("/:id", updateOrder);
+router.post("/", authenticate, createOrder);
 
-router.delete("/:id", deleteorder);
-router.delete("/:orderId/products/:productId/", removeConnectionOrderProduct);
+// router.put("/:id", updateOrder);
+
+//router.delete("/:id", deleteorder);
+//router.delete("/:orderId/products/:productId/", removeConnectionOrderProduct);
 
 module.exports = router;
