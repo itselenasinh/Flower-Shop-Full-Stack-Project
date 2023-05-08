@@ -8,7 +8,6 @@ function SpecialEvents() {
        <MainCarousel />
       <Typography> </Typography>
        <Button color="secondary">Contact Us</Button>
-       <Footer />
     </>
   )
 }

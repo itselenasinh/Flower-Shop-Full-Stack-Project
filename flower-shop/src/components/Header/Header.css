@@ -1,9 +1,12 @@
 Header{
     display: flex;
-    justify-content: space-between;
-    background-color: rgb(174, 219, 249);
-    height: 12vh;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: lightbeige;
+    height: 10vh;
     width: 100%;
+    padding-left: 30px;
     text-align: center;
     flex-direction: row;
+    color: #A7D489;
 }

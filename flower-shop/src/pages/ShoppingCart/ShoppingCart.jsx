@@ -88,7 +88,7 @@ function ShoppingCart() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        height: "100vh",
+        height: "80vh",
         alignItems: "center",
       }}
     >
@@ -99,7 +99,7 @@ function ShoppingCart() {
           border: "solid 3px #EED2B5",
           borderRadius: "16px",
           p: "30px",
-          backgroundColor: "white",
+          backgroundColor: "lightBeige",
         }}
       >
         <Table sx={{ minWidth: 400 }} aria-label="spanning table">
@@ -119,9 +119,10 @@ function ShoppingCart() {
                     align="center"
                     sx={{ height: "130px", width: "130px" }}
                   >
-                    <CardMedia
+                    <CardMedia 
                       component="img"
                       image={product.picture}
+                      sx={{ height: '100%', width: '100%', objectFit: 'contain'}}
                     ></CardMedia>
                   </TableCell>
                   <TableCell align="center" sx={{ height: "130px", fontSize:'20px' }}>
@@ -145,7 +146,7 @@ function ShoppingCart() {
                       sx={{
                         border: "solid 1px #694736",
                         borderRadius: "16px",
-                        backgroundColor: "white",
+                        backgroundColor: "lightBeige",
                         width: "150px",
                         height: "40px",
                         display: "flex",
@@ -191,13 +192,14 @@ function ShoppingCart() {
               variant="outlined"
               sx={{
                 color: "#694736",
+                fontWeight: '600',
                 borderColor: "#EED2B5",
                 backgroundColor: "#EED2B5",
                 borderRadius: "16px",
                 "&:hover": {
                   color: "#254E25",
-                  backgroundColor: "#FFE598",
-                  borderColor: "#FFE598",
+                  backgroundColor: "#D5E7B8",
+                  borderColor: "#D5E7B8",
                 },
               }}
             >
@@ -215,8 +217,8 @@ function ShoppingCart() {
                 borderRadius: "16px",
                 "&:hover": {
                   color: "#254E25",
-                  backgroundColor: "#FFE598",
-                  borderColor: "#FFE598",
+                  backgroundColor: "#D5E7B8",
+                  borderColor: "#D5E7B8",
                 },
               }}
             >
@@ -233,8 +235,8 @@ function ShoppingCart() {
                 borderRadius: "16px",
                 "&:hover": {
                   color: "#254E25",
-                  backgroundColor: "#FFE598",
-                  borderColor: "#FFE598",
+                  backgroundColor: "#D5E7B8",
+                  borderColor: "#D5E7B8",
                 },
               }}
               variant="outlined"

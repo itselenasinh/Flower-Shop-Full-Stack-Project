@@ -11,7 +11,6 @@ function Home() {
   <Banner />
   <Promotions />
   <Subscribe />
-  <Footer />
   </>;
 }
 

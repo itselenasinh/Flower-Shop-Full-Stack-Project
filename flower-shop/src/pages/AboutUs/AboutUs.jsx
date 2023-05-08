@@ -6,7 +6,6 @@ function AboutUs() {
   return (
     <>
     <About />
-    <Footer />
     </>
   )
 }

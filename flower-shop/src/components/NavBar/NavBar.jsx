@@ -89,9 +89,13 @@ function NavBar() {
       position="sticky"
       sx={{
         backgroundColor: "#EED2B5",
+        display: 'flex',
+        justifyContent: 'space-around',
         alignItems: "center",
         textAlign: "center",
-        color: "#694736",
+        color: "#A7D489",
+        height: '80px',
+        width: '100%'
       }}
     >
       <Container
@@ -100,7 +104,6 @@ function NavBar() {
           mr: "10px",
           ml: "10px",
           pt: "5px",
-          pb: "5px",
           pr: "0",
           pl: "0",
           display: "flex",
@@ -109,19 +112,19 @@ function NavBar() {
           alignItems: "center",
         }}
       >
-        <Link to='/'>
+        <Link to='/' style={{ textDecoration: 'none', fontFamily: "Roboto",
+            fontWeight: 700}}>
         <Typography
           variant="h6"
           noWrap
-          style={{ textDecoration: 'none'}}
+          
           sx={{
             display: { xs: "none", md: "flex" },
             textAlign: "center",
             justifyContent: "center",
-            fontFamily: "monospace",
+            fontFamily: "Monstserrat",
             fontWeight: 700,
             letterSpacing: ".3rem",
-            color: "inherit",
             textDecoration: "none",
             "&:hover": { color: "#254E25" },
           }}
@@ -145,6 +148,7 @@ function NavBar() {
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "left",
+              backgroundColor: "#F8D6C2",
             }}
             keepMounted
             transformOrigin={{
@@ -170,12 +174,12 @@ function NavBar() {
             ))}
           </Menu>
         </Box>
-        <Link to='/'>
+        <Link to='/' style={{ textDecoration: 'none'}}>
         <Typography
           variant="h5"
           fontFamily="Montserrat"
           noWrap
-          style={{ textDecoration: 'none'}}
+          
           sx={{
             mr: 2,
             display: { xs: "flex", md: "none" },
@@ -195,7 +199,6 @@ function NavBar() {
             flexDirection: { xs: "row" },
             justifyContent: "center",
             color: "#694736 ",
-            fontFamily: "Montserrat-Alternates",
           }}
         >
           {pages.map((page) => {
@@ -207,8 +210,12 @@ function NavBar() {
                   sx={{
                     my: 2,
                     color: "#694736 ",
+                    fontFamily: 'Roboto',
+                    fontWeight: '600',
+                    fontSize: '18px',
                     "&:hover": { color: "#254E25" },
                     display: "block",
+                    
                   }}
                 >
                   {page}
@@ -224,9 +231,11 @@ function NavBar() {
                   sx={{
                     my: 2,
                     color: "#694736 ",
+                    fontFamily: 'Roboto',
+                    fontWeight: '600',
+                    fontSize: '18px',
                     "&:hover": { color: "#254E25" },
-                    display: "block",
-                  }}
+                    display: "block"}}
                 >
                   {page}
                 </Button>
@@ -242,7 +251,7 @@ function NavBar() {
             <MenuItem onClick={() => {handleCloseProducts()}} 
               component={Link}
               to="/products/bouquets"
-              sx={{ backgroundColor: "#8FC857" }}
+              sx={{ backgroundColor: "#F8D6C2" }}
             >
               Bouquets
             </MenuItem>

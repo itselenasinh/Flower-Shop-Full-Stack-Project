@@ -32,7 +32,6 @@ function ContactUs() {
         <Typography variant="h5" align="center">Please fill in your question in detail and we will contact you ASAP but not later than 24 hours!</Typography>
         <ContactForm />
       </Container>
-      <Footer />
     </>
   );
 }
