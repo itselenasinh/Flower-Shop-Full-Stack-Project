@@ -14,5 +14,3 @@ export async function logout(data) {
   const response = await authApi.post("/auth/logout", data);
   return response;
 }
-
-
