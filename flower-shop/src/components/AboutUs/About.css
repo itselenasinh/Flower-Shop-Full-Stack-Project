@@ -14,15 +14,16 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #21325e;
+    background-color: #BDC345;
+    background-image: '';
 
-    color: #f0f0f0;
+    color: #254E25;
   }
   
   .about h2 {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 80px;
-    color: white;
+    color: #254E25;
     height: 50px;
   }
   
@@ -78,5 +79,6 @@
   
     .skills h2 {
       font-size: 30px;
+      color: red;
     }
   }

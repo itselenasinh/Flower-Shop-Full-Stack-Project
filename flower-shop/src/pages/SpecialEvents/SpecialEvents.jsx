@@ -1,12 +1,13 @@
+import { Button, Typography } from '@mui/material'
 import { MainCarousel } from '../../components/Carousel/Carousel'
-import { ContactForm } from '../../components/Contact Form/ContactForm'
 import Footer from '../../components/Footer/Footer'
 
 function SpecialEvents() {
   return (
     <>
        <MainCarousel />
-       <ContactForm />
+      <Typography> </Typography>
+       <Button color="secondary">Contact Us</Button>
        <Footer />
     </>
   )

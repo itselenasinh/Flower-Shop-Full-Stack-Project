@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { BannerContainer, BannerContent, BannerTitle, BannerDescription } from "./styles";
-import image from '../../assets/Banner.avif'
+import image from '../../assets/bann.avif'
 
 export default function Banner() {
 

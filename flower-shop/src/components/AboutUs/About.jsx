@@ -7,7 +7,7 @@ function About() {
   return (
     <div className="home">
       <div className="about">
-        <h2> Flower Shop</h2>
+        <h2> Your flowers</h2>
         <div className="prompt">
           <p>
             Lorem ipsum dolor sit amet. Et nihil totam in officia eius et

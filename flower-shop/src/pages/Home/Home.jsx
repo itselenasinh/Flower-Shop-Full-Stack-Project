@@ -10,8 +10,6 @@ function Home() {
   return <>
   <Banner />
   <Promotions />
- 
- 
   <Subscribe />
   <Footer />
   </>;

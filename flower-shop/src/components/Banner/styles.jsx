@@ -11,10 +11,15 @@ export const BannerContainer = styled(Box)(() => ({
   minWidth: "50px",
   maxWidth: "1500",
   height: "700px",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  backgroundSize: "cover",
 }));
 
 export const BannerImage = styled("img")(({ src }) => ({
   src: `url(${src})`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
   minWidth: "50px",
   maxWidth: "1500",
   height: "700px",
