@@ -7,7 +7,7 @@ function AuthSignup() {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -16,9 +16,14 @@ function AuthSignup() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         overflow: "hidden",
+        borderRadius: 20,
+        width: "80%",
+        margin: "auto",
+        paddingTop: "50px",
+        paddingBottom: "50px",
       }}
     >
-      <Typography variant="h1" color="black">
+      <Typography variant="h1" color="black" align="center">
         YOUR FLOWERS
       </Typography>
       <SignupCard />

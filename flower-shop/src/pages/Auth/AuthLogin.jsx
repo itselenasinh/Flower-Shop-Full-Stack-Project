@@ -10,21 +10,26 @@ import signupBackground from "../../assets/backgrounds/signup.jpg";
 function AuthLogin() {
   const [isLogin, setIsLogin] = useState(true);
 
-
   return (
     <Box
       sx={{
-        minHeight: "100vh",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        // backgroundImage: `url(${isLogin ? loginBackground : signupBackground})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         overflow: "hidden",
+        borderRadius: 20,
+        width: "80%",
+        margin: "auto",
+        paddingTop: "50px",
+        paddingBottom: "50px",
       }}
     >
-      <Typography variant="h1" color="black">
+      <Typography variant="h1" color="black" align="center">
         YOUR FLOWERS
       </Typography>
       <LoginCard />

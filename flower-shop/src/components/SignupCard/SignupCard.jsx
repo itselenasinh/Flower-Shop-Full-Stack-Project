@@ -16,8 +16,7 @@ import {
 } from "@mui/material";
 import { Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 
-
-function SignupCard({ changeToLogin }) {
+function SignupCard() {
   const passwordRef = useRef(null);
   const passwordCorfirmRef = useRef(null);
 
@@ -31,7 +30,7 @@ function SignupCard({ changeToLogin }) {
   const [isPassVisible, setIsPassVisible] = useState(false);
   const [isPassVisibleConfirm, setIsPassVisibleConfirm] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -47,10 +46,16 @@ function SignupCard({ changeToLogin }) {
       phone,
     };
     signup(dataInSignup)
-      .then((response) => {console.log(response); navigate("/login")})
+      .then((response) => {
+        console.log(response);
+        navigate("/login");
+      })
       .catch((error) => console.error(error));
   }
 
+  function goLogin() {
+    return navigate("/login");
+  }
   return (
     <Card sx={{ maxWidth: "500px" }}>
       <form onSubmit={handleSubmit}>
@@ -153,7 +158,7 @@ function SignupCard({ changeToLogin }) {
         </CardContent>
         <Divider />
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button onClick={() => changeToLogin()}>Login</Button>
+          <Button onClick={() => goLogin()}>Login</Button>
           <Button onClick={() => signup()} type="submit" color="success">
             Sign Up
           </Button>

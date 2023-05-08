@@ -14,16 +14,17 @@ import {
   IconButton,
   InputAdornment,
   TextField,
+  Typography,
 } from "@mui/material";
 
 import { Lock, VisibilityOff, Visibility, Email } from "@mui/icons-material";
 
-function LoginCard({ changeToSignup }) {
+function LoginCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const [ isLogged, setIsLogged ] = useContext(AuthUserContext)
+  const [isLogged, setIsLogged] = useContext(AuthUserContext);
 
   const [isPassVisible, setIsPassVisible] = useState(false);
 
@@ -44,19 +45,22 @@ function LoginCard({ changeToSignup }) {
     };
     try {
       const apiResponse = await login(dataInLogin);
-      setIsLogged(true)
+      setIsLogged(true);
       localStorage.setItem("token", apiResponse.data.token);
       localStorage.setItem("name", apiResponse.data.fullName);
-      localStorage.setItem("email", apiResponse.data.email)
+      localStorage.setItem("email", apiResponse.data.email);
       navigate("/");
     } catch (error) {
-      setErrorMessage(error.response.data);
+      setErrorMessage(error.response.data.message);
       setTimeout(() => {
-        setErrorMessage("");
-      }, 3000);
+        setErrorMessage("Email or password wrong");
+      }, 100);
     }
   }
 
+  function goSignup() {
+    return navigate("/signup");
+  }
   return (
     <Card sx={{ maxWidth: "500px" }}>
       <CardHeader title="Login"></CardHeader>
@@ -107,6 +111,11 @@ function LoginCard({ changeToSignup }) {
             ),
           }}
         ></TextField>
+        {errorMessage !== null && (
+          <Typography color="red" textAlign="center" mt={2}>
+            {errorMessage}
+          </Typography>
+        )}
       </CardContent>
       <Divider />
       <CardActions
@@ -115,7 +124,7 @@ function LoginCard({ changeToSignup }) {
           justifyContent: "flex-end",
         }}
       >
-        <Button onClick={() => changeToSignup()}>Signup</Button>
+        <Button onClick={() => goSignup()}>Signup</Button>
         <Button color="success" onClick={() => onLogin()}>
           Login
         </Button>
