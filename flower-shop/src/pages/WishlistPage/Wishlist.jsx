@@ -6,7 +6,7 @@ import { Box } from '@mui/material'
 function Wishlist() {
   
   const {wishlist, removeFromWishlist} = useContext(WishlistProductsContext)
- 
+  console.log(wishlist)
   return (
     <Box> 
       { wishlist.length === 0 ? (

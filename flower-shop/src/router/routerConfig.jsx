@@ -26,6 +26,7 @@ import AuthContext from "../Context/AuthContext";
 import OneProductPage from "../pages/OneProductPage/OneProductPage";
 import Wishlist from "../pages/WishlistPage/Wishlist";
 
+
 const appRouter = createBrowserRouter([
   {
     path: "/",

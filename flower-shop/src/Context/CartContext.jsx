@@ -7,17 +7,17 @@ function CartContext({ children }) {
   const [cart, setCart] = useState([]);
   
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     console.log(savedCart)
     if (savedCart) {
       setCart(JSON.parse(savedCart));
     }
   }, []);
-
+  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  
   return (
     
     <ShoppingCartContext.Provider value={[cart, setCart]}>

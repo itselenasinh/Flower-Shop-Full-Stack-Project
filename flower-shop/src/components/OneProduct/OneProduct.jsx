@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
-import {WishlistProductsContext} from "../../Context/WishlistContext";
+import { WishlistProductsContext } from "../../Context/WishlistContext";
 import {
   Box,
+  Breadcrumbs,
   Button,
   Card,
   CardMedia,
@@ -10,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { FavoriteBorderRounded } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 function OneProduct({
   productName,
@@ -17,9 +19,10 @@ function OneProduct({
   description,
   picture,
   stock,
+  category,
 }) {
   const [cart, setCart] = useContext(ShoppingCartContext);
-  const { addToWishlist } = useContext(WishlistProductsContext)
+  const { addToWishlist } = useContext(WishlistProductsContext);
 
   function addToCart() {
     setCart((currProducts) => {
@@ -35,7 +38,7 @@ function OneProduct({
           }
         });
       } else {
-        return [...currProducts, { productName, quantity: 1, price }];
+        return [...currProducts, { productName, quantity: 1, price, picture }];
       }
     });
   }
@@ -69,195 +72,207 @@ function OneProduct({
 
   const quantityPerProduct = getQuantityByProductName(productName);
 
-  const handleAddToWishlist = (productName) => {
-    addToWishlist(productName);
+  const handleAddToWishlist = (product) => {
+    addToWishlist(product);
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: 350,
-        display: "flex",
-        justifyContent: "space-evenly",
-        padding: "50px",
-        transition: "transform 0.3s, border 0.3s",
-        "&:hover": {
-          transform: "scale(1.05, 1.05)",
-        },
-      }}
-    >
-      <Card
+    <Box>
+      <Box
         sx={{
-          width: "800px",
-          height: "500px",
-          borderRadius: "7px",
+          minHeight: 350,
           display: "flex",
-          justifyContent: "flex-start",
-          flexDirection: "row",
-          overflow: "hidden",
-          gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
-          boxShadow: "none",
-          position: "relative",
+          justifyContent: "space-evenly",
+          // padding: "50px",
+          pt: "100px",
+          transition: "transform 0.3s, border 0.3s",
+          "&:hover": {
+            transform: "scale(1.05, 1.05)",
+          },
         }}
       >
-        <CardMedia
-          component="img"
-          alt=""
-          image={picture}
+        <Card
           sx={{
+            width: "800px",
             height: "500px",
-            width: "400px",
             borderRadius: "7px",
-          }}
-        ></CardMedia>
-
-        <IconButton
-          sx={{
-            position: "absolute",
-            bottom: "10px",
-            right: "410px",
-            backgroundColor: "none",
-            color: "white",
-            borderRadius: "50%",
-            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-          }}
-          onClick={handleAddToWishlist}
-        >
-          <FavoriteBorderRounded />
-        </IconButton>
-
-        <Box
-          sx={{
-            height: "500px",
-            width: "400px",
-            borderRadius: "7px",
-            backgroundColor: "#ffffff",
-            p: 0,
-            m: 0,
+            display: "flex",
+            justifyContent: "flex-start",
+            flexDirection: "row",
+            overflow: "hidden",
+            gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
+            boxShadow: "none",
+            position: "relative",
           }}
         >
-          <Typography
-            fontFamily="Montserrat"
-            level="h1"
+          <CardMedia
+            component="img"
+            alt=""
+            image={picture}
             sx={{
-              height: "60px",
-              fontSize: "40px",
-              display: "flex",
-              textAlign: "start",
+              height: "500px",
               width: "400px",
-              color: "#474747",
-              textTransform: "uppercase",
+              borderRadius: "7px",
             }}
-          >
-            {productName}
-          </Typography>
+          ></CardMedia>
 
-          <Typography
-            className="product-price"
+          <IconButton
             sx={{
-              display: "flex",
-              fontSize: "20px",
-              width: "400px",
-              color: "#474747",
+              position: "absolute",
+              bottom: "10px",
+              right: "410px",
+              backgroundColor: "none",
+              color: "white",
+              borderRadius: "50%",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            }}
+            onClick={() => {
+              handleAddToWishlist({
+                productName,
+                price,
+                description,
+                picture,
+                stock,
+                category,
+              });
             }}
           >
-            {price}€ IVA inc.
-          </Typography>
-
-          <Typography
-            sx={{
-              pt: "10px",
-              height: "340px",
-              width: "400px",
-              fontStyle: "italic",
-            }}
-          >
-            {description}
-          </Typography>
+            <FavoriteBorderRounded />
+          </IconButton>
 
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "200px",
-              height: "60px",
-              ml: "120px",
-              mg: "0",
-              boxSizing: "border-box",
-              border: "transparent",
-              borderRadius: "60px",
-              letterSpacing: "0.2em",
-              backgroundColor: "#EED2B5",
-              cursor: "pointer",
-              outline: "none",
+              height: "500px",
+              width: "400px",
+              borderRadius: "7px",
+              backgroundColor: "#ffffff",
+              p: 0,
+              m: 0,
             }}
           >
-            {quantityPerProduct === 0 ? (
-              <Button
-                level="body2"
-                className="product-add-button"
-                sx={{
-                  p: "0",
-                  b: "0",
-                  color: "#694736",
-                  fontSize: "20px",
-                  fontWeight: "400",
-                }}
-                onClick={() => addToCart()}
-              >
-                Add to cart
-              </Button>
-            ) : (
-              <Button
-                sx={{
-                  p: "0",
-                  b: "0",
-                  color: "#694736",
-                  fontSize: "20px",
-                  fontWeight: "400",
-                }}
-                onClick={() => removeProduct(productName)}
-              >
-                -
-              </Button>
-            )}
+            <Typography
+              fontFamily="Montserrat"
+              level="h1"
+              sx={{
+                height: "60px",
+                fontSize: "40px",
+                display: "flex",
+                textAlign: "start",
+                width: "400px",
+                color: "#474747",
+                textTransform: "uppercase",
+              }}
+            >
+              {productName}
+            </Typography>
 
-            {quantityPerProduct > 0 && (
-              <Typography
-                sx={{
-                  p: "0",
-                  b: "0",
-                  color: "#694736",
-                  fontSize: "20px",
-                  fontWeight: "400",
-                }}
-                className="product-quantity"
-              >
-                {quantityPerProduct}
-              </Typography>
-            )}
+            <Typography
+              className="product-price"
+              sx={{
+                display: "flex",
+                fontSize: "20px",
+                width: "400px",
+                color: "#474747",
+              }}
+            >
+              {price}€ IVA inc.
+            </Typography>
 
-            {quantityPerProduct > 0 && (
-              <Button
-                sx={{
-                  p: "0",
-                  b: "0",
-                  color: "#694736",
-                  fontSize: "20px",
-                  fontWeight: "400",
-                }}
-                fontWeight="lg"
-                level="body2"
-                className="product-minus-button"
-                onClick={() => addToCart()}
-              >
-                +
-              </Button>
-            )}
+            <Typography
+              sx={{
+                pt: "10px",
+                height: "340px",
+                width: "400px",
+                fontStyle: "italic",
+              }}
+            >
+              {description}
+            </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "200px",
+                height: "60px",
+                ml: "120px",
+                mg: "0",
+                boxSizing: "border-box",
+                border: "transparent",
+                borderRadius: "60px",
+                letterSpacing: "0.2em",
+                backgroundColor: "#EED2B5",
+                cursor: "pointer",
+                outline: "none",
+              }}
+            >
+              {quantityPerProduct === 0 ? (
+                <Button
+                  level="body2"
+                  className="product-add-button"
+                  sx={{
+                    p: "0",
+                    b: "0",
+                    color: "#694736",
+                    fontSize: "20px",
+                    fontWeight: "400",
+                  }}
+                  onClick={() => addToCart()}
+                >
+                  Add to cart
+                </Button>
+              ) : (
+                <Button
+                  sx={{
+                    p: "0",
+                    b: "0",
+                    color: "#694736",
+                    fontSize: "20px",
+                    fontWeight: "400",
+                  }}
+                  onClick={() => removeProduct(productName)}
+                >
+                  -
+                </Button>
+              )}
+
+              {quantityPerProduct > 0 && (
+                <Typography
+                  sx={{
+                    p: "0",
+                    b: "0",
+                    color: "#694736",
+                    fontSize: "20px",
+                    fontWeight: "400",
+                  }}
+                  className="product-quantity"
+                >
+                  {quantityPerProduct}
+                </Typography>
+              )}
+
+              {quantityPerProduct > 0 && (
+                <Button
+                  sx={{
+                    p: "0",
+                    b: "0",
+                    color: "#694736",
+                    fontSize: "20px",
+                    fontWeight: "400",
+                  }}
+                  fontWeight="lg"
+                  level="body2"
+                  className="product-minus-button"
+                  onClick={() => addToCart()}
+                >
+                  +
+                </Button>
+              )}
+            </Box>
           </Box>
-        </Box>
-      </Card>
+        </Card>
+      </Box>
     </Box>
   );
 }

@@ -4,7 +4,7 @@ import { ShoppingCartContext } from "../../Context/CartContext";
 
 import { Box, Card, CardMedia, Typography } from "@mui/material";
 
-function ProductCard({ productName, price, description, picture, stock }) {
+function ProductCard({ productName, price, description, picture, stock, }) {
   const [isHovering, setIsHovering] = useState(false);
 
   const navigate = useNavigate();

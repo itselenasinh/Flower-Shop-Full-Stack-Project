@@ -7,7 +7,7 @@ function WishlistContext ({ children }) {
     const [wishlist, setWishlist] = useState([])
 
     const addToWishlist = (product) => {
-        setWishlist([...wishlist, product])
+        setWishlist((oldWishlist) => ([...oldWishlist, product]))
     }
 
     const removeFromWishlist = (productName) => {

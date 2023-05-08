@@ -22,6 +22,7 @@ function ShoppingCart() {
   const [isLogged, setIsLogged] = useState(false);
 
   const addToCart = (productName) => {
+    console.log(productName);
     setCart((currProducts) => {
       const isProductsFound = currProducts.find(
         (product) => product.productName === productName
@@ -35,7 +36,7 @@ function ShoppingCart() {
           }
         });
       } else {
-        return [...currProducts, { productName, quantity: 1, price }];
+        return [...currProducts, { productName, quantity: 1 }];
       }
     });
   };
@@ -76,8 +77,6 @@ function ShoppingCart() {
     return acc + curr.quantity * curr.price;
   }, 0);
 
- 
-
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setIsLogged(true);
@@ -97,77 +96,85 @@ function ShoppingCart() {
         sx={{
           maxWidth: "80vw",
           margin: "auto",
-          border: "solid 1px #EED2B5",
+          border: "solid 3px #EED2B5",
           borderRadius: "16px",
           p: "30px",
-          backgroundColor: "#EED2B5",
+          backgroundColor: "white",
         }}
       >
         <Table sx={{ minWidth: 400 }} aria-label="spanning table">
           <TableHead title="Shopping Cart" />
 
-          <TableRow>Cart</TableRow>
-
-          {cart.map((product, i) => (
-            <TableBody key={i}>
-              <TableRow>
-                <TableCell align="center">
-                  <Button onClick={() => deleteProduct(product.productName)}>
-                    <ClearOutlined sx={{ color: "#694736" }} />
-                  </Button>
-                </TableCell>
-                <TableCell align="center" sx={{ height: '100px', width: '100px' }}>
-                  <CardMedia component="img" image={product.picture}>
-                   </CardMedia>
-                </TableCell>
-                <TableCell align="center">{product.productName}</TableCell>
-                <TableCell
-                  align="center"
-                  alignItems="center"
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "center",
-                    textAlign: "center",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <Box
+          {cart.map((product, i) => {
+            console.log(product);
+            return (
+              <TableBody key={i}>
+                <TableRow>
+                  <TableCell align="center">
+                    <Button onClick={() => deleteProduct(product.productName)}>
+                      <ClearOutlined sx={{ color: "#694736" }} />
+                    </Button>
+                  </TableCell>
+                  <TableCell
                     align="center"
+                    sx={{ height: "130px", width: "130px" }}
+                  >
+                    <CardMedia
+                      component="img"
+                      image={product.picture}
+                    ></CardMedia>
+                  </TableCell>
+                  <TableCell align="center" sx={{ height: "130px", fontSize:'20px' }}>
+                    {product.productName}
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    alignItems="center"
                     sx={{
-                      border: "solid 1px #694736",
-                      borderRadius: "16px",
-                      backgroundColor: "#EED2B5",
-                      width: "150px",
-                      height: "40px",
                       display: "flex",
                       justifyContent: "center",
+                      alignContent: "center",
+                      textAlign: "center",
+                      flexDirection: "row",
                       alignItems: "center",
-                      pt: "00px",
-                      color: "#694736",
-                      fontStyle: "bold",
+                      height: "130px",
                     }}
                   >
-                    <Button
-                      onClick={() => removeProduct(product.productName)}
-                      sx={{ width: "0", p: "0", color: "#694736" }}
+                    <Box
+                      align="center"
+                      sx={{
+                        border: "solid 1px #694736",
+                        borderRadius: "16px",
+                        backgroundColor: "white",
+                        width: "150px",
+                        height: "40px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        color: "#694736",
+                        fontStyle: "bold",
+                      }}
                     >
-                      -
-                    </Button>
-                    {product.quantity}
-                    <Button
-                      onClick={() => addToCart(product.productName)}
-                      sx={{ width: "0", p: "0", color: "#694736" }}
-                    >
-                      +
-                    </Button>
-                  </Box>
-                </TableCell>
-                <TableCell align="center">{product.price}€</TableCell>
-              </TableRow>
-            </TableBody>
-          ))}
+                      <Button
+                        onClick={() => removeProduct(product.productName)}
+                        sx={{ width: "0", p: "0", color: "#694736" }}
+                      >
+                        -
+                      </Button>
+                      {product.quantity}
+                      <Button
+                        onClick={() => addToCart(product.productName)}
+                        sx={{ width: "0", p: "0", color: "#694736" }}
+                      >
+                        +
+                      </Button>
+                    </Box>
+                  </TableCell>
+                  <TableCell align="center">{product.price}€</TableCell>
+                </TableRow>
+              </TableBody>
+            );
+          })}
           {quantity === 0 ? <h2>Empty Cart</h2> : null}
           <TableRow>
             <TableCell />
