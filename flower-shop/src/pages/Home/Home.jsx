@@ -1,22 +1,18 @@
 import Banner from "../../components/Banner/Banner";
-import { MainCarousel } from "../../components/Carousel/Carousel";
-import { ContactForm } from "../../components/Contact Form/ContactForm";
+//import { MainCarousel } from "../../components/Carousel/Carousel";
+//import { ContactForm } from "../../components/Contact Form/ContactForm";
 import Promotions from "../../components/Promotions/Promotions";
 import { Subscribe } from "../../components/Subscribe/Subscribe";
 import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
 function Home() {
-  return (
-    <>
-      <Banner />
-      <Promotions />
-      <MainCarousel />
-      <ContactForm />
-      <Subscribe />
-      <Footer />
-    </>
-  );
+  return <>
+  <Banner />
+  <Promotions />
+  <Subscribe />
+  <Footer />
+  </>;
 }
 
 export default Home;
