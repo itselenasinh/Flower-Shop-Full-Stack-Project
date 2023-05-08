@@ -1,4 +1,5 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
+import CartContext from "../Context/CartContext";
 
 import Layout from "../layout/Layout";
 
@@ -6,23 +7,31 @@ import Home from "../pages/Home/Home";
 
 import AboutUs from "../pages/AboutUs/AboutUs";
 
-import Bouquets from "../pages/Bouquets/Bouquets";
-import Crowns from "../pages/Crowns/Crowns";
-import Garlands from "../pages/Garlands/Garlands";
-import Plants from "../pages/Plants/Plants";
+import Categories from "../pages/Categories/Categories";
 
 import SpecialEvents from "../pages/SpecialEvents/SpecialEvents";
 
 import ContactUs from "../pages/ConctactUs/ContactUs";
 
-import Auth from "../pages/Auth/Auth";
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Orders/Orders";
+import ProductsPages from "../pages/ProductsPages/ProductsPages";
+import OneProductPage from "../pages/OneProductPage/OneProductPage";
+import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
+import AuthLogin from "../pages/Auth/AuthLogin";
+import AuthSignup from "../pages/Auth/AuthSignup";
+import AuthContext from "../Context/AuthContext";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <AuthContext>
+        <CartContext>
+          <Layout />
+        </CartContext>
+      </AuthContext>
+    ),
     children: [
       {
         path: "/",
@@ -33,20 +42,16 @@ const appRouter = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/products-bouquets",
-        element: <Bouquets />,
+        path: "/products",
+        element: <Categories />,
       },
       {
-        path: "/products-crowns",
-        element: <Crowns />,
+        path: "/products/:categoryName",
+        element: <ProductsPages />,
       },
       {
-        path: "/products-garlands",
-        element: <Garlands />,
-      },
-      {
-        path: "/products-plants",
-        element: <Plants />,
+        path: "/products/category/:productName",
+        element: <OneProductPage />,
       },
       {
         path: "/special-events",
@@ -56,26 +61,34 @@ const appRouter = createBrowserRouter([
         path: "/contact-us",
         element: <ContactUs />,
       },
+      {
+        path: "/shopping-cart",
+        element: <ShoppingCart />,
+      },
+      {
+        path: "/signup",
+        element: <AuthSignup />,
+      },
+      {
+        path: "/login",
+        element: <AuthLogin />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+        loader: () => {
+          if (!localStorage.getItem("token")) {
+            return redirect("/");
+          } else {
+            return null;
+          }
+        },
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <Auth />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-    loader: () => {
-      if (!localStorage.getItem("token")) {
-        return redirect("/");
-      } else {
-        return null;
-      }
-    },
-  },
-  {
-    path: "/orders",
-    element: <Orders />,
   },
 ]);
 

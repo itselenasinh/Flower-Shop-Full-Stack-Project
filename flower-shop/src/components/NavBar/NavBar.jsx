@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { AppBar } from "@mui/material";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppBar, ListItemIcon } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -8,13 +9,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import { indigo } from "@mui/material/colors";
-const headerColor = indigo[200];
 import { Link } from "react-router-dom";
+import { logout } from "../../services/auth";
 
 import SearchBar from "../SearchBar/SearchBar";
-import { Person2Outlined } from "@mui/icons-material";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import {
+  AccountCircleOutlined,
+  BookmarkAddOutlined,
+  FavoriteBorderOutlined,
+  LogoutOutlined,
+  Person2Outlined,
+  ShoppingBagOutlined,
+} from "@mui/icons-material";
+import { ShoppingCartContext } from "../../Context/CartContext";
+import { AuthUserContext } from "../../Context/AuthContext";
 
 const pages = ["About Us", "Products", "Special Events", "Contact Us"];
 
@@ -22,6 +30,19 @@ function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [anchorButton, setAnchorButton] = useState(null);
+
+  const [isLogOpen, setIsLogOpen] = useState(false);
+  const [aButton, setAButton] = useState(null);
+
+  const [isLogged, setIsLogged] = useContext(AuthUserContext);
+
+  const navigate = useNavigate()
+
+  const [cart, setCart] = useContext(ShoppingCartContext);
+
+  const quantity = cart.reduce((acc, curr) => {
+    return acc + curr.quantity;
+  }, 0);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,19 +56,42 @@ function NavBar() {
     setAnchorButton(event.currentTarget);
     setIsMenuOpen(true);
   };
-
+  
   const handleCloseProducts = () => {
     setAnchorButton(null);
     setIsMenuOpen(false);
   };
 
+  const handleCloseLog = () => {
+    setAButton(null);
+    setIsLogOpen(false);
+  };
+
+  const handleOpenLog = (event) => {
+    setAButton(event.currentTarget);
+    setIsLogOpen(true);
+  };
+
+  
+
+  async function onLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    setIsLogged(false);
+    navigate("/login");
+    handleCloseLog()
+  }
+
+
+
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{
-        backgroundColor: headerColor,
+        backgroundColor: "#EED2B5",
         alignItems: "center",
         textAlign: "center",
+        color: "#694736",
       }}
     >
       <Container
@@ -79,6 +123,7 @@ function NavBar() {
             letterSpacing: ".3rem",
             color: "inherit",
             textDecoration: "none",
+            "&:hover": { color: "#254E25" },
           }}
         >
           YOUR FLOWERS
@@ -114,7 +159,11 @@ function NavBar() {
           >
             {pages.map((page) => (
               <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Button key={page} href={`/${page.toLowerCase()}`}>
+                <Button
+                  component={Link}
+                  key={page}
+                  to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
+                >
                   {page}
                 </Button>
               </MenuItem>
@@ -123,6 +172,7 @@ function NavBar() {
         </Box>
         <Typography
           variant="h5"
+          fontFamily="Montserrat"
           noWrap
           component="a"
           href="/"
@@ -130,7 +180,6 @@ function NavBar() {
             mr: 2,
             display: { xs: "flex", md: "none" },
             flexGrow: 1,
-            fontFamily: "monospace",
             fontWeight: 700,
             letterSpacing: ".3rem",
             color: "inherit",
@@ -145,6 +194,8 @@ function NavBar() {
             display: { xs: "none", md: "flex" },
             flexDirection: { xs: "row" },
             justifyContent: "center",
+            color: "#694736 ",
+            fontFamily: "Montserrat-Alternates",
           }}
         >
           {pages.map((page) => {
@@ -153,7 +204,12 @@ function NavBar() {
                 <Button
                   onClick={handleOpenProducts}
                   key={page}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "#694736 ",
+                    "&:hover": { color: "#254E25" },
+                    display: "block",
+                  }}
                 >
                   {page}
                 </Button>
@@ -161,10 +217,16 @@ function NavBar() {
             } else {
               return (
                 <Button
+                  component={Link}
                   key={page}
-                  href={`/${page.toLowerCase().replace(/\s/g, "-")}`}
+                  to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "#694736 ",
+                    "&:hover": { color: "#254E25" },
+                    display: "block",
+                  }}
                 >
                   {page}
                 </Button>
@@ -176,32 +238,118 @@ function NavBar() {
             anchorEl={anchorButton}
             onClose={handleCloseProducts}
           >
-            <MenuItem component={Link} to="/products-bouquets">
+            <MenuItem
+              component={Link}
+              to="/products/bouquets"
+              sx={{ backgroundColor: "#8FC857" }}
+            >
               Bouquets
             </MenuItem>
-            <MenuItem component={Link} to="/products-crowns">
+            <MenuItem component={Link} to="/products/crowns">
               Crowns
             </MenuItem>
-            <MenuItem component={Link} to="/products-garlands">
+            <MenuItem component={Link} to="/products/garlands">
               Garlands
             </MenuItem>
-            <MenuItem component={Link} to="/products-plants">
+            <MenuItem component={Link} to="/products/plants">
               Plants
             </MenuItem>
           </Menu>
         </Box>
-        <SearchBar sx={{ display: "block" }} />
+        <SearchBar />
+
         <Box>
-          <Link to={"/login"}>
-            <Button sx={{ m: "0" }}>
-              <Person2Outlined
-                sx={{ color: "white", justifyContent: "space-around" }}
-                variant="raised"
-              ></Person2Outlined>
-            </Button>
-          </Link>
+          {isLogged ? (
+            <>
+              <Button
+                id="logButton"
+                aria-controls={isLogOpen ? "logMenu" : undefined}
+                onClick={handleOpenLog}
+                sx={{
+                  my: 2,
+                  color: "#694736 ",
+                  "&:hover": { color: "#254E25" },
+                  display: "block",
+                }}
+              >
+                {`Hi, ${localStorage.getItem("name")}!`}
+              </Button>
+              <Menu
+                id="logMenu"
+                open={isLogOpen}
+                aria-labelledby="logButton"
+                anchorEl={aButton}
+                onClose={handleCloseLog}
+              >
+                <MenuItem component={Link} to="/profile">
+                  <ListItemIcon>
+                    <AccountCircleOutlined fontSize="small" />
+                  </ListItemIcon>
+                  Profile
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon>
+                    <FavoriteBorderOutlined fontSize="small" />
+                  </ListItemIcon>
+                  Wish list
+                </MenuItem>
+                <MenuItem component={Link} to="/orders">
+                  <ListItemIcon>
+                    <BookmarkAddOutlined fontSize="small" />
+                  </ListItemIcon>
+                  My orders
+                </MenuItem>
+                <MenuItem
+                onClick={onLogout}> 
+                  <ListItemIcon>
+                    <LogoutOutlined fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <Link to={"/login"}>
+              <Button sx={{ m: "0" }}>
+                <Person2Outlined
+                  sx={{
+                    color: "#694736",
+                    "&:hover": { color: "#254E25" },
+                    justifyContent: "space-around",
+                  }}
+                  variant="raised"
+                ></Person2Outlined>
+              </Button>
+            </Link>
+          )}
         </Box>
-        <ShoppingCart />
+        <Link to={"/shopping-cart"}>
+          <IconButton sx={{ backgroundColor: "none" }}>
+            <ShoppingBagOutlined
+              sx={{ color: "#694736 ", "&:hover": { color: "#254E25" } }}
+            />
+            <span
+              style={{
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "center",
+                top: "0",
+                right: "-2px",
+                width: "20px",
+                height: "20px",
+                fontSize: "16px",
+                backgroundColor: "#FFE598",
+                opacity: "0.8",
+                borderRadius: "20px",
+                position: "absolute",
+                color: "#694736",
+              }}
+            >
+              {quantity}
+            </span>
+          </IconButton>
+        </Link>
+        {/* <h5 style={{ marginLeft: "20px" }}></h5> */}
       </Container>
     </AppBar>
   );

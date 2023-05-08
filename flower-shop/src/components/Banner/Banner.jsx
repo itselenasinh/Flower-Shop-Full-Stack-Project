@@ -1,20 +1,19 @@
-//import { useMediaQuery } from "@mui/material";
-//import { useTheme } from "@emotion/react";
 import { Typography } from "@mui/material";
-import { BannerContainer, BannerContent, BannerTitle, BannerDescription, BannerImage } from "./styles";
+import { BannerContainer, BannerContent, BannerTitle, BannerDescription } from "./styles";
+import image from '../../assets/Banner.avif'
 
 export default function Banner() {
-  //const theme = useTheme();
-  //const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <BannerContainer>
-        <BannerImage src="https://images.squarespace-cdn.com/content/v1/5d8ff52252a5d640815873ac/1572051183841-LB0EW6E632XWDGY0MHS2/MF-october-19-shoot-%2816-of-99%29_test.jpg"/>
+    
+    <BannerContainer style={{ backgroundImage:`url(${image})` }}>
+
       <BannerContent>
+        
         <Typography variant="h6">Huge Collection</Typography>
         <BannerTitle variant="h2">New Flowers</BannerTitle>
 
-        <BannerDescription variant="subtitle">
+        <BannerDescription variant="body1">
           Lorem ipsum dolor sit amet. In totam deserunt non omnis animi sit
           possimus eveniet eos facilis ratione? Sed delectus consequatur et
           cupiditate totam aut autem placeat sit dolorem dolore est maxime

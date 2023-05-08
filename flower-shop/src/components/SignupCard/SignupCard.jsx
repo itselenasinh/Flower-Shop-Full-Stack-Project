@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { signup } from "../../services/auth";
 
 import {
@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 
+
 function SignupCard({ changeToLogin }) {
   const passwordRef = useRef(null);
   const passwordCorfirmRef = useRef(null);
@@ -28,6 +29,9 @@ function SignupCard({ changeToLogin }) {
   const [phone, setphone] = useState("");
 
   const [isPassVisible, setIsPassVisible] = useState(false);
+  const [isPassVisibleConfirm, setIsPassVisibleConfirm] = useState(false);
+
+  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -43,7 +47,7 @@ function SignupCard({ changeToLogin }) {
       phone,
     };
     signup(dataInSignup)
-      .then((response) => console.log(response))
+      .then((response) => {console.log(response); navigate("/login")})
       .catch((error) => console.error(error));
   }
 
@@ -58,6 +62,7 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
           <TextField
             onChange={(e) => setEmail(e.target.value)}
@@ -65,11 +70,12 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
           <TextField
             onChange={(e) => setPassword(e.target.value)}
             label="Password"
-            type="password"
+            type={isPassVisible ? "text" : "password"}
             variant="outlined"
             fullWidth={true}
             inputRef={passwordRef}
@@ -94,11 +100,12 @@ function SignupCard({ changeToLogin }) {
                 </InputAdornment>
               ),
             }}
+            required
           />
           <TextField
             onChange={(e) => setpasswordCorfirm(e.target.value)}
             label="Repeat password"
-            type="password"
+            type={isPassVisibleConfirm ? "text" : "password"}
             variant="outlined"
             fullWidth={true}
             inputRef={passwordCorfirmRef}
@@ -115,14 +122,15 @@ function SignupCard({ changeToLogin }) {
                 <InputAdornment>
                   <IconButton
                     onClick={() => {
-                      setIsPassVisible((oldState) => !oldState);
+                      setIsPassVisibleConfirm((oldState) => !oldState);
                     }}
                   >
-                    {isPassVisible ? <Visibility /> : <VisibilityOff />}
+                    {isPassVisibleConfirm ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
+            required
           />
           <TextField
             onChange={(e) => setaddress(e.target.value)}
@@ -131,6 +139,7 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
           <TextField
             onChange={(e) => setphone(e.target.value)}
@@ -139,12 +148,13 @@ function SignupCard({ changeToLogin }) {
             variant="outlined"
             fullWidth={true}
             sx={{ marginBottom: "20px" }}
+            required
           />
         </CardContent>
         <Divider />
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Button onClick={() => changeToLogin()}>Login</Button>
-          <Button type="submit" color="success">
+          <Button onClick={() => signup()} type="submit" color="success">
             Sign Up
           </Button>
         </CardActions>

@@ -7,6 +7,15 @@ const Order = sequelize.define(
     status: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: "processing",
+      validate: {
+        customValidator: (value) => {
+          const enums = ["processing", "acepted", "reject"];
+          if (!enums.includes(value)) {
+            throw new Error("not a valid option");
+          }
+        },
+      },
     },
     totalPrice: {
       type: DataTypes.INTEGER,
