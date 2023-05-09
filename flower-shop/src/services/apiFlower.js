@@ -27,13 +27,13 @@ export async function oneProductById(id) {
   return data[0];
 }
 
-export async function checkoutOrder() {
+export async function createCheckoutOrder() {
   const response = await authApi.post("/order");
   const data = response?.data;
   return data;
 }
 
-export async function getChekout() {
+export async function getChekoutorder() {
   const response = await authApi.get("/order");
   const data = response?.data;
   return data;
