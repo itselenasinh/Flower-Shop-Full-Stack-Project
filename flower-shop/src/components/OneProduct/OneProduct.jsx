@@ -77,14 +77,16 @@ function OneProduct({
   };
 
   return (
-    <Box>
+    <Box sx={{
+      pb: '200px'
+    }}> 
       <Box
         sx={{
           minHeight: 350,
           display: "flex",
           justifyContent: "space-evenly",
-          // padding: "50px",
-          pt: "100px",
+          backgroundColor: 'lightbeige',
+          pt: "50px",
           transition: "transform 0.3s, border 0.3s",
           "&:hover": {
             transform: "scale(1.05, 1.05)",
@@ -93,8 +95,8 @@ function OneProduct({
       >
         <Card
           sx={{
-            width: "800px",
-            height: "500px",
+            width: "700px",
+            height: "400px",
             borderRadius: "7px",
             display: "flex",
             justifyContent: "flex-start",
@@ -103,6 +105,7 @@ function OneProduct({
             gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
             boxShadow: "none",
             position: "relative",
+            backgroundColor: 'lightBeige',
           }}
         >
           <CardMedia
@@ -110,9 +113,10 @@ function OneProduct({
             alt=""
             image={picture}
             sx={{
-              height: "500px",
-              width: "400px",
+              height: "400px",
+              width: "300px",
               borderRadius: "7px",
+              backgroundColor: 'lightBeige',
             }}
           ></CardMedia>
 
@@ -124,7 +128,7 @@ function OneProduct({
               backgroundColor: "none",
               color: "white",
               borderRadius: "50%",
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.5)",
             }}
             onClick={() => {
               handleAddToWishlist({
@@ -145,9 +149,10 @@ function OneProduct({
               height: "500px",
               width: "400px",
               borderRadius: "7px",
-              backgroundColor: "#ffffff",
+              backgroundColor: "lightBeige",
               p: 0,
               m: 0,
+              pl: '30px'
             }}
           >
             <Typography
@@ -181,8 +186,8 @@ function OneProduct({
             <Typography
               sx={{
                 pt: "10px",
-                height: "340px",
-                width: "400px",
+                height: "240px",
+                width: "330px",
                 fontStyle: "italic",
               }}
             >
@@ -205,6 +210,11 @@ function OneProduct({
                 backgroundColor: "#EED2B5",
                 cursor: "pointer",
                 outline: "none",
+                "&:hover": {
+                  color: "#254E25",
+                  backgroundColor: "#D5E7B8",
+                  borderColor: "#D5E7B8",
+                },
               }}
             >
               {quantityPerProduct === 0 ? (

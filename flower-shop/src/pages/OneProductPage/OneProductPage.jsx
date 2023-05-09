@@ -48,7 +48,7 @@ function OneProductPage() {
         {/* <Link color="inherit" to={`/products/${categoryName}`}>
           {categoryName}
         </Link> */}
-        <Typography sx={{ color: '#254E25', fontWeight: '600' }} >{product.productName}</Typography>
+        <Typography sx={{ color: '#A7D489', fontWeight: '600' }} >{product.productName}</Typography>
       </Breadcrumbs>
       <OneProduct 
         picture={product.picture}

@@ -1,15 +1,15 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import './Header.css'
 
 function Header() {
 
     const location = useLocation()
-    const currentPath = location.pathname.replace(/%20/g, '-')
-    const currentPage = currentPath.split('/').pop().replace('-', ' ')
+    const currentPage = location.pathname.split('/').pop().replace('-', ' ')
 
   return (
     <header>
-      <h1>{currentPage}</h1>
+      <h1>{currentPage.toUpperCase()}</h1>
     </header>
   );
 }

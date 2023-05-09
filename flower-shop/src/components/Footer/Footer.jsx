@@ -19,17 +19,18 @@ export default function Footer() {
   return (
     <Box
       sx={{
+        positon: 'absolute',
         display: "flex",
         justifyContent: "center",
         backgroundColor: "#FFE598",
         color: "#694736",
         p: { xs: 2, md: 4 },
         pt: 4,
-        pb: 4,
-        fontSize: { xs: "16px", md: "18px" },
+        pb: '5px',
+        fontSize: { xs: "13px", md: "15px" },
       }}
     >
-      <Grid container spacing={2} justifyContent="center">
+      <Grid container spacing={3} justifyContent="center">
         <Grid item md={6} lg={4}>
           <FooterTitle variant="body1">About us</FooterTitle>
           <Typography variant="caption2">

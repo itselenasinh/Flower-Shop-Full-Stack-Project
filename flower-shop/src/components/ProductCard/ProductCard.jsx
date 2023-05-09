@@ -22,7 +22,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
   return (
     <Link
       to={`/products/category/${productName}`}
-      style={{ textDecoration: "none" }}
+      style={{ textDecoration: "none"}}
     >
       <Box
         sx={{
@@ -30,6 +30,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
           display: "flex",
           justifyContent: "space-evenly",
           padding: "50px",
+          
         }}
       >
         <Card
@@ -37,13 +38,14 @@ function ProductCard({ productName, price, description, picture, stock, }) {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           sx={{
-            width: "400px",
-            height: "500px",
+            width: "300px",
+            height: "400px",
             borderRadius: "7px",
             display: "flex",
             justifyContent: "flex-start",
             alignItems: "center",
             flexDirection: "column",
+            backgroundColor: 'lightBeige',
             overflow: "hidden",
             gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
           }}
@@ -53,8 +55,9 @@ function ProductCard({ productName, price, description, picture, stock, }) {
             alt=""
             image={picture}
             sx={{
-              height: "400px",
-              width: "400px",
+              height: "300px",
+              width: "300px",
+              backgroundColor: 'lightBeige',
               transition: "transform 0.3s, border 0.3s",
               "&:hover": {
                 transform: "scale(1.1, 1.1)",
@@ -67,7 +70,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
               height: "100px",
               width: "400px",
               borderRadius: "7px",
-              backgroundColor: "#ffffff",
+              backgroundColor: 'lightBeige',
               pt: "9px",
               m: 0,
             }}
@@ -81,11 +84,12 @@ function ProductCard({ productName, price, description, picture, stock, }) {
                   display: "flex",
                   justifyContent: "center",
                   width: "400px",
+                  backgroundColor: 'lightBeige',
                   color: "#474747",
                   pb: "",
                 }}
               >
-                {productName.toUpperCase()}
+                {productName}
               </Typography>
             </Box>
 
