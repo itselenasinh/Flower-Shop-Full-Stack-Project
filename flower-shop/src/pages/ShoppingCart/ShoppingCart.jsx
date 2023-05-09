@@ -122,7 +122,7 @@ function ShoppingCart() {
                     <CardMedia 
                       component="img"
                       image={product.picture}
-                      sx={{ height: '100%', width: '100%', objectFit: 'contain'}}
+                      sx={{ height: '100%', width: '100%', objectFit: 'contain', borderRadius: "6px",}}
                     ></CardMedia>
                   </TableCell>
                   <TableCell align="center" sx={{ height: "130px", fontSize:'20px' }}>

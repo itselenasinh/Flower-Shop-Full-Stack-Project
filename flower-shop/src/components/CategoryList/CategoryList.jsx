@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getProductsList } from "../../services/apiFlower";
+import { Box } from "@mui/system";
+import { Card } from "@mui/material";
+import './CategoryList.css'
 
 function CategoryList() {
   const [productsList, setProductsList] = useState([]);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     async function productCategoriesList() {
@@ -15,18 +19,42 @@ function CategoryList() {
     }
     productCategoriesList();
   }, []);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
   return (
-    <div>
-      <ul>
+    <Box sx={{
+      display: "flex",
+      justifyContent: "space-evenlty",
+      padding: "50px",
+    }}>
         {productsList.map((category, i) => (
-          <li key={i}>
-            <Link to={category} state={{ category: category }}>
-              {category}
+          
+            <Link key={i} to={category} state={{ category: category }} style={{textDecoration: 'none'}}>
+              
+              <Box sx={{
+                display: "flex",
+                justifyContent: "space-evenlty",
+                padding: "50px",
+              }}>
+                <Card className="card"
+                variant="outlined"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                
+              >{category.toUpperCase()}</Card>
+
+              </Box>
             </Link>
-          </li>
+          
         ))}
-      </ul>
-    </div>
+      </Box>
   );
 }
 

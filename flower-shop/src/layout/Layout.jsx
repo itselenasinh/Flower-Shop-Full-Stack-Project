@@ -24,7 +24,7 @@ function Layout() {
     <searchContext.Provider value={[searchBar, setSearchBar]}>
       <NavBar />
       {renderHeader()}
-      <Outlet />
+      <Outlet/>
       <Footer />
     </searchContext.Provider>
   );

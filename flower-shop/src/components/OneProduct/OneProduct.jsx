@@ -77,14 +77,15 @@ function OneProduct({
   };
 
   return (
-    <Box>
+    <Box sx={{
+      pb: '200px'
+    }}> 
       <Box
         sx={{
           minHeight: 350,
           display: "flex",
           justifyContent: "space-evenly",
           backgroundColor: 'lightbeige',
-          // padding: "50px",
           pt: "50px",
           transition: "transform 0.3s, border 0.3s",
           "&:hover": {
@@ -185,7 +186,7 @@ function OneProduct({
             <Typography
               sx={{
                 pt: "10px",
-                height: "340px",
+                height: "240px",
                 width: "330px",
                 fontStyle: "italic",
               }}

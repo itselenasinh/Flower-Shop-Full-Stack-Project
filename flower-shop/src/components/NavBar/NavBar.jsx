@@ -286,6 +286,7 @@ function NavBar() {
               </Button>
               <Menu
                 id="logMenu"
+                MenuListProps={{ onMouseLeave: handleCloseLog }}
                 open={isLogOpen}
                 aria-labelledby="logButton"
                 anchorEl={aButton}
