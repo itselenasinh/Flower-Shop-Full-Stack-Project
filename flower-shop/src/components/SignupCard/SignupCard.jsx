@@ -57,7 +57,7 @@ function SignupCard() {
     return navigate("/login");
   }
   return (
-    <Card sx={{ maxWidth: "500px" }}>
+    <Card sx={{ maxWidth: "500px", borderRadius: 5 }}>
       <form onSubmit={handleSubmit}>
         <CardHeader title="Sign Up" />
         <CardContent>

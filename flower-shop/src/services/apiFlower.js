@@ -26,3 +26,15 @@ export async function oneProductById(id) {
   const data = response?.data;
   return data[0];
 }
+
+export async function checkoutOrder() {
+  const response = await authApi.post("/order");
+  const data = response?.data;
+  return data;
+}
+
+export async function getChekout() {
+  const response = await authApi.get("/order");
+  const data = response?.data;
+  return data;
+}
