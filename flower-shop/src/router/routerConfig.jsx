@@ -3,6 +3,7 @@ import { createBrowserRouter, redirect } from "react-router-dom";
 import CartContext from "../Context/CartContext";
 
 import WishlistContext from "../Context/WishlistContext";
+//import CheckoutContext from "../Context/CheckoutContext";
 
 import Layout from "../layout/Layout";
 
@@ -25,18 +26,20 @@ import AuthSignup from "../pages/Auth/AuthSignup";
 import AuthContext from "../Context/AuthContext";
 import OneProductPage from "../pages/OneProductPage/OneProductPage";
 import Wishlist from "../pages/WishlistPage/Wishlist";
-
+//import Checkout from "../pages/Checkout/Checkout";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: (
       <AuthContext>
+        {/* <CheckoutContext> */}
         <WishlistContext>
           <CartContext>
             <Layout />
           </CartContext>
         </WishlistContext>
+        {/* </CheckoutContext> */}
       </AuthContext>
     ),
     children: [
@@ -88,6 +91,10 @@ const appRouter = createBrowserRouter([
         path: "/wishlist",
         element: <Wishlist />,
       },
+      // {
+      //   path: "/allmyorders",
+      //   element: <Checkout />,
+      // },
       {
         path: "/profile",
         element: <Profile />,

@@ -27,6 +27,7 @@ function SearchBar() {
         const response = await searchByApi(searchBar);
         setSearchResults(response);
       } catch (error) {
+        console.error(error);
       }
     };
 
@@ -93,10 +94,12 @@ function SearchBar() {
 
   return (
     <Box>
-      <IconButton onClick={() => setSearchBarVisible(true)} sx={{ backgroundColor: "none" }}>
+      <IconButton
+        onClick={() => setSearchBarVisible(true)}
+        sx={{ backgroundColor: "none" }}
+      >
         <SearchOutlined
-          sx={{ color: "#694736 ", "&:hover": { color: "#254E25"} }}
-         
+          sx={{ color: "#694736 ", "&:hover": { color: "#254E25" } }}
         />
       </IconButton>
 
@@ -118,11 +121,11 @@ function SearchBar() {
         </DialogContent>
         <DialogActions>
           <IconButton onClick={handleSearch} sx={{ backgroundColor: "none" }}>
-            <SearchOutlined sx={{ color: "blue" }}  />
+            <SearchOutlined sx={{ color: "blue" }} />
           </IconButton>
 
           <IconButton onClick={handleCancel} sx={{ backgroundColor: "none" }}>
-            <Close sx={{ color: "blue" }}  />
+            <Close sx={{ color: "blue" }} />
           </IconButton>
         </DialogActions>
       </Dialog>
