@@ -40,9 +40,7 @@ export const MainCarousel = () => {
             color: "white",
             padding: "5px",
             zIndex: "10",
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
+           
           }}
         >
           <NavigateBeforeIcon sx={{ fontSize: 40 }} />

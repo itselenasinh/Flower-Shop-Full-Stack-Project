@@ -15,14 +15,19 @@ export const ContactForm = () => {
   const [number, setNumber] = useState("");
   const [message, setMessage] = useState("");
 
+  const [submited, setSubmited] = useState(false)
+
   function handleSubmit() {
     const data = { name, email, number, message };
 
-    console.log(name);
+    console.log(data);
 
-    emailjs.send("contact_service", "template_ru0grdp", { data }).then(
+    emailjs.init('nNUh92pymueYx1tpE')
+
+    emailjs.send("contact_service", "template_ru0grdp", data ).then(
       function (response) {
         console.log("SUCCESS!", response.status, response.text);
+        setSubmited(true)
       },
       function (err) {
         console.log("FAILED...", err);
@@ -36,7 +41,7 @@ export const ContactForm = () => {
         <Card
           style={{
             minWidth: "50px",
-            maxWidth: "2000px",
+            maxWidth: "1200px",
             height: "700px",
             padding: "20px 5px",
             margin: "0 auto",
@@ -130,7 +135,7 @@ export const ContactForm = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Button
+               {submited ? <p>Thank you for your message! Our team will get back to you soon! </p> : <Button
                   size="large"
                   type="submit"
                   variant="contained"
@@ -139,7 +144,7 @@ export const ContactForm = () => {
                   onClick={handleSubmit}
                 >
                   Submit
-                </Button>
+                </Button>}
               </Grid>
             </Grid>
           </CardContent>

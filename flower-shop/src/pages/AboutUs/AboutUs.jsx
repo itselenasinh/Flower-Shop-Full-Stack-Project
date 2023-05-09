@@ -1,3 +1,4 @@
+import { Container } from '@mui/system'
 import About from '../../components/AboutUs/About'
 import Footer from '../../components/Footer/Footer'
 import { Typography } from '@mui/material'
@@ -7,6 +8,7 @@ function AboutUs() {
     <>
     <About />
     <div className="about" >
+      <Container>
       <Typography variant="h6">
        <p>There are many variations of passages of Lorem Ipsum available, but the
         majority have suffered alteration in some form, by injected humour, or
@@ -23,6 +25,7 @@ function AboutUs() {
         generated Lorem Ipsum is therefore always free from repetition, injected
         humour, or non-characteristic words etc.</p> 
       </Typography>
+      </Container>
       </div>
     <Footer />
     </>

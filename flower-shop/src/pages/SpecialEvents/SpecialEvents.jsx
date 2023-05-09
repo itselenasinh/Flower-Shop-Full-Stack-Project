@@ -1,6 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import { MainCarousel } from "../../components/Carousel/Carousel";
 import Footer from "../../components/Footer/Footer";
+import { Container } from "@mui/system";
 
 
 function SpecialEvents() {
@@ -8,6 +9,7 @@ function SpecialEvents() {
     <>
       <MainCarousel />
       <div className="about" >
+        <Container>
       <Typography variant="h6">
        <p>There are many variations of passages of Lorem Ipsum available, but the
         majority have suffered alteration in some form, by injected humour, or
@@ -24,6 +26,7 @@ function SpecialEvents() {
         generated Lorem Ipsum is therefore always free from repetition, injected
         humour, or non-characteristic words etc.</p> 
       </Typography>
+      </Container>
       <Button href="/contact-us" type="submit" variant="contained" color="success" size="large">
        Contact Us
       </Button>

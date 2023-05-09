@@ -1,4 +1,4 @@
-import { Box } from "@mui/system";
+import { Box, Container } from "@mui/system";
 import Footer from "../../components/Footer/Footer";
 import { Typography, useMediaQuery } from "@mui/material";
 import { ContactForm } from "../../components/Contact Form/ContactForm";
@@ -40,6 +40,7 @@ function ContactUs() {
     </BannerContainer>
      </div>
       <div className="about" >
+        <Container>
       <Typography variant="h6">
        There are many variations of passages of Lorem Ipsum available, but the
         majority have suffered alteration in some form, by injected humour, or
@@ -53,6 +54,7 @@ function ContactUs() {
         generated Lorem Ipsum is therefore always free from repetition, injected
         humour, or non-characteristic words etc.
       </Typography>
+      </Container>
       </div>
         <ContactForm />
     

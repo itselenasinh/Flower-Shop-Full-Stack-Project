@@ -29,7 +29,7 @@ export const Subscribe = () => {
           value={email}
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <Button sx={{ mt: 2, mb: 2 }} variant="secondary">
+        <Button sx={{ mt: 2, mb: 2 }} variant='contained' color='success'>
               Subscribe
             </Button>
       </Box>
