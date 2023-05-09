@@ -2,6 +2,7 @@ import {
   Box,
   Grid,
   IconButton,
+  Link,
   List,
   ListItemText,
   Typography,
@@ -20,8 +21,8 @@ export default function Footer() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        backgroundColor: "gray",
-        color: "white",
+        backgroundColor: "#FFE598",
+        color: "#694736",
         p: { xs: 2, md: 4 },
         pt: 4,
         pb: 4,
@@ -46,9 +47,9 @@ export default function Footer() {
           <FooterTitle variant="body1">Useful links</FooterTitle>
           <List>
             <ListItemText>
-              <Typography lineHeight={2} variant="caption2">
+              <Link href="/orders" color={'#694736'} lineHeight={2} variant="caption2">
                 Order Tracking
-              </Typography>
+              </Link>
             </ListItemText>
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
@@ -66,19 +67,19 @@ export default function Footer() {
           <FooterTitle variant="body1">Popular Categories</FooterTitle>
           <List>
             <ListItemText>
-              <Typography lineHeight={2} variant="caption2">
+              <Link href="/shopping-cart" lineHeight={2} variant="caption2" color={'#694736'}>
                 My Cart
-              </Typography>
+              </Link>
             </ListItemText>
             <ListItemText>
-              <Typography lineHeight={2} variant="caption2">
+              <Link href="/login" color={'#694736'} lineHeight={2} variant="caption2">
                 My Account
-              </Typography>
+              </Link>
             </ListItemText>
             <ListItemText>
-              <Typography lineHeight={2} variant="caption2">
+              <Link href="/wishlist" color={'#694736'} lineHeight={2} variant="caption2">
                 Wishlist
-              </Typography>
+              </Link>
             </ListItemText>
           </List>
         </Grid>
@@ -91,31 +92,31 @@ export default function Footer() {
             aria-label="Facebook.com"
             onClick={() => window.open("https://www.facebook.com/")}
           >
-            <FacebookIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+            <FacebookIcon sx={{ mr: 1, fontSize: "30px", color: "#694736" }} />
           </IconButton>
           <IconButton
             aria-label="Twitter.com"
             onClick={() => window.open("https://twitter.com/")}
           >
-            <TwitterIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+            <TwitterIcon sx={{ mr: 1, fontSize: "30px", color: "#694736" }} />
           </IconButton>
           <IconButton
             aria-label="Facebook.com"
             onClick={() => window.open("https://www.instagram.com/")}
           >
-            <InstagramIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+            <InstagramIcon sx={{ mr: 1, fontSize: "30px", color: "#694736" }} />
           </IconButton>
           <IconButton
             aria-label="Facebook.com"
             onClick={() => window.open("https://www.pinterest.es/")}
           >
-            <PinterestIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+            <PinterestIcon sx={{ mr: 1, fontSize: "30px", color: "#694736" }} />
           </IconButton>
           <IconButton
             aria-label="Facebook.com"
             onClick={() => window.open("https://www.youtube.com/")}
           >
-            <YouTubeIcon sx={{ mr: 1, fontSize: "30px", color: "white" }} />
+            <YouTubeIcon sx={{ mr: 1, fontSize: "30px", color: "#694736" }} />
           </IconButton>
         </Grid>
 

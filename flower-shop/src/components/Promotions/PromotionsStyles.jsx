@@ -9,12 +9,12 @@ export const PromotionsContainer = styled(Box)(() => ({
     alignItems: "center",
     padding: "20px 0px 20px 0px",
     overflow: "hidden",
-    backgroundColor: "black"
+    backgroundColor: "#002000"
 
 }))
 
 export const MessageText = styled(Typography)(() =>({
     fontFamily: "Montserrat",
-    color: "white",
+    color: "#efe1e3",
     fontSize: '1.5rem'
 }))

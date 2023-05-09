@@ -1,54 +1,48 @@
 //import LinkedInIcon from "@material-ui/icons/LinkedIn";
 //import EmailIcon from "@material-ui/icons/Email";
 //import GithubIcon from "@material-ui/icons/GitHub";
+import { Typography, useMediaQuery } from "@mui/material";
+import { BannerContainer, BannerDescription } from "../Banner/styles";
 import "./About.css";
+import { Box } from "@mui/system";
+import image from '../../assets/abb.avif'
 
 function About() {
+
+  const isNonMobile = useMediaQuery("min-width:600px");
+
   return (
     <div className="home">
-      <div className="about">
-        <h2> Your flowers</h2>
-        <div className="prompt">
-          <p>
-            Lorem ipsum dolor sit amet. Et nihil totam in officia eius et
-            excepturi dolores. Aut necessitatibus dolorem est asperiores nisi
-            non sint minima aut distinctio quis et quia delectus.
-          </p>
-          {/*<LinkedInIcon />
-          <EmailIcon />
-  <GithubIcon />*/}
-        </div>
-      </div>
-      <div className="skills">
-        <h1> Why choose us?</h1>
-        <ol className="list">
-          <li className="item">
-            <h2>Fresh</h2>
-            <span>
-              Lorem ipsum dolor sit amet. Et nihil totam in officia eius et
-              excepturi dolores. Aut necessitatibus dolorem est asperiores nisi
-              non sint minima aut distinctio quis et quia delectus.
-            </span>
-          </li>
-          <li className="item">
-            <h2>Fast</h2>
-            <span>
-              Lorem ipsum dolor sit amet. Et nihil totam in officia eius et
-              excepturi dolores. Aut necessitatibus dolorem est asperiores nisi
-              non sint minima aut distinctio quis et quia delectus.
-            </span>
-          </li>
-          <li className="item">
-            <h2>Unique</h2>
-            <span>
-              Lorem ipsum dolor sit amet. Et nihil totam in officia eius et
-              excepturi dolores. Aut necessitatibus dolorem est asperiores nisi
-              non sint minima aut distinctio quis et quia delectus.
-            </span>
-          </li>
-        </ol>
-      </div>
-    </div>
+     <BannerContainer style={{ backgroundImage:`url(${image})` }}>
+
+     
+      <Box
+            color="white"
+            padding="20px"
+            borderRadius="1px"
+            textAlign="left"
+            backgroundColor="rgb(0, 0, 0, 0.4)"
+            position="absolute"
+            top="36%"
+            left={isNonMobile ? "10%" : "0"}
+            right={isNonMobile ? undefined : "0"}
+            margin={isNonMobile ? undefined : "0 auto"}
+            maxWidth={isNonMobile ? undefined : "750px"}
+          >
+            <Typography variant="h1" color="#8FC857">
+             ABOUT US{" "}
+            </Typography>
+          
+          </Box>
+
+        <BannerDescription variant="body1">
+          
+        </BannerDescription>
+     
+    </BannerContainer>
+     </div>
+     
+
   );
 }
 

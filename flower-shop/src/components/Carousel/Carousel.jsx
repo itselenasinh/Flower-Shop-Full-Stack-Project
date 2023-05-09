@@ -8,15 +8,15 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 const images = [
   {
     imgPath:
-      "https://img.freepik.com/premium-photo/ceremony-arch-wedding-arch-wedding-wedding-moment-decorations-decor-wedding-decorations_543567-2387.jpg",
+      "https://cdn0.weddingwire.com/vendor/701740/original/1280/jpg/sand-and-stone-media-erin-and-sam-492-websize_51_47107-167605412780252.webp",
   },
   {
     imgPath:
-      "https://img.freepik.com/premium-photo/white-wedding-cake-with-flower_33799-527.jpg",
+      "https://cdn0.weddingwire.com/vendor/701740/3_2/1280/jpg/archerinspiredphotography-hannahandtroywedding-hollisterca-firstlookandformals-152_51_47107-167605410358658.webp",
   },
   {
     imgPath:
-      "https://img.freepik.com/free-photo/big-bouquet-with-white-roses-eucalyptus-stand-table_8353-9838.jpg?t=st=1682878383~exp=1682878983~hmac=33680bea2b6f3ed9c033edbfbb74f76d166aa4de9926140f102335724de9d65f",
+      "https://cdn0.weddingwire.com/vendor/701740/original/1280/jpg/garner-nestldownredwoodswedding-120_51_47107-159111653967416.webp",
   },
 ];
 
@@ -81,24 +81,16 @@ export const MainCarousel = () => {
             padding="20px"
             borderRadius="1px"
             textAlign="left"
-            //backgroundColor="rgb(0, 0, 0, 0.4)"
+            backgroundColor="rgb(0, 0, 0, 0.4)"
             position="absolute"
-            top="46%"
+            top="36%"
             left={isNonMobile ? "10%" : "0"}
             right={isNonMobile ? undefined : "0"}
             margin={isNonMobile ? undefined : "0 auto"}
-            maxWidth={isNonMobile ? undefined : "240px"}
+            maxWidth={isNonMobile ? undefined : "750px"}
           >
-            <Typography color="white">UNIQUE FLOWER</Typography>
-            <Typography variant="h1" color="white">
+            <Typography variant="h1" color="#FFE598">
               DECORATIONS{" "}
-            </Typography>
-            <Typography
-              fontWeight="bold"
-              color="white"
-              sx={{ textDecoration: "underline" }}
-            >
-              OF SPECIAL EVENTS
             </Typography>
           </Box>
         </Box>

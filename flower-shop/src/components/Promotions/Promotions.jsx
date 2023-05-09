@@ -3,9 +3,9 @@ import { MessageText, PromotionsContainer } from "./PromotionsStyles";
 import { Box, Slide } from "@mui/material";
 
 const messages = [
-    "20% off on your first order!",
-    "Spring Bloom sale, with code LOVE",
-    "50% discount at your Birthday",
+    "PEONY MADNESS STARTS HERE - FROM ONLY 9.99!",
+    "IT IS BLOOM! -30% WITH A CODE LOVE",
+    "50% DISCOUNT ON ALL HOME & OFFICE PLANTS!",
 ];
 
 export default function Promotions() {
