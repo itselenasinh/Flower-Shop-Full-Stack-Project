@@ -74,7 +74,8 @@ function ShoppingCart() {
   }, 0);
 
   const totalPrice = cart.reduce((acc, curr) => {
-    return acc + curr.quantity * curr.price;
+    console.log('acc', parseFloat(acc).toFixed(2)*100, 'curr', (curr.quantity * parseFloat(curr.price).toFixed(2)*100))
+    return (parseFloat(acc).toFixed(2)*100 + (curr.quantity * parseFloat(curr.price).toFixed(2)*100))/100;
   }, 0);
 
   useEffect(() => {

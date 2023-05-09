@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppBar, ListItemIcon } from "@mui/material";
+import { AppBar, ListItemIcon, MenuList } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { logout } from "../../services/auth";
+import './NavBar.css'
 
 import SearchBar from "../SearchBar/SearchBar";
 import {
@@ -247,11 +248,11 @@ function NavBar() {
             open={isMenuOpen}
             anchorEl={anchorButton}
             onClose={handleCloseProducts}
-          >
+          > <MenuList sx={{ backgroundColor: '#EED2B5'}}>
             <MenuItem onClick={() => {handleCloseProducts()}} 
               component={Link}
               to="/products/bouquets"
-              sx={{ backgroundColor: "#F8D6C2" }}
+              
             >
               Bouquets
             </MenuItem>
@@ -263,7 +264,7 @@ function NavBar() {
             </MenuItem>
             <MenuItem onClick={() => {handleCloseProducts()}}  component={Link} to="/products/plants">
               Plants
-            </MenuItem>
+            </MenuItem></MenuList>
           </Menu>
         </Box>
         <SearchBar />
@@ -292,6 +293,7 @@ function NavBar() {
                 anchorEl={aButton}
                 onClose={handleCloseLog}
               >
+                <MenuList id='papas' sx={{ backgroundColor: '#EED2B5'}}>
                 <MenuItem component={Link} to="/profile">
                   <ListItemIcon>
                     <AccountCircleOutlined fontSize="small" />
@@ -317,6 +319,7 @@ function NavBar() {
                   </ListItemIcon>
                   Logout
                 </MenuItem>
+                </MenuList>
               </Menu>
             </>
           ) : (
