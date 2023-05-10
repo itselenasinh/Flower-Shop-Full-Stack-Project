@@ -3,8 +3,8 @@ import { MessageText, PromotionsContainer } from "./PromotionsStyles";
 import { Box, Slide } from "@mui/material";
 
 const messages = [
-    "PEONY MADNESS STARTS HERE - FROM ONLY 9.99!",
-    "IT IS BLOOM! -30% WITH A CODE LOVE",
+    "PEONY MADNESS STARTS HERE - FROM ONLY 9.99€!",
+    "IT IS BLOOM! -30% WITH A CODE: 'LOVE'",
     "50% DISCOUNT ON ALL HOME & OFFICE PLANTS!",
 ];
 

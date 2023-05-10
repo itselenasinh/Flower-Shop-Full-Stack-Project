@@ -10,7 +10,7 @@ function OneProductPage() {
   const [category, setCategory] = useState({});
 
   const { productName } = useParams();
-  const { categoryName } = useParams();
+  
 
   useEffect(() => {
     async function showOneProduct() {
@@ -22,12 +22,12 @@ function OneProductPage() {
 
   useEffect(() => {
     async function getAndSetCategory() {
-      const productCategory = await getProductByCategory(categoryName);
+      const productCategory = await getProductByCategory();
 
       setCategory(productCategory);
     }
     getAndSetCategory();
-  }, [categoryName]);
+  }, []);
 
   return (
     <Box
@@ -62,9 +62,6 @@ function OneProductPage() {
           to="/products"
         >
           Products
-        </Link>
-        <Link color="inherit" to={`/products/${category.categoryName}`}>
-          {categoryName}
         </Link>
         <Typography sx={{ color: "#A7D489", fontWeight: "600" }}>
           {product.productName}

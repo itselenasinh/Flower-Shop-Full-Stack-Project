@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
 import { CheckoutOrderContext } from "../../Context/OrderContext";
 import "./ShoppingCart.css";
@@ -17,12 +17,14 @@ import {
 
 import { Link } from "react-router-dom";
 import { ClearOutlined } from "@mui/icons-material";
+import PromoPopup from "../../components/PromoPopup/PromoPopup";
+import { AuthUserContext } from "../../Context/AuthContext";
 
 function ShoppingCart() {
   const [cart, setCart] = useContext(ShoppingCartContext);
-  const { orderDetails, setOrderDetails, createOrder } =
+  const { createOrder } =
     useContext(CheckoutOrderContext);
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged] = useContext(AuthUserContext);
 
   const addToCart = (productName) => {
     console.log(productName);
@@ -90,12 +92,6 @@ function ShoppingCart() {
     );
   }, 0);
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLogged(true);
-    }
-  }, []);
-
   const handleCheckout = async () => {
     if (isLogged) {
       await createOrder(cart);
@@ -104,13 +100,15 @@ function ShoppingCart() {
   };
   return (
     <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        height: "80vh",
-        alignItems: "center",
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      height: "80vh",
+      alignItems: "center",
+      flexDirection: 'column'
       }}
-    >
+      >
+      {isLogged ? null : <PromoPopup/>}
       <TableContainer
         sx={{
           maxWidth: "80vw",
@@ -274,8 +272,9 @@ function ShoppingCart() {
             </Button>
           </Box>
         )}
-      </TableContainer>
+      </TableContainer> 
     </Box>
+   
   );
 }
 
