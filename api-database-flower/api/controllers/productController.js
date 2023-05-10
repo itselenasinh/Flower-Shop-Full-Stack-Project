@@ -5,9 +5,7 @@ const { Op } = require("sequelize");
 async function getProduct(req, res) {
   try {
     const product = await ProductsModel.findAll({
-      where: {
-        productName: { [Op.iLike]: `%${req.query.productName}%` },
-      },
+      where: req.query,
       attributes: ["productName", "price", "description", "picture"],
     });
 

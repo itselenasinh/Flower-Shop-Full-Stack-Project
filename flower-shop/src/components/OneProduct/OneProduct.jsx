@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
 import { WishlistProductsContext } from "../../Context/WishlistContext";
 import {
@@ -22,7 +22,14 @@ function OneProduct({
   category,
 }) {
   const [cart, setCart] = useContext(ShoppingCartContext);
+  const [isLogged, setIsLogged] = useState(false)
   const { addToWishlist } = useContext(WishlistProductsContext);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLogged(true);
+    }
+  }, []);
 
   function addToCart() {
     setCart((currProducts) => {
@@ -73,10 +80,22 @@ function OneProduct({
   const quantityPerProduct = getQuantityByProductName(productName);
 
   const handleAddToWishlist = (product) => {
-    addToWishlist(product);
-  };
+    if (isLogged) {
+    addToWishlist({
+      productName,
+      price,
+      description,
+      picture,
+      stock,
+      category,
+    });
+    } else {
+      alert('Ups! Log in to add products on your wishlist')
+    }};
+  
 
-  return (
+return (
+
     <Box sx={{
       pb: '200px'
     }}> 
@@ -119,8 +138,7 @@ function OneProduct({
               backgroundColor: 'lightBeige',
             }}
           ></CardMedia>
-
-          <IconButton
+<IconButton
             sx={{
               position: "absolute",
               bottom: "10px",
@@ -130,7 +148,7 @@ function OneProduct({
               borderRadius: "50%",
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.5)",
             }}
-            onClick={() => {
+            onClick={() => { 
               handleAddToWishlist({
                 productName,
                 price,
@@ -284,7 +302,7 @@ function OneProduct({
         </Card>
       </Box>
     </Box>
-  );
+)
 }
 
 export default OneProduct;

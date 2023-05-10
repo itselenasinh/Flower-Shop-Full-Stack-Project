@@ -76,7 +76,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
             }}
           >
             <Box>
-              <Typography
+              <Typography key="productName"
                 fontFamily="Montserrat"
                 level="h1"
                 sx={{

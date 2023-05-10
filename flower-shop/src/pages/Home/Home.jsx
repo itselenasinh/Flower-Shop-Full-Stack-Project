@@ -6,12 +6,51 @@ import { Subscribe } from "../../components/Subscribe/Subscribe";
 import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 import CookieConsent from "react-cookie-consent";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Container } from "@mui/system";
+import { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
+import ProductCard from "../../components/ProductCard/ProductCard"
+import { getProduct } from "../../services/apiFlower";
 
 
 
 function Home() {
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    async function getMostSaledProducts() {
+      const randomProducts = await getProduct()
+      setProducts(randomProducts)
+    }
+    getMostSaledProducts()
+  }, [])
+
+  function mostSaledProducts() {
+    const randomProducts = []
+    const numberOfProducts = 3
+    
+    for(let i = 0; i < numberOfProducts; i++){
+      const randomIndex = Math.floor(Math.random()*products.length)
+      if(randomProducts.some(product => {
+        product.productName === products[randomIndex].productName
+      })) {
+        i--
+        console.log(products[randomIndex])
+      } else {
+         randomProducts.push({...products[randomIndex]})
+      }
+    } 
+    return(
+      randomProducts.map((product) => (
+        <Link key={product.productName} to={`/products?productName=${product.productName}`} style={{textDecoration: 'none', color: 'black'}}>
+          <ProductCard key={product.productName} {...product} />
+        </Link>
+    )))
+  } 
+
   return <>
   <CookieConsent
     debug={true}
@@ -24,9 +63,11 @@ function Home() {
   </CookieConsent>
   <Banner />
   <Promotions />
-  <div className="about" >
-      <Container>
-      <Typography variant="h6">
+  <Box sx={{}}>
+    <Typography sx={{display:'flex', justifyContent: 'center', mt: '80px', flexWrap: 'wrap', minWidth: '100vw', fontSize: '50px'  }}>-MOST GIFTED PRODUCTS-</Typography>
+      <Container sx={{display:'flex', justifyContent: 'center', mt: '20px', flexWrap: 'wrap', minWidth: '100vw'  }}>
+        {products.length > 0 && mostSaledProducts()}
+      {/* <Typography variant="h6">
        <p>There are many variations of passages of Lorem Ipsum available, but the
         majority have suffered alteration in some form, by injected humour, or
         randomised words which dont look even slightly believable.  It uses
@@ -41,9 +82,9 @@ function Home() {
         sentence structures, to generate Lorem Ipsum which looks reasonable. The
         generated Lorem Ipsum is therefore always free from repetition, injected
         humour, or non-characteristic words etc.</p> 
-      </Typography>
+      </Typography> */}
       </Container>
-      </div>
+      </Box>
   <Subscribe />
   
   <Footer />
