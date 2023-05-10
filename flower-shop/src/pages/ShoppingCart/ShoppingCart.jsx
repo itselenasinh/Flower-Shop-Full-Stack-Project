@@ -13,16 +13,20 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ClearOutlined } from "@mui/icons-material";
 
 function ShoppingCart() {
+  const [isLogged, setIsLogged] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+
+  const navigate = useNavigate();
   const [cart, setCart] = useContext(ShoppingCartContext);
   const { orderDetails, setOrderDetails, createOrder } =
     useContext(CheckoutOrderContext);
-  const [isLogged, setIsLogged] = useState(false);
 
   const addToCart = (productName) => {
     console.log(productName);
@@ -100,8 +104,19 @@ function ShoppingCart() {
     if (isLogged) {
       await createOrder(cart);
       setCart([]);
+      setOrderSuccess(true);
     }
   };
+  const pushCheckout = () => {
+    if (orderSuccess && quantity === 0) {
+      return <h2>Thank you for your ordering</h2>;
+    } else if (quantity === 0) {
+      return <h2 className="h2">Empty Cart</h2>;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -203,7 +218,7 @@ function ShoppingCart() {
               </TableBody>
             );
           })}
-          {quantity === 0 ? <h2 className="h2">Empty Cart</h2> : null}
+          <Typography>{pushCheckout()}</Typography>
           <TableRow>
             <TableCell />
             <TableCell />
@@ -270,7 +285,7 @@ function ShoppingCart() {
               }}
               variant="outlined"
             >
-              Checkout as member
+              Become a member
             </Button>
           </Box>
         )}
