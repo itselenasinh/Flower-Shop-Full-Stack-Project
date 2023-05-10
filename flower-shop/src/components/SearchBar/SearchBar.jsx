@@ -64,16 +64,10 @@ function SearchBar() {
             <Link
               style={{ textDecoration: "none" }}
               key={product.productName}
-              //to={`/products/${product.productName}`}
               to={`/products/category/${product.productName}`}
               onClick={() => handleCancel()}
             >
               {product.productName}
-              {/* <ProductCard
-                key={product.productId}
-                productName={product.productName}
-                price={product.price}
-              /> */}
             </Link>
           ))}
         </List>
@@ -104,12 +98,23 @@ function SearchBar() {
       </IconButton>
 
       <Dialog
+        PaperProps={{
+          style: {
+            position: "absolute",
+            display: "flex",
+            top: 0,
+            width: "100%",
+          },
+        }}
         open={searchBarVisible || searchBar.length > 0}
         onClose={handleCancel}
       >
-        <DialogTitle>Search Products</DialogTitle>
+        <DialogTitle textAlign={"center"} sx={{ color: "#694736" }}>
+          Search Products
+        </DialogTitle>
         <DialogContent>
           <Input
+            sx={{ color: "#694736", width: "100%", textAlign: "center" }}
             label="Search"
             type={"text"}
             value={searchBar}
@@ -121,11 +126,11 @@ function SearchBar() {
         </DialogContent>
         <DialogActions>
           <IconButton onClick={handleSearch} sx={{ backgroundColor: "none" }}>
-            <SearchOutlined sx={{ color: "blue" }} />
+            <SearchOutlined sx={{ color: "#694736" }} />
           </IconButton>
 
           <IconButton onClick={handleCancel} sx={{ backgroundColor: "none" }}>
-            <Close sx={{ color: "blue" }} />
+            <Close sx={{ color: "#694736" }} />
           </IconButton>
         </DialogActions>
       </Dialog>

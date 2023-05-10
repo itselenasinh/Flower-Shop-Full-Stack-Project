@@ -18,9 +18,10 @@ function AuthSignup() {
         overflow: "hidden",
         // borderRadius: 20,
         //  width: "80%",
-        margin: "auto",
-        paddingTop: "50px",
-        paddingBottom: "50px",
+        width: "100%",
+        //margin: "auto",
+        paddingTop: 15,
+        paddingBottom: 20,
       }}
     >
       <Typography variant="h1" color="black" align="center">

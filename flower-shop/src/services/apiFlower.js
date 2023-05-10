@@ -27,9 +27,10 @@ export async function oneProductById(id) {
   return data[0];
 }
 
-export async function createCheckoutOrder() {
-  const response = await authApi.post("/order");
+export async function createCheckoutOrder(products) {
+  const response = await authApi.post("/order", products);
   const data = response?.data;
+  console.log(data);
   return data;
 }
 
