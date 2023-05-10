@@ -18,7 +18,6 @@ function OrderContext({ children }) {
 
     const data = {
       status: "processing",
-      //  totalPrice: product.reduce((total, p) => total + p.totalPrice, 0),
       productsQTYs,
     };
 

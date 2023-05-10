@@ -36,8 +36,10 @@ export async function createCheckoutOrder(products) {
   return data;
 }
 
-export async function getChekoutorder() {
-  const response = await authApi.get("/order");
+export async function getAllUserorder() {
+  const response = await authApi.get("/order", {
+    headers: { token: localStorage.getItem("token") },
+  });
   const data = response?.data;
   return data;
 }

@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
 import { CheckoutOrderContext } from "../../Context/OrderContext";
 import "./ShoppingCart.css";
@@ -13,17 +13,20 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ClearOutlined } from "@mui/icons-material";
 import PromoPopup from "../../components/PromoPopup/PromoPopup";
 import { AuthUserContext } from "../../Context/AuthContext";
 
 function ShoppingCart() {
+  const [orderSuccess, setOrderSuccess] = useState(false);
+
+  const navigate = useNavigate();
   const [cart, setCart] = useContext(ShoppingCartContext);
-  const { createOrder } =
-    useContext(CheckoutOrderContext);
+  const { createOrder } = useContext(CheckoutOrderContext);
   const [isLogged] = useContext(AuthUserContext);
 
   const addToCart = (productName) => {
@@ -96,19 +99,30 @@ function ShoppingCart() {
     if (isLogged) {
       await createOrder(cart);
       setCart([]);
+      setOrderSuccess(true);
     }
   };
+  const pushCheckout = () => {
+    if (orderSuccess && quantity === 0) {
+      return <h2>Thank you for your ordering</h2>;
+    } else if (quantity === 0) {
+      return <h2 className="h2">Empty Cart</h2>;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <Box
-    sx={{
-      display: "flex",
-      justifyContent: "center",
-      height: "80vh",
-      alignItems: "center",
-      flexDirection: 'column'
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        height: "80vh",
+        alignItems: "center",
+        flexDirection: "column",
       }}
-      >
-      {isLogged ? null : <PromoPopup/>}
+    >
+      {isLogged ? null : <PromoPopup />}
       <TableContainer
         sx={{
           maxWidth: "80vw",
@@ -201,7 +215,7 @@ function ShoppingCart() {
               </TableBody>
             );
           })}
-          {quantity === 0 ? <h2 className="h2">Empty Cart</h2> : null}
+          <Typography>{pushCheckout()}</Typography>
           <TableRow>
             <TableCell />
             <TableCell />
@@ -268,13 +282,12 @@ function ShoppingCart() {
               }}
               variant="outlined"
             >
-              Checkout as member
+              Become a member
             </Button>
           </Box>
         )}
-      </TableContainer> 
+      </TableContainer>
     </Box>
-   
   );
 }
 
