@@ -25,9 +25,16 @@ function SearchBar() {
     const searchProducts = async () => {
       try {
         const response = await searchByApi(searchBar);
-        setSearchResults(response);
+        const results = response.data.filter((product) => {
+          return product.productName
+            .toString()
+            .toString()
+            .toLowerCase()
+            .includes(searchBar.toLowerCase());
+        });
+        setSearchResults(results);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
 
@@ -64,16 +71,10 @@ function SearchBar() {
             <Link
               style={{ textDecoration: "none" }}
               key={product.productName}
-              //to={`/products/${product.productName}`}
               to={`/products/category/${product.productName}`}
               onClick={() => handleCancel()}
             >
               {product.productName}
-              {/* <ProductCard
-                key={product.productId}
-                productName={product.productName}
-                price={product.price}
-              /> */}
             </Link>
           ))}
         </List>
@@ -104,12 +105,25 @@ function SearchBar() {
       </IconButton>
 
       <Dialog
+        minWidth={"100vw"}
+        PaperProps={{
+          style: {
+            position: "absolute",
+            display: "flex",
+            top: 0,
+            width: "100%",
+            margin: 0,
+          },
+        }}
         open={searchBarVisible || searchBar.length > 0}
         onClose={handleCancel}
       >
-        <DialogTitle>Search Products</DialogTitle>
+        <DialogTitle textAlign={"center"} sx={{ color: "#694736" }}>
+          Search Products
+        </DialogTitle>
         <DialogContent>
           <Input
+            sx={{ color: "#694736", width: "100%", textAlign: "center" }}
             label="Search"
             type={"text"}
             value={searchBar}
@@ -121,11 +135,11 @@ function SearchBar() {
         </DialogContent>
         <DialogActions>
           <IconButton onClick={handleSearch} sx={{ backgroundColor: "none" }}>
-            <SearchOutlined sx={{ color: "blue" }} />
+            <SearchOutlined sx={{ color: "#694736" }} />
           </IconButton>
 
           <IconButton onClick={handleCancel} sx={{ backgroundColor: "none" }}>
-            <Close sx={{ color: "blue" }} />
+            <Close sx={{ color: "#694736" }} />
           </IconButton>
         </DialogActions>
       </Dialog>

@@ -123,19 +123,14 @@ async function createOrder(req, res) {
     const decodedToken = jwt.verify(token, process.env.SECRET);
 
     const userId = decodedToken.id;
-    if (!userId) {
-      return res.status(400).send("invalid user ID");
-    }
 
     const user = await UserModel.findByPk(userId);
     if (!user) {
       return res.status(404).send("user not found");
     }
 
-    const order = await user.createOrder(req.body, {
-      attributes: ["status", "totalPrice", "dataCreate"],
-    });
-
+    const order = await user.createOrder(req.body);
+    console.log(req.body);
     const productsQTYs = req.body.productsQTYs;
     for (let i = 0; i < productsQTYs.length; i++) {
       await order.addProduct(productsQTYs[i].productId, {

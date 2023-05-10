@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context/CartContext";
+import { CheckoutOrderContext } from "../../Context/OrderContext";
 import "./ShoppingCart.css";
 
 import {
@@ -19,6 +20,8 @@ import { ClearOutlined } from "@mui/icons-material";
 
 function ShoppingCart() {
   const [cart, setCart] = useContext(ShoppingCartContext);
+  const { orderDetails, setOrderDetails, createOrder } =
+    useContext(CheckoutOrderContext);
   const [isLogged, setIsLogged] = useState(false);
 
   const addToCart = (productName) => {
@@ -74,8 +77,17 @@ function ShoppingCart() {
   }, 0);
 
   const totalPrice = cart.reduce((acc, curr) => {
-    console.log('acc', parseFloat(acc).toFixed(2)*100, 'curr', (curr.quantity * parseFloat(curr.price).toFixed(2)*100))
-    return (parseFloat(acc).toFixed(2)*100 + (curr.quantity * parseFloat(curr.price).toFixed(2)*100))/100;
+    console.log(
+      "acc",
+      parseFloat(acc).toFixed(2) * 100,
+      "curr",
+      curr.quantity * parseFloat(curr.price).toFixed(2) * 100
+    );
+    return (
+      (parseFloat(acc).toFixed(2) * 100 +
+        curr.quantity * parseFloat(curr.price).toFixed(2) * 100) /
+      100
+    );
   }, 0);
 
   useEffect(() => {
@@ -84,6 +96,12 @@ function ShoppingCart() {
     }
   }, []);
 
+  const handleCheckout = async () => {
+    if (isLogged) {
+      await createOrder(cart);
+      setCart([]);
+    }
+  };
   return (
     <Box
       sx={{
@@ -120,13 +138,21 @@ function ShoppingCart() {
                     align="center"
                     sx={{ height: "130px", width: "130px" }}
                   >
-                    <CardMedia 
+                    <CardMedia
                       component="img"
                       image={product.picture}
-                      sx={{ height: '100%', width: '100%', objectFit: 'contain', borderRadius: "6px",}}
+                      sx={{
+                        height: "100%",
+                        width: "100%",
+                        objectFit: "contain",
+                        borderRadius: "6px",
+                      }}
                     ></CardMedia>
                   </TableCell>
-                  <TableCell align="center" sx={{ height: "130px", fontSize:'20px' }}>
+                  <TableCell
+                    align="center"
+                    sx={{ height: "130px", fontSize: "20px" }}
+                  >
                     {product.productName}
                   </TableCell>
                   <TableCell
@@ -177,7 +203,7 @@ function ShoppingCart() {
               </TableBody>
             );
           })}
-          {quantity === 0 ? <h2>Empty Cart</h2> : null}
+          {quantity === 0 ? <h2 className="h2">Empty Cart</h2> : null}
           <TableRow>
             <TableCell />
             <TableCell />
@@ -193,7 +219,7 @@ function ShoppingCart() {
               variant="outlined"
               sx={{
                 color: "#694736",
-                fontWeight: '600',
+                fontWeight: "600",
                 borderColor: "#EED2B5",
                 backgroundColor: "#EED2B5",
                 borderRadius: "16px",
@@ -203,6 +229,7 @@ function ShoppingCart() {
                   borderColor: "#D5E7B8",
                 },
               }}
+              onClick={handleCheckout}
             >
               Checkout
             </Button>
@@ -222,6 +249,7 @@ function ShoppingCart() {
                   borderColor: "#D5E7B8",
                 },
               }}
+              onClick={handleCheckout}
             >
               Checkout
             </Button>

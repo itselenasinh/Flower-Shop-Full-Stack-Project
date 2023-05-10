@@ -13,7 +13,6 @@ function AuthLogin() {
   return (
     <Box
       sx={{
-        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -23,10 +22,11 @@ function AuthLogin() {
         backgroundRepeat: "no-repeat",
         overflow: "hidden",
         // borderRadius: 20,
-        // width: "80%",
-        margin: "auto",
-        paddingTop: "50px",
-        paddingBottom: "50px",
+        width: "100%",
+        height: "100%",
+        //margin: "auto",
+        paddingTop: 15,
+        paddingBottom: 20,
       }}
     >
       <Typography variant="h1" color="black" align="center">

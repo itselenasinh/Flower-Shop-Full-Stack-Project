@@ -1,7 +1,5 @@
-h2{
-    display: flex;
-    text-align: center;
-    justify-content: flex-end;
-
+.h2 {
+  display: flex;
+  text-align: center;
+  justify-content: flex-end;
 }
-

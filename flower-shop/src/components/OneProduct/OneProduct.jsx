@@ -14,6 +14,7 @@ import { FavoriteBorderRounded } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 function OneProduct({
+  id,
   productName,
   price,
   description,
@@ -22,7 +23,7 @@ function OneProduct({
   category,
 }) {
   const [cart, setCart] = useContext(ShoppingCartContext);
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(false);
   const { addToWishlist } = useContext(WishlistProductsContext);
 
   useEffect(() => {
@@ -45,7 +46,10 @@ function OneProduct({
           }
         });
       } else {
-        return [...currProducts, { productName, quantity: 1, price, picture }];
+        return [
+          ...currProducts,
+          { id, productName, quantity: 1, price, picture },
+        ];
       }
     });
   }
@@ -81,30 +85,31 @@ function OneProduct({
 
   const handleAddToWishlist = (product) => {
     if (isLogged) {
-    addToWishlist({
-      productName,
-      price,
-      description,
-      picture,
-      stock,
-      category,
-    });
+      addToWishlist({
+        productName,
+        price,
+        description,
+        picture,
+        stock,
+        category,
+      });
     } else {
-      alert('Ups! Log in to add products on your wishlist')
-    }};
-  
+      alert("Ups! Log in to add products on your wishlist");
+    }
+  };
 
-return (
-
-    <Box sx={{
-      pb: '200px'
-    }}> 
+  return (
+    <Box
+      sx={{
+        pb: "200px",
+      }}
+    >
       <Box
         sx={{
           minHeight: 350,
           display: "flex",
           justifyContent: "space-evenly",
-          backgroundColor: 'lightbeige',
+          backgroundColor: "lightbeige",
           pt: "50px",
           transition: "transform 0.3s, border 0.3s",
           "&:hover": {
@@ -124,7 +129,7 @@ return (
             gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
             boxShadow: "none",
             position: "relative",
-            backgroundColor: 'lightBeige',
+            backgroundColor: "lightBeige",
           }}
         >
           <CardMedia
@@ -135,10 +140,10 @@ return (
               height: "400px",
               width: "300px",
               borderRadius: "7px",
-              backgroundColor: 'lightBeige',
+              backgroundColor: "lightBeige",
             }}
           ></CardMedia>
-<IconButton
+          <IconButton
             sx={{
               position: "absolute",
               bottom: "10px",
@@ -148,7 +153,7 @@ return (
               borderRadius: "50%",
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.5)",
             }}
-            onClick={() => { 
+            onClick={() => {
               handleAddToWishlist({
                 productName,
                 price,
@@ -170,7 +175,7 @@ return (
               backgroundColor: "lightBeige",
               p: 0,
               m: 0,
-              pl: '30px'
+              pl: "30px",
             }}
           >
             <Typography
@@ -302,7 +307,7 @@ return (
         </Card>
       </Box>
     </Box>
-)
+  );
 }
 
 export default OneProduct;

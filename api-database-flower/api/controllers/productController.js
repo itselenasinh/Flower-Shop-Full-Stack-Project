@@ -6,7 +6,8 @@ async function getProduct(req, res) {
   try {
     const product = await ProductsModel.findAll({
       where: req.query,
-      attributes: ["productName", "price", "description", "picture"],
+
+      attributes: ["id", "productName", "price", "description", "picture"],
     });
 
     if (!product) {
@@ -53,7 +54,6 @@ async function getCategoriesProducts(req, res) {
 
 async function getOneCategoriesProducts(req, res) {
   try {
-   
     const categories = await Categories.findAll({
       where: { category: req.params.categoryName },
       attributes: ["category"],
