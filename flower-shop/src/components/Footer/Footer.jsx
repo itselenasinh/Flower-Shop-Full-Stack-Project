@@ -120,27 +120,6 @@ export default function Footer() {
             <YouTubeIcon sx={{ mr: 1, fontSize: "30px", color: "#694736" }} />
           </IconButton>
         </Grid>
-
-        {/*<FacebookIcon sx={{ mr: 1,  fontSize: "50px"}} />
-          <TwitterIcon sx={{ mr: 1, fontSize: "50px" }} />
-          <InstagramIcon sx={{ mr: 1, fontSize: "50px"}} />
-          <PinterestIcon sx={{ mr: 1, fontSize: "50px" }} />
-          <YouTubeIcon sx={{ mr: 1, fontSize: "50px" }} />
-          </Grid>
-
-        <Grid item md={6} lg={2}>
-          <FooterTitle lineHeight={2} variant="body1">
-            to receive Our Newsletter
-          </FooterTitle>
-          <Stack>
-            <TextField 
-             variant="standard"
-            label="Email address" />
-            <Button sx={{ mt: 2, mb: 2 }} variant="contained">
-              Subscribe
-            </Button>
-          </Stack>
-    </Grid>*/}
       </Grid>
     </Box>
   );

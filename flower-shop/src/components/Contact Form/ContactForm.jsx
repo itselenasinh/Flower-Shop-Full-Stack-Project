@@ -1,5 +1,6 @@
 import emailjs from "@emailjs/browser";
 import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -36,8 +37,8 @@ export const ContactForm = () => {
   }
 
   return (
-    <>
-      <Grid>
+    <Box>
+      <Grid >
         <Card
           style={{
             minWidth: "50px",
@@ -139,9 +140,9 @@ export const ContactForm = () => {
                   size="large"
                   type="submit"
                   variant="contained"
-                  color="success"
                   fullWidth
                   onClick={handleSubmit}
+                  style={{ backgroundColor: "#D5E7B8", color: "#254E25" }}
                 >
                   Submit
                 </Button>}
@@ -150,6 +151,6 @@ export const ContactForm = () => {
           </CardContent>
         </Card>
       </Grid>
-    </>
+    </Box>
   );
 };

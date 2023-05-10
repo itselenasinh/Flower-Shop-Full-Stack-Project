@@ -25,7 +25,6 @@ function Layout() {
       <NavBar />
       {renderHeader()}
       <Outlet/>
-      <Footer />
     </searchContext.Provider>
   );
 }

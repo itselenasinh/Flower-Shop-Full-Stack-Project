@@ -9,7 +9,7 @@ import { BannerContainer, BannerDescription } from "../../components/Banner/styl
 function ContactUs() {
   const isNonMobile = useMediaQuery("min-width:600px");
   return (
-    <>
+    <Box>
      <div className="home">
      <BannerContainer style={{ backgroundImage:`url(${image})` }}>
 
@@ -59,7 +59,7 @@ function ContactUs() {
         <ContactForm />
     
       <Footer />
-    </>
+    </Box>
   );
 }
 

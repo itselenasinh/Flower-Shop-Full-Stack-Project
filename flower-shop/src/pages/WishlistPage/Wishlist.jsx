@@ -87,7 +87,6 @@ function Wishlist() {
                     backgroundColor: "none",
                     color: "grey",
                     borderRadius: "50%",
-                    // boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.5)",
                   }}
                   onClick={() => {
                     removeFromWishlist(product.productName);
