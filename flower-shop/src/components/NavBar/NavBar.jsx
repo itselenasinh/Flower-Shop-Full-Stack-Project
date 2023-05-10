@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppBar, ListItemIcon, MenuList } from "@mui/material";
+import { AppBar, CardMedia, ListItemIcon, MenuList } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { logout } from "../../services/auth";
 import "./NavBar.css";
+import logo from "../../assets/logo/Untitled-2.png";
 
 import SearchBar from "../SearchBar/SearchBar";
 import {
@@ -118,22 +119,7 @@ function NavBar() {
             fontWeight: 700,
           }}
         >
-          <Typography
-            variant="h6"
-            noWrap
-            sx={{
-              display: { xs: "none", md: "flex" },
-              textAlign: "center",
-              justifyContent: "center",
-              fontFamily: "Monstserrat",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-              "&:hover": { color: "#254E25" },
-            }}
-          >
-            YOUR FLOWERS
-          </Typography>
+          
         </Link>
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
@@ -179,7 +165,16 @@ function NavBar() {
           </Menu>
         </Box>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <Typography
+        <CardMedia
+            component="img"
+            alt=""
+            image={logo}
+            sx={{
+              height: '85px',
+              mb: '5px'
+            }}
+          ></CardMedia>
+          {/* <Typography
             variant="h5"
             fontFamily="Montserrat"
             noWrap
@@ -194,7 +189,7 @@ function NavBar() {
             }}
           >
             YOUR FLOWERS
-          </Typography>
+          </Typography> */}
         </Link>
         <Box
           sx={{
