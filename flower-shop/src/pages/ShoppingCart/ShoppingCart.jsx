@@ -96,9 +96,9 @@ function ShoppingCart() {
     }
   }, []);
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (isLogged) {
-      createOrder(cart, totalPrice);
+      await createOrder(cart);
       setCart([]);
     }
   };
@@ -249,6 +249,7 @@ function ShoppingCart() {
                   borderColor: "#D5E7B8",
                 },
               }}
+              onClick={handleCheckout}
             >
               Checkout
             </Button>

@@ -4,7 +4,7 @@ import { ShoppingCartContext } from "../../Context/CartContext";
 
 import { Box, Card, CardMedia, Typography } from "@mui/material";
 
-function ProductCard({ productName, price, description, picture, stock, }) {
+function ProductCard({ id, productName, price, description, picture, stock }) {
   const [isHovering, setIsHovering] = useState(false);
 
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
   return (
     <Link
       to={`/products/category/${productName}`}
-      style={{ textDecoration: "none"}}
+      style={{ textDecoration: "none" }}
     >
       <Box
         sx={{
@@ -30,7 +30,6 @@ function ProductCard({ productName, price, description, picture, stock, }) {
           display: "flex",
           justifyContent: "space-evenly",
           padding: "50px",
-          
         }}
       >
         <Card
@@ -45,7 +44,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
             justifyContent: "flex-start",
             alignItems: "center",
             flexDirection: "column",
-            backgroundColor: 'lightBeige',
+            backgroundColor: "lightBeige",
             overflow: "hidden",
             gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
           }}
@@ -57,7 +56,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
             sx={{
               height: "300px",
               width: "300px",
-              backgroundColor: 'lightBeige',
+              backgroundColor: "lightBeige",
               transition: "transform 0.3s, border 0.3s",
               "&:hover": {
                 transform: "scale(1.1, 1.1)",
@@ -70,7 +69,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
               height: "100px",
               width: "400px",
               borderRadius: "7px",
-              backgroundColor: 'lightBeige',
+              backgroundColor: "lightBeige",
               pt: "9px",
               m: 0,
             }}
@@ -84,7 +83,7 @@ function ProductCard({ productName, price, description, picture, stock, }) {
                   display: "flex",
                   justifyContent: "center",
                   width: "400px",
-                  backgroundColor: 'lightBeige',
+                  backgroundColor: "lightBeige",
                   color: "#474747",
                   pb: "",
                 }}

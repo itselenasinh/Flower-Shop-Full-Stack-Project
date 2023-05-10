@@ -14,6 +14,7 @@ import { FavoriteBorderRounded } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 function OneProduct({
+  id,
   productName,
   price,
   description,
@@ -38,7 +39,10 @@ function OneProduct({
           }
         });
       } else {
-        return [...currProducts, { productName, quantity: 1, price, picture }];
+        return [
+          ...currProducts,
+          { id, productName, quantity: 1, price, picture },
+        ];
       }
     });
   }
@@ -77,15 +81,17 @@ function OneProduct({
   };
 
   return (
-    <Box sx={{
-      pb: '200px'
-    }}> 
+    <Box
+      sx={{
+        pb: "200px",
+      }}
+    >
       <Box
         sx={{
           minHeight: 350,
           display: "flex",
           justifyContent: "space-evenly",
-          backgroundColor: 'lightbeige',
+          backgroundColor: "lightbeige",
           pt: "50px",
           transition: "transform 0.3s, border 0.3s",
           "&:hover": {
@@ -105,7 +111,7 @@ function OneProduct({
             gap: "clamp(0px, (100% - 360px + 32px) * 999, 16px)",
             boxShadow: "none",
             position: "relative",
-            backgroundColor: 'lightBeige',
+            backgroundColor: "lightBeige",
           }}
         >
           <CardMedia
@@ -116,7 +122,7 @@ function OneProduct({
               height: "400px",
               width: "300px",
               borderRadius: "7px",
-              backgroundColor: 'lightBeige',
+              backgroundColor: "lightBeige",
             }}
           ></CardMedia>
 
@@ -152,7 +158,7 @@ function OneProduct({
               backgroundColor: "lightBeige",
               p: 0,
               m: 0,
-              pl: '30px'
+              pl: "30px",
             }}
           >
             <Typography

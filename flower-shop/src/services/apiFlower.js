@@ -28,7 +28,9 @@ export async function oneProductById(id) {
 }
 
 export async function createCheckoutOrder(products) {
-  const response = await authApi.post("/order", products);
+  const response = await authApi.post("/order", products, {
+    headers: { token: localStorage.getItem("token") },
+  });
   const data = response?.data;
   console.log(data);
   return data;

@@ -7,6 +7,8 @@ function OrderContext({ children }) {
   const [orderDetails, setOrderDetails] = useState([]);
 
   const createOrder = async (product) => {
+    console.log(product);
+
     const productsQTYs = product.map((p) => {
       return {
         productId: p.id,
@@ -16,7 +18,7 @@ function OrderContext({ children }) {
 
     const data = {
       status: "processing",
-      totalPrice: product.reduce((total, p) => total + p.totalPrice, 0),
+      //  totalPrice: product.reduce((total, p) => total + p.totalPrice, 0),
       productsQTYs,
     };
 

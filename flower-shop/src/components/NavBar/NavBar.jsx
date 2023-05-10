@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { logout } from "../../services/auth";
-import './NavBar.css'
+import "./NavBar.css";
 
 import SearchBar from "../SearchBar/SearchBar";
 import {
@@ -37,7 +37,7 @@ function NavBar() {
 
   const [isLogged, setIsLogged] = useContext(AuthUserContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [cart, setCart] = useContext(ShoppingCartContext);
 
@@ -57,7 +57,7 @@ function NavBar() {
     setAnchorButton(event.currentTarget);
     setIsMenuOpen(true);
   };
-  
+
   const handleCloseProducts = () => {
     setAnchorButton(null);
     setIsMenuOpen(false);
@@ -73,30 +73,27 @@ function NavBar() {
     setIsLogOpen(true);
   };
 
-  
-
   async function onLogout() {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     setIsLogged(false);
+    setCart([]);
     navigate("/login");
-    handleCloseLog()
+    handleCloseLog();
   }
-
-
 
   return (
     <AppBar
       position="sticky"
       sx={{
         backgroundColor: "#EED2B5",
-        display: 'flex',
-        justifyContent: 'space-around',
+        display: "flex",
+        justifyContent: "space-around",
         alignItems: "center",
         textAlign: "center",
         color: "#A7D489",
-        height: '80px',
-        width: '100%'
+        height: "80px",
+        width: "100%",
       }}
     >
       <Container
@@ -113,25 +110,31 @@ function NavBar() {
           alignItems: "center",
         }}
       >
-        <Link to='/' style={{ textDecoration: 'none', fontFamily: "Roboto",
-            fontWeight: 700}}>
-        <Typography
-          variant="h6"
-          noWrap
-          
-          sx={{
-            display: { xs: "none", md: "flex" },
-            textAlign: "center",
-            justifyContent: "center",
-            fontFamily: "Monstserrat",
-            fontWeight: 700,
-            letterSpacing: ".3rem",
+        <Link
+          to="/"
+          style={{
             textDecoration: "none",
-            "&:hover": { color: "#254E25" },
+            fontFamily: "Roboto",
+            fontWeight: 700,
           }}
         >
-          YOUR FLOWERS
-        </Typography></Link>
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{
+              display: { xs: "none", md: "flex" },
+              textAlign: "center",
+              justifyContent: "center",
+              fontFamily: "Monstserrat",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              textDecoration: "none",
+              "&:hover": { color: "#254E25" },
+            }}
+          >
+            YOUR FLOWERS
+          </Typography>
+        </Link>
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -175,24 +178,24 @@ function NavBar() {
             ))}
           </Menu>
         </Box>
-        <Link to='/' style={{ textDecoration: 'none'}}>
-        <Typography
-          variant="h5"
-          fontFamily="Montserrat"
-          noWrap
-          
-          sx={{
-            mr: 2,
-            display: { xs: "flex", md: "none" },
-            flexGrow: 1,
-            fontWeight: 700,
-            letterSpacing: ".3rem",
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          YOUR FLOWERS
-        </Typography></Link>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Typography
+            variant="h5"
+            fontFamily="Montserrat"
+            noWrap
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            YOUR FLOWERS
+          </Typography>
+        </Link>
         <Box
           sx={{
             flexGrow: 1,
@@ -211,12 +214,11 @@ function NavBar() {
                   sx={{
                     my: 2,
                     color: "#694736 ",
-                    fontFamily: 'Roboto',
-                    fontWeight: '600',
-                    fontSize: '18px',
+                    fontFamily: "Roboto",
+                    fontWeight: "600",
+                    fontSize: "18px",
                     "&:hover": { color: "#254E25" },
                     display: "block",
-                    
                   }}
                 >
                   {page}
@@ -232,11 +234,12 @@ function NavBar() {
                   sx={{
                     my: 2,
                     color: "#694736 ",
-                    fontFamily: 'Roboto',
-                    fontWeight: '600',
-                    fontSize: '18px',
+                    fontFamily: "Roboto",
+                    fontWeight: "600",
+                    fontSize: "18px",
                     "&:hover": { color: "#254E25" },
-                    display: "block"}}
+                    display: "block",
+                  }}
                 >
                   {page}
                 </Button>
@@ -248,23 +251,46 @@ function NavBar() {
             open={isMenuOpen}
             anchorEl={anchorButton}
             onClose={handleCloseProducts}
-          > <MenuList sx={{ backgroundColor: '#EED2B5'}}>
-            <MenuItem onClick={() => {handleCloseProducts()}} 
-              component={Link}
-              to="/products/bouquets"
-              
-            >
-              Bouquets
-            </MenuItem>
-            <MenuItem onClick={() => {handleCloseProducts()}}  component={Link} to="/products/crowns">
-              Crowns
-            </MenuItem>
-            <MenuItem onClick={() => {handleCloseProducts()}}  component={Link} to="/products/garlands">
-              Garlands
-            </MenuItem>
-            <MenuItem onClick={() => {handleCloseProducts()}}  component={Link} to="/products/plants">
-              Plants
-            </MenuItem></MenuList>
+          >
+            {" "}
+            <MenuList sx={{ backgroundColor: "#EED2B5" }}>
+              <MenuItem
+                onClick={() => {
+                  handleCloseProducts();
+                }}
+                component={Link}
+                to="/products/bouquets"
+              >
+                Bouquets
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleCloseProducts();
+                }}
+                component={Link}
+                to="/products/crowns"
+              >
+                Crowns
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleCloseProducts();
+                }}
+                component={Link}
+                to="/products/garlands"
+              >
+                Garlands
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleCloseProducts();
+                }}
+                component={Link}
+                to="/products/plants"
+              >
+                Plants
+              </MenuItem>
+            </MenuList>
           </Menu>
         </Box>
         <SearchBar />
@@ -293,32 +319,31 @@ function NavBar() {
                 anchorEl={aButton}
                 onClose={handleCloseLog}
               >
-                <MenuList id='papas' sx={{ backgroundColor: '#EED2B5'}}>
-                <MenuItem component={Link} to="/profile">
-                  <ListItemIcon>
-                    <AccountCircleOutlined fontSize="small" />
-                  </ListItemIcon>
-                  Profile
-                </MenuItem>
-                <MenuItem component={Link} to="/wishlist">
-                  <ListItemIcon>
-                    <FavoriteBorderOutlined fontSize="small" />
-                  </ListItemIcon>
-                  Wish list
-                </MenuItem>
-                <MenuItem component={Link} to="/orders">
-                  <ListItemIcon>
-                    <BookmarkAddOutlined fontSize="small" />
-                  </ListItemIcon>
-                  My orders
-                </MenuItem>
-                <MenuItem
-                onClick={onLogout}> 
-                  <ListItemIcon>
-                    <LogoutOutlined fontSize="small" />
-                  </ListItemIcon>
-                  Logout
-                </MenuItem>
+                <MenuList id="papas" sx={{ backgroundColor: "#EED2B5" }}>
+                  <MenuItem component={Link} to="/profile">
+                    <ListItemIcon>
+                      <AccountCircleOutlined fontSize="small" />
+                    </ListItemIcon>
+                    Profile
+                  </MenuItem>
+                  <MenuItem component={Link} to="/wishlist">
+                    <ListItemIcon>
+                      <FavoriteBorderOutlined fontSize="small" />
+                    </ListItemIcon>
+                    Wish list
+                  </MenuItem>
+                  <MenuItem component={Link} to="/orders">
+                    <ListItemIcon>
+                      <BookmarkAddOutlined fontSize="small" />
+                    </ListItemIcon>
+                    My orders
+                  </MenuItem>
+                  <MenuItem onClick={onLogout}>
+                    <ListItemIcon>
+                      <LogoutOutlined fontSize="small" />
+                    </ListItemIcon>
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </>

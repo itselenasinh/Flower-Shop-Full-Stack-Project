@@ -25,9 +25,16 @@ function SearchBar() {
     const searchProducts = async () => {
       try {
         const response = await searchByApi(searchBar);
-        setSearchResults(response);
+        const results = response.data.filter((product) => {
+          return product.productName
+            .toString()
+            .toString()
+            .toLowerCase()
+            .includes(searchBar.toLowerCase());
+        });
+        setSearchResults(results);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
 
@@ -98,12 +105,14 @@ function SearchBar() {
       </IconButton>
 
       <Dialog
+        minWidth={"100vw"}
         PaperProps={{
           style: {
             position: "absolute",
             display: "flex",
             top: 0,
             width: "100%",
+            margin: 0,
           },
         }}
         open={searchBarVisible || searchBar.length > 0}
