@@ -87,7 +87,7 @@ function NavBar() {
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: "#EED2B5",
+        backgroundColor: "#f8f8c7",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
@@ -118,9 +118,7 @@ function NavBar() {
             fontFamily: "Roboto",
             fontWeight: 700,
           }}
-        >
-          
-        </Link>
+        ></Link>
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -165,13 +163,13 @@ function NavBar() {
           </Menu>
         </Box>
         <Link to="/" style={{ textDecoration: "none" }}>
-        <CardMedia
+          <CardMedia
             component="img"
             alt=""
             image={logo}
             sx={{
-              height: '85px',
-              mb: '5px'
+              height: "85px",
+              mb: "5px",
             }}
           ></CardMedia>
           {/* <Typography
