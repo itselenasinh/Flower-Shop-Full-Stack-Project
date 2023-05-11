@@ -85,12 +85,12 @@ function NavBar() {
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: "white",
+        backgroundColor: "#FFFAF6",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
         textAlign: "center",
-        color: "#A7D489",
+        color: "#22423D",
         height: "80px",
         width: "100%",
       }}
@@ -124,7 +124,7 @@ function NavBar() {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleOpenNavMenu}
-            color="inherit"
+            color="#22423D"
           >
             <MenuIcon />
           </IconButton>
@@ -170,22 +170,6 @@ function NavBar() {
               mb: "5px",
             }}
           ></CardMedia>
-          {/* <Typography
-            variant="h5"
-            fontFamily="Montserrat"
-            noWrap
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            YOUR FLOWERS
-          </Typography> */}
         </Link>
         <Box
           sx={{
@@ -193,7 +177,7 @@ function NavBar() {
             display: { xs: "none", md: "flex" },
             flexDirection: { xs: "row" },
             justifyContent: "center",
-            color: "#694736 ",
+            color: "#22423D",
           }}
         >
           {pages.map((page) => {
@@ -204,11 +188,11 @@ function NavBar() {
                   key={page}
                   sx={{
                     my: 2,
-                    color: "#694736 ",
+                    color: "#22423D",
                     fontFamily: "Roboto",
                     fontWeight: "600",
                     fontSize: "18px",
-                    "&:hover": { color: "#254E25" },
+                    "&:hover": { color: "#22423D" },
                     display: "block",
                   }}
                 >
@@ -224,11 +208,11 @@ function NavBar() {
                   onClick={handleCloseNavMenu}
                   sx={{
                     my: 2,
-                    color: "#694736 ",
+                    color: "#22423D",
                     fontFamily: "Roboto",
                     fontWeight: "600",
                     fontSize: "18px",
-                    "&:hover": { color: "#254E25" },
+                    "&:hover": { color: "#22423D" },
                     display: "block",
                   }}
                 >
@@ -244,7 +228,7 @@ function NavBar() {
             onClose={handleCloseProducts}
           >
             {" "}
-            <MenuList sx={{ backgroundColor: "white" }}>
+            <MenuList sx={{ backgroundColor: "#FFFAF6" }}>
               <MenuItem
                 onClick={() => {
                   handleCloseProducts();
@@ -295,7 +279,8 @@ function NavBar() {
                 onClick={handleOpenLog}
                 sx={{
                   my: 2,
-                  color: "#694736 ",
+                  color: "#22423D ",
+                  fontWeight: '600',
                   "&:hover": { color: "#254E25" },
                   display: "block",
                 }}
@@ -310,7 +295,7 @@ function NavBar() {
                 anchorEl={aButton}
                 onClose={handleCloseLog}
               >
-                <MenuList id="papas" sx={{ backgroundColor: "white" }}>
+                <MenuList id="papas" sx={{ backgroundColor: "#FFFAF6", color: '#22423D' }}>
                   <MenuItem component={Link} to="/profile">
                     <ListItemIcon>
                       <AccountCircleOutlined fontSize="small" />
@@ -343,7 +328,7 @@ function NavBar() {
               <Button sx={{ m: "0" }}>
                 <Person2Outlined
                   sx={{
-                    color: "#694736",
+                    color: "#22423D",
                     "&:hover": { color: "#254E25" },
                     justifyContent: "space-around",
                   }}
@@ -356,7 +341,7 @@ function NavBar() {
         <Link to={"/shopping-cart"}>
           <IconButton sx={{ backgroundColor: "none" }}>
             <ShoppingBagOutlined
-              sx={{ color: "#694736 ", "&:hover": { color: "#254E25" } }}
+              sx={{ color: "#22423D ", "&:hover": { color: "#254E25" } }}
             />
             <span
               style={{
@@ -372,7 +357,7 @@ function NavBar() {
                 opacity: "0.8",
                 borderRadius: "20px",
                 position: "absolute",
-                color: "#694736",
+                color: "#22423D",
               }}
             >
               {quantity}

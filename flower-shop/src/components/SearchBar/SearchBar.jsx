@@ -100,7 +100,7 @@ function SearchBar() {
         sx={{ backgroundColor: "none" }}
       >
         <SearchOutlined
-          sx={{ color: "#694736 ", "&:hover": { color: "#254E25" } }}
+          sx={{ color: "#22423D", "&:hover": { color: "#254E25" } }}
         />
       </IconButton>
 
