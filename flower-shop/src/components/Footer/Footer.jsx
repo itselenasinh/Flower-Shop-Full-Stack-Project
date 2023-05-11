@@ -71,28 +71,13 @@ export default function Footer() {
         <Grid item md={6} lg={2}>
           <FooterTitle variant="body1">Popular Categories</FooterTitle>
           <List>
-            <Link
-              to="/shopping-cart"
-              lineHeight={2}
-              variant="caption2"
-              color={"#694736"}
-            >
+            <Link to="/shopping-cart" style={"none"} color={"#694736"}>
               <ListItemText>My Cart</ListItemText>
             </Link>
-            <Link
-              to="/login"
-              color={"#694736"}
-              lineHeight={2}
-              variant="caption2"
-            >
+            <Link to="/login" style={"none"} color={"#694736"}>
               <ListItemText>My Account</ListItemText>
             </Link>
-            <Link
-              to="/wishlist"
-              color={"#694736"}
-              lineHeight={2}
-              variant="caption2"
-            >
+            <Link to="/wishlist" style={"none"} color={"#694736"}>
               <ListItemText>Wishlist</ListItemText>
             </Link>
           </List>
