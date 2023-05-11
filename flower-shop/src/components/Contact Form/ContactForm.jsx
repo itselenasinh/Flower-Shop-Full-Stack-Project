@@ -16,19 +16,19 @@ export const ContactForm = () => {
   const [number, setNumber] = useState("");
   const [message, setMessage] = useState("");
 
-  const [submited, setSubmited] = useState(false)
+  const [submited, setSubmited] = useState(false);
 
   function handleSubmit() {
     const data = { name, email, number, message };
 
     console.log(data);
 
-    emailjs.init('nNUh92pymueYx1tpE')
+    emailjs.init("nNUh92pymueYx1tpE");
 
-    emailjs.send("contact_service", "template_ru0grdp", data ).then(
+    emailjs.send("contact_service", "template_ru0grdp", data).then(
       function (response) {
         console.log("SUCCESS!", response.status, response.text);
-        setSubmited(true)
+        setSubmited(true);
       },
       function (err) {
         console.log("FAILED...", err);
@@ -38,7 +38,7 @@ export const ContactForm = () => {
 
   return (
     <Box>
-      <Grid >
+      <Grid>
         <Card
           style={{
             minWidth: "50px",
@@ -59,14 +59,10 @@ export const ContactForm = () => {
               component="p"
               gutterBottom
             >
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form, by
-              injected humour, or randomised words which dont look even slightly
-              believable. If you are going to use a passage of Lorem Ipsum, you
-              need to be sure there isnt anything embarrassing hidden in the
-              middle of text. All the Lorem Ipsum generators on the Internet
-              tend to repeat predefined chunks as necessary, making this the
-              first true generator on the Internet.
+              Make your event unforgettable with our beautiful floral
+              arrangements. At our flower shop, we're here to help you create a
+              unique floral experience. Contact us today and let us make your
+              event unforgettable with the beauty of flowers
             </Typography>
 
             <Grid container spacing={2}>
@@ -136,16 +132,23 @@ export const ContactForm = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-               {submited ? <p>Thank you for your message! Our team will get back to you soon! </p> : <Button
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  fullWidth
-                  onClick={handleSubmit}
-                  style={{ backgroundColor: "#D5E7B8", color: "#254E25" }}
-                >
-                  Submit
-                </Button>}
+                {submited ? (
+                  <p>
+                    Thank you for your message! Our team will get back to you
+                    soon!{" "}
+                  </p>
+                ) : (
+                  <Button
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    fullWidth
+                    onClick={handleSubmit}
+                    style={{ backgroundColor: "#D5E7B8", color: "#254E25" }}
+                  >
+                    Submit
+                  </Button>
+                )}
               </Grid>
             </Grid>
           </CardContent>
