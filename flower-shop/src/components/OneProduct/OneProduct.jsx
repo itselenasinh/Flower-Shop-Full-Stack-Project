@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { FavoriteBorderRounded } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import WishlistPopup from "../WishlistPopup/WishlistPopup";
 
 function OneProduct({
   id,
@@ -25,6 +26,7 @@ function OneProduct({
   const [cart, setCart] = useContext(ShoppingCartContext);
   const [isLogged, setIsLogged] = useState(false);
   const { addToWishlist } = useContext(WishlistProductsContext);
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -94,7 +96,7 @@ function OneProduct({
         category,
       });
     } else {
-      alert("Ups! Log in to add products on your wishlist");
+      setOpenDialog(true)
     }
   };
 
@@ -104,6 +106,7 @@ function OneProduct({
         pb: "200px",
       }}
     >
+      {openDialog && <WishlistPopup />}
       <Box
         sx={{
           minHeight: 350,

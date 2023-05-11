@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-
 export const BannerContainer = styled(Box)(() => ({
   display: "flex",
   justifyContent: "center",
@@ -30,6 +29,7 @@ export const BannerContent = styled(Box)(() => ({
   color: "white",
   flexDirection: "column",
   justifyContent: "center",
+  textAlign: 'center',
   maxWidth: 420,
   padding: "30px",
 }));

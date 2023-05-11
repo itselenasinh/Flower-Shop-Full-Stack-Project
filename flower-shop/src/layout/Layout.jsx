@@ -3,9 +3,7 @@ import { useLocation } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer"
 
-//import Banner from "../components/Banner/Banner";
 export const searchContext = createContext("");
 
 function Layout() {
@@ -24,7 +22,7 @@ function Layout() {
     <searchContext.Provider value={[searchBar, setSearchBar]}>
       <NavBar />
       {renderHeader()}
-      <Outlet/>
+      <Outlet />
     </searchContext.Provider>
   );
 }

@@ -1,16 +1,14 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppBar, CardMedia, ListItemIcon, MenuList } from "@mui/material";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
-import { logout } from "../../services/auth";
 import "./NavBar.css";
 import logo from "../../assets/logo/Untitled-2.png";
 
@@ -87,7 +85,7 @@ function NavBar() {
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: "#EED2B5",
+        backgroundColor: "white",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
@@ -118,9 +116,7 @@ function NavBar() {
             fontFamily: "Roboto",
             fontWeight: 700,
           }}
-        >
-          
-        </Link>
+        ></Link>
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -165,13 +161,13 @@ function NavBar() {
           </Menu>
         </Box>
         <Link to="/" style={{ textDecoration: "none" }}>
-        <CardMedia
+          <CardMedia
             component="img"
             alt=""
             image={logo}
             sx={{
-              height: '85px',
-              mb: '5px'
+              height: "85px",
+              mb: "5px",
             }}
           ></CardMedia>
           {/* <Typography
@@ -248,7 +244,7 @@ function NavBar() {
             onClose={handleCloseProducts}
           >
             {" "}
-            <MenuList sx={{ backgroundColor: "#EED2B5" }}>
+            <MenuList sx={{ backgroundColor: "white" }}>
               <MenuItem
                 onClick={() => {
                   handleCloseProducts();
@@ -314,7 +310,7 @@ function NavBar() {
                 anchorEl={aButton}
                 onClose={handleCloseLog}
               >
-                <MenuList id="papas" sx={{ backgroundColor: "#EED2B5" }}>
+                <MenuList id="papas" sx={{ backgroundColor: "white" }}>
                   <MenuItem component={Link} to="/profile">
                     <ListItemIcon>
                       <AccountCircleOutlined fontSize="small" />
