@@ -2,19 +2,19 @@ import { Box, Container } from "@mui/system";
 import Footer from "../../components/Footer/Footer";
 import { Typography, useMediaQuery } from "@mui/material";
 import { ContactForm } from "../../components/Contact Form/ContactForm";
-import image from '../../assets/About.avif'
-import { BannerContainer, BannerDescription } from "../../components/Banner/styles";
-
+import image from "../../assets/About.avif";
+import {
+  BannerContainer,
+  BannerDescription,
+} from "../../components/Banner/styles";
 
 function ContactUs() {
   const isNonMobile = useMediaQuery("min-width:600px");
   return (
     <Box>
-     <div className="home">
-     <BannerContainer style={{ backgroundImage:`url(${image})` }}>
-
-     
-      <Box
+      <div className="home">
+        <BannerContainer style={{ backgroundImage: `url(${image})` }}>
+          <Box
             color="white"
             padding="20px"
             borderRadius="1px"
@@ -30,34 +30,26 @@ function ContactUs() {
             <Typography variant="h1" color="#EED2B5">
               CONTACT US{" "}
             </Typography>
-          
           </Box>
 
-        <BannerDescription variant="body1">
-          
-        </BannerDescription>
-     
-    </BannerContainer>
-     </div>
-      <div className="about" >
-        <Container>
-      <Typography variant="h6">
-       There are many variations of passages of Lorem Ipsum available, but the
-        majority have suffered alteration in some form, by injected humour, or
-        randomised words which dont look even slightly believable. If you are
-        going to use a passage of Lorem Ipsum, you need to be sure there isnt
-        anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-        generators on the Internet tend to repeat predefined chunks as
-        necessary, making this the first true generator on the Internet. It uses
-        a dictionary of over 200 Latin words, combined with a handful of model
-        sentence structures, to generate Lorem Ipsum which looks reasonable. The
-        generated Lorem Ipsum is therefore always free from repetition, injected
-        humour, or non-characteristic words etc.
-      </Typography>
-      </Container>
+          <BannerDescription variant="body1"></BannerDescription>
+        </BannerContainer>
       </div>
-        <ContactForm />
-    
+      <div className="about">
+        <Container>
+          <Typography variant="h6">
+            Flowers are the most beautiful way to express emotions and create
+            unforgettable memories. In our flower shop, we specialize in making
+            every special event something unique and memorable. Whether it's a
+            wedding, an anniversary or any other occasion, our carefully
+            designed floral arrangements will make your event unforgettable.
+            Contact us today and let us help you turn your event into a floral
+            masterpiece.
+          </Typography>
+        </Container>
+      </div>
+      <ContactForm />
+
       <Footer />
     </Box>
   );
