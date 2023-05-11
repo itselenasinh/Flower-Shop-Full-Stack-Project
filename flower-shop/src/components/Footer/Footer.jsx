@@ -47,16 +47,15 @@ export default function Footer() {
         <Grid item md={6} lg={2}>
           <FooterTitle variant="body1">Useful links</FooterTitle>
           <List>
-            <ListItemText>
-              <Link
-                to="/orders"
-                color={"#694736"}
-                lineHeight={2}
-                variant="caption2"
-              >
-                Order Tracking
-              </Link>
-            </ListItemText>
+            <Link
+              to="/orders"
+              color={"#694736"}
+              lineHeight={2}
+              variant="caption2"
+            >
+              <ListItemText>Order Tracking</ListItemText>
+            </Link>
+
             <ListItemText>
               <Typography lineHeight={2} variant="caption2">
                 Privacy & Policy
@@ -72,36 +71,30 @@ export default function Footer() {
         <Grid item md={6} lg={2}>
           <FooterTitle variant="body1">Popular Categories</FooterTitle>
           <List>
-            <ListItemText>
-              <Link
-                to="/shopping-cart"
-                lineHeight={2}
-                variant="caption2"
-                color={"#694736"}
-              >
-                My Cart
-              </Link>
-            </ListItemText>
-            <ListItemText>
-              <Link
-                to="/login"
-                color={"#694736"}
-                lineHeight={2}
-                variant="caption2"
-              >
-                My Account
-              </Link>
-            </ListItemText>
-            <ListItemText>
-              <Link
-                to="/wishlist"
-                color={"#694736"}
-                lineHeight={2}
-                variant="caption2"
-              >
-                Wishlist
-              </Link>
-            </ListItemText>
+            <Link
+              to="/shopping-cart"
+              lineHeight={2}
+              variant="caption2"
+              color={"#694736"}
+            >
+              <ListItemText>My Cart</ListItemText>
+            </Link>
+            <Link
+              to="/login"
+              color={"#694736"}
+              lineHeight={2}
+              variant="caption2"
+            >
+              <ListItemText>My Account</ListItemText>
+            </Link>
+            <Link
+              to="/wishlist"
+              color={"#694736"}
+              lineHeight={2}
+              variant="caption2"
+            >
+              <ListItemText>Wishlist</ListItemText>
+            </Link>
           </List>
         </Grid>
 
