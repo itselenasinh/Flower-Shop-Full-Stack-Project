@@ -1,4 +1,6 @@
 import { Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+
 import { MainCarousel } from "../../components/Carousel/Carousel";
 import Footer from "../../components/Footer/Footer";
 import { Container } from "@mui/system";
@@ -30,15 +32,16 @@ function SpecialEvents() {
             </p>
           </Typography>
         </Container>
-        <Button
-          href="/contact-us"
-          type="submit"
-          variant="contained"
-          size="large"
-          style={{ backgroundColor: "#D5E7B8", color: "#254E25" }}
-        >
-          Contact Us
-        </Button>
+        <Link to="/contact-us">
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            style={{ backgroundColor: "#D5E7B8", color: "#254E25" }}
+          >
+            Contact Us
+          </Button>
+        </Link>
       </div>
       <Footer />
     </>
